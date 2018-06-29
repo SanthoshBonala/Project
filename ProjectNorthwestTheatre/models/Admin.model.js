@@ -9,7 +9,18 @@ var AdminSchema = new mongoose.Schema({
     Password: {
         type: String,
         trim: true,
+        minlength: 6,
+        validate: {
+            validator: function(v) {
+                return /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[_!@#$%^&*]).+$/.test(v)
+            },
+            message: 'does not meet criteria for password (A-Z,a-z,0-9,special character)'
+        },
         required: [true, "Password required"]
+    },
+    AccessToken: {
+        type: String,
+        trim: true
     }
 })
 

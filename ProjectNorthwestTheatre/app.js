@@ -11,21 +11,70 @@ var db = require('./config/database');
 var app = express();
 var adminRoutes = require('./modules/admin/admin.route')
 var audienceRoutes = require('./modules/audience/audience.route')
+var jwt = require('jsonwebtoken')
+var config = require('./config/config')
+var session = require('express-session')
+var mongoose = require('mongoose')
+var adminModel = require('./models/Admin.model')
+
 // view engine setup
 app.set('views', path.join(__dirname, 'frontend'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'frontend')));
+app.use(session({ 
+  secret: config.sessionsecret,
+  resave: false, 
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 // app.use('/', index);
 app.use('/users', users);
 app.use('/register', audienceRoutes);
-app.use('/admin', adminRoutes);
+
+let tokenAuthentication = (req, res, next) => {
+  if (req.headers.token) {
+    try {
+      jwt.verify(req.headers.token, config.tokensecret)
+      next()
+    } catch (err) {
+      res.status(401).send("Unauthorized")
+    }
+  } else {
+    if (req.body.Username && req.body.Password) {
+      adminModel.findOne({ Username: req.body.Username }, function (err, user) {
+        if (err) res.status(401).send("Error while getting user");
+            if(!user){
+               return res.status(401).send('User Does not exist')
+            }
+            user.comparePassword(req.body.Password, function (err, isMatch) {
+              if (err) res.status(400).send("Error while comparing password"); 
+              if(isMatch) {
+                      var data = {
+                        Username: req.body.Username,
+                        Password: req.body.Password
+                      }
+                      var token = jwt.sign(data, config.tokensecret, { expiresIn: '1h' })
+                      req.session.token = token
+                      next()
+                  }else{
+                      res.status(401).send("Authentication Failed")
+                  }  
+               
+             })
+      })
+    } else {
+      res.status(401).send("Unauthorized")
+    }
+  }
+}
+
+app.use('/admin', tokenAuthentication, adminRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -33,6 +82,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {

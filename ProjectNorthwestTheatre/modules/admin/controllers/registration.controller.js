@@ -3,15 +3,14 @@ var adminModel = require('../../../models/Admin.model')
 
 let registration = (req,res,next) => {
     var admin = new adminModel({
-        Username : req.body.Username,
-        Password : req.body.Password
+        Username : req.body.RegUsername,
+        Password : req.body.RegPassword
     })
     admin.save((err) => {
-        if(err){
-            console.log(err)
-            res.status(400).send("Error while saving password")
+        if (err) {
+            return res.status(400).send(err.message)
         }
-        res.json(admin)
+               res.send('Admin Added successfully')
     })
 }
 
