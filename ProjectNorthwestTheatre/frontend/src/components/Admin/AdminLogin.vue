@@ -14,20 +14,20 @@
 
 <script>
 export default {
-    name: 'AdminLogin',
-    data () {
-        return {
-          formdata : { 
-            email : '',
-            password : ''
-          }
-        }
-    },
-    methods: {
-      formsubmit(){
-        console.log(this.formdata)
+  name: 'AdminLogin',
+  data () {
+    return {
+      formdata: {
+        email: '',
+        password: ''
       }
     }
+  },
+  methods: {
+    formsubmit () {
+      console.log(this.formdata)
+    }
+  }
 }
 </script>
 
@@ -44,7 +44,6 @@ body {
   text-align: center!important;
 }
 #AdminLogin{
-    padding-top: 50px;
     text-align: center!important;
 }
 .form-signin {
