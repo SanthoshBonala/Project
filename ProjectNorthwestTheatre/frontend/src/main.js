@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 
 Vue.config.productionTip = false
+window.moment = require('moment')
 
 /* eslint-disable no-new */
 new Vue({
