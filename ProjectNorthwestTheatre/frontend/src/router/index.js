@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import UserDashboard from '../components/User/UserDashboard.vue'
 import AdminLogin from '../components/Admin/AdminLogin.vue'
 import UserReservation from '../components/User/UserShowReservation.vue'
+import AdminDashboard from '../components/Admin/AdminDashboard.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +23,11 @@ export default new Router({
       path: '/user/reservation',
       name: UserReservation,
       component: UserReservation
+    },
+    {
+      path: '/admin/dashboard',
+      name: AdminDashboard,
+      component: AdminDashboard
     }
   ]
 })
