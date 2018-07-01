@@ -63,7 +63,7 @@ let tokenAuthentication = (req, res, next) => {
                       req.session.token = token
                       next()
                   }else{
-                      res.status(401).send("Authentication Failed")
+                      return res.status(401).send("Authentication Failed")
                   }  
                
              })

@@ -6,6 +6,11 @@ var AdminSchema = new mongoose.Schema({
         trim: true,
         required: [true, "Username required"]
     },
+    Email: {
+        type: String,
+        trim: true,
+        required: [true, "Email required"]
+    },
     Password: {
         type: String,
         trim: true,
