@@ -31,7 +31,7 @@ export default {
         timeout: 1000
       }).post('/authenticate', this.formdata)
         .then(function (response) {
-          window.localStorage.setItem('AccessToken',response.data.token)
+          window.localStorage.setItem('AccessToken', response.data.token)
         })
         .catch(function (error) {
           console.log(error)

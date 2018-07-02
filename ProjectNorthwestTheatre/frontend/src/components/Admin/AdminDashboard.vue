@@ -94,7 +94,6 @@
 <script>
 import AdminShow from './AdminShow.vue'
 import LeftNavbar from './AdminNavbar.vue'
-
 export default {
   name: 'AdminDashboard',
   data () {
@@ -121,19 +120,19 @@ export default {
   methods: {
     addshow () {
       console.log(this.formdata)
-      /* global $ axios */
+      /* global $ axios url */
       axios.create({
         baseURL: url,
         timeout: 1000,
-        headers: {'token': window.localStorage.getItem('AccessToken') }
-      }).post('/addadmin', this.formdata)
+        headers: { 'token': window.localStorage.getItem('AccessToken') }
+      }).post('/addshow', this.formdata)
         .then(function (response) {
           console.log(response)
+          $('#myModal').modal('hide')
         })
         .catch(function (error) {
           console.log(error)
         })
-      $('#myModal').modal('hide')
     }
   }
 }
