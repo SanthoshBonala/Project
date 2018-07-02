@@ -125,7 +125,7 @@ export default {
         baseURL: url,
         timeout: 1000,
         headers: { 'token': window.localStorage.getItem('AccessToken') }
-      }).post('/addshow', this.formdata)
+      }).post('/addadmin', this.formdata)
         .then(function (response) {
           console.log(response)
           $('#myModal').modal('hide')
