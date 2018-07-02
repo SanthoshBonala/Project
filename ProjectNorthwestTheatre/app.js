@@ -16,12 +16,13 @@ var config = require('./config/config')
 var session = require('express-session')
 var mongoose = require('mongoose')
 var adminModel = require('./models/Admin.model')
+var cors = require('cors')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'frontend'));
 app.set('view engine', 'ejs');
 
-
+app.use(cors())
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
