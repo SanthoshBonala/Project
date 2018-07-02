@@ -48,20 +48,20 @@
       <legend class="col-form-label col-sm-10 pt-0">Are you a theatre appreciation student?</legend>
       <div class="col-sm-10">
         <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="yes" value="option1">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="yes" value="option1" v-model="isTheatreAppreciationStudent">
   <label class="form-check-label" for="yes">Yes</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="no" value="option2">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="no" value="option2" v-model="isTheatreAppreciationStudent">
   <label class="form-check-label" for="no">No</label>
 </div>
     </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group row" v-if="isTheatreAppreciationStudent === 'option1'">
                 <label class="col-sm-4 form-label">Section Number:</label>
                 <input class="col-sm-7 form-control" type="text" id="sectionnumber">
               </div>
-              <button type="button" class="btn btn-sm btn-light" data-toggle="popover" title="Section details" data-content="These are all the Section details">Section Numbers</button>
+              <button type="button" v-if="isTheatreAppreciationStudent === 'option1'" class="btn btn-sm btn-light" data-toggle="popover" title="Section details" data-content="These are all the Section details">Section Numbers</button>
      </fieldset>    <button type="submit" class="btn btn-danger">Reset</button>  <button type="submit" class="btn btn-success">Submit</button>
     </form>
     </div>
@@ -72,8 +72,15 @@
 
 <script>
 export default {
+  name: 'AdminShow',
+  data () {
+    return {
+      isTheatreAppreciationStudent: false
+    }
+  }
 }
 $(function () {
+  /* global $ */
   $('[data-toggle="popover"]').popover()
 })
 </script>

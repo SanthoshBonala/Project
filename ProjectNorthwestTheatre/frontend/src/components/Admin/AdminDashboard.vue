@@ -121,11 +121,11 @@ export default {
   methods: {
     addshow () {
       console.log(this.formdata)
-      /* global $ axios */
+      /* global $ axios url */
       axios.create({
         baseURL: url,
         timeout: 1000,
-        headers: {'token': window.localStorage.getItem('AccessToken') }
+        headers: { 'token': window.localStorage.getItem('AccessToken') }
       }).post('/addadmin', this.formdata)
         .then(function (response) {
           console.log(response)
