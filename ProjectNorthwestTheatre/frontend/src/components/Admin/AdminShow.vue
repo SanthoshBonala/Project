@@ -74,6 +74,7 @@
 export default {
 }
 $(function () {
+  /* global $ */
   $('[data-toggle="popover"]').popover()
 })
 </script>
