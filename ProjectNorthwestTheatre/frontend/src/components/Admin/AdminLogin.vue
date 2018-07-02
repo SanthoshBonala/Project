@@ -4,9 +4,9 @@
          <img class="mb-4" src="../../assets/logoproject.jpg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" v-model="formdata.email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="text" v-model="formdata.Username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" v-model="formdata.password" class="form-control" placeholder="Password" required>
+        <input type="password" id="inputPassword" v-model="formdata.Password" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
         </form>
     </div>
@@ -18,14 +18,24 @@ export default {
   data () {
     return {
       formdata: {
-        email: '',
-        password: ''
+        Username: '',
+        Password: ''
       }
     }
   },
   methods: {
     formsubmit () {
-      console.log(this.formdata)
+      /* global axios url */
+      axios.create({
+        baseURL: url,
+        timeout: 1000
+      }).post('/authenticate', this.formdata)
+        .then(function (response) {
+          window.localStorage.setItem('AccessToken',response.data.token)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   }
 }

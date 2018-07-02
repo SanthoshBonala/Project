@@ -13,7 +13,8 @@ var ShowSchema = new mongoose.Schema({
         type : Date
     },
     ShowDate : {
-        type : Date
+        type : Date,
+        default: Date()
     },
     NumberOfTickets : {
         type : Number,
