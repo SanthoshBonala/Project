@@ -53,8 +53,7 @@
                             data-toggle="popover"
                             data-trigger="hover"
                             data-placement="right"
-                            title="Schedule For Current Semester"
-                            :data-content="data">
+                            title="Schedule For Current Semester">
                             <i class="fas fa-info-circle"></i>
                         </a>
                         </div>
@@ -72,7 +71,7 @@
         </div>
       </div>
     </div>
-    <table class="d-none">
+    <table :class="{'d-none': check }">
       <thead>
         </thead>
         <tr>
@@ -107,24 +106,21 @@
 </template>
 
 <script>
-$(function () {
-  /* global $ */
-  $('#pop').popover({
-    content: $('table')[0].outerHTML
-  })
-})
 export default {
   name: 'AdminShow',
   data () {
     return {
       /* global $ */
-      data: '',
+      check: false,
       isTheatreAppreciationStudent: ''
     }
   },
   mounted () {
-    this.data = $('table')[0].outerHTML
+    $('#pop').popover({
+      content: $('table')[0].outerHTML
+    })
     console.log('mounted')
+    this.check = true
   }
 }
 </script>
