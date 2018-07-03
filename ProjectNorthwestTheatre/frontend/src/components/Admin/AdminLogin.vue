@@ -25,13 +25,12 @@ export default {
   },
   methods: {
     formsubmit () {
-      /* global axios url */
-      axios.create({
-        baseURL: url,
-        timeout: 1000
-      }).post('/authenticate', this.formdata)
+      var _this = this
+      /* global axioslogin url */
+      axioslogin.post(url + '/authenticate', this.formdata)
         .then(function (response) {
           window.localStorage.setItem('AccessToken', response.data.token)
+          _this.$router.push('/admin/dashboard')
         })
         .catch(function (error) {
           console.log(error)

@@ -25,4 +25,6 @@ router.post('/updateshow', ShowController.UpdateShow);
 
 router.post('/deleteshow', ShowController.deleteShow);
 
+router.post('/guard', adminAuthenticateController.guard);
+
 module.exports = router;

@@ -6,6 +6,7 @@ import UserReservation from '../components/User/UserShowReservation.vue'
 import AdminDashboard from '../components/Admin/AdminDashboard.vue'
 import AddAdmin from '../components/Admin/AddAdmin.vue'
 import AddSection from '../components/Admin/AddSection.vue'
+import Guard from '../services/authservice'
 
 Vue.use(Router)
 
@@ -29,16 +30,19 @@ export default new Router({
     {
       path: '/admin/dashboard',
       name: AdminDashboard,
+      beforeEnter: Guard.auth,
       component: AdminDashboard
     },
     {
       path: '/admin/addadmin',
       name: AddAdmin,
+      beforeEnter: Guard.auth,
       component: AddAdmin
     },
     {
       path: '/admin/addsection',
       name: AddSection,
+      beforeEnter: Guard.auth,
       component: AddSection
     }
   ]

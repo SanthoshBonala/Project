@@ -6,8 +6,14 @@ import router from './router'
 import url from './config/config'
 Vue.config.productionTip = false
 window.moment = require('moment')
-window.axios = require('axios')
+window.axioslogin = require('axios')
+window.axios = require('axios').create({
+  baseURL: url.url,
+  timeout: 1000,
+  headers: { token: localStorage.getItem('AccessToken') }
+})
 window.url = url.url
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

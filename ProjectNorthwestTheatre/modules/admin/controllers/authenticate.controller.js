@@ -20,3 +20,13 @@ let authenticate = (req,res,next) => {
 }
 
 module.exports.authenticate = authenticate;
+
+let guard = (req, res, next) => {
+
+            return res.json({
+                message: "Login Successful"
+            })
+
+}
+
+module.exports.guard = guard;
