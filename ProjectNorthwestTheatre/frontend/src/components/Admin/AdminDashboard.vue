@@ -94,7 +94,6 @@
 <script>
 import AdminShow from './AdminShow.vue'
 import LeftNavbar from './AdminNavbar.vue'
-
 export default {
   name: 'AdminDashboard',
   data () {
@@ -129,11 +128,11 @@ export default {
       }).post('/addadmin', this.formdata)
         .then(function (response) {
           console.log(response)
+          $('#myModal').modal('hide')
         })
         .catch(function (error) {
           console.log(error)
         })
-      $('#myModal').modal('hide')
     }
   }
 }
