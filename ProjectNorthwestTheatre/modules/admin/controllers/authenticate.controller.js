@@ -23,7 +23,7 @@ module.exports.authenticate = authenticate;
 
 let guard = (req, res, next) => {
 
-            return res.json({
+           res.json({
                 message: "Login Successful"
             })
 
