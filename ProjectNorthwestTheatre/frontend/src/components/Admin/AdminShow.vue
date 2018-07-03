@@ -1,130 +1,196 @@
 <template>
-  <div class="col-sm-8 col-xs-8">
-       This is a Show
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
-      Reserve Tickets
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="Modal1" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Enter Details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+  <div>
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-header bg-info text-white">
+          <div class="d-inline-block font-weight-bold ">
+              <h1> Show Name</h1>
+          </div>
+          <div class="d-inline-block component float-right ">
+            <span class=" rounded py-2 m-5" style="border:2px solid white">
+              <div class="btn-group" id="status" data-toggle="buttons">
+                <label class="btn btn-default btn-on  active">
+                  <input class="d-none" type="radio" value="1" name="multifeatured_module[module_id][status]" checked="checked">
+                  <strong>Publish</strong>
+                </label>
+                <label class="btn btn-default btn-off ">
+                  <input class="d-none" type="radio" value="0" name="multifeatured_module[module_id][status]">
+                  <strong>Un Publish</strong>
+                </label>
+              </div>
+            </span>
+            <button type="button" class="btn btn-danger rounded-circle float-right">
+                <span>&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form>
-                  <div class="form-group row">
-                    <label class="col-sm-4 form-label">First Name:</label>
-                    <input class="col-sm-7 form-control" type="text" id="firstname">
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-sm-4 form-label">Last Name:</label>
-                    <input class="col-sm-7 form-control" type="text" id="lastname">
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-sm-4 form-label">Email:</label>
-                    <input class="col-sm-7 form-control" type="text" id="email">
-                  </div>
-                    <fieldset class="form-group">
-                        <div class="row">
-                          <legend class="col-form-label col-sm-8 pt-0">Are you a theatre appreciation student?</legend>
-                          <div class="col-sm-4">
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="yes" value="true" v-model="isTheatreAppreciationStudent">
-                              <label class="form-check-label" for="yes">Yes</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="no" value="false" v-model="isTheatreAppreciationStudent">
-                              <label class="form-check-label" for="no">No</label>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group row" :class="{'d-none': isTheatreAppreciationStudent !== 'true' }">
-                          <label class="col-sm-4 form-label">Section Number:</label>
-                          <input class="col-sm-7 form-control" type="text" id="sectionnumber">
-                          <a tabindex="0"
-                            id="pop"
-                            class="btn col-sm-1"
-                            role="button"
-                            data-html="true"
-                            data-toggle="popover"
-                            data-trigger="hover"
-                            data-placement="right"
-                            title="Schedule For Current Semester">
-                            <i class="fas fa-info-circle"></i>
-                        </a>
-                        </div>
-                        <div class="form-group row" :class="{'d-none': isTheatreAppreciationStudent !== 'false' }">
-                            <label class="col-sm-4 form-label">No. Of Tickets:</label>
-                            <select id="inputState" class="form-control col-sm-7">
-                              <option selected v-for="ele of [1,2,3,4,5,6,7,8,9,10]" :key="ele">{{ele}}</option>
-                            </select>
-                        </div>
-                    </fieldset>
-                    <button type="submit" class="btn btn-danger">Reset</button>
-                    <button type="submit" class="btn btn-success">Submit</button>
-            </form>
-          </div>
         </div>
+        <div class="card-body bg-danger">
+          <div class="content">
+            <div class="row justify-content-around m-3 rounded  bg-light">
+              <!-- image column -->
+              <div class="col-lg ">
+                <img src="pic.png" class="rounded mx-5 my-5  w-50 " alt="...">
+              </div>
+              <!-- image column end -->
+              <!-- details of the show -->
+              <div class="col-lg lead " style="border:1px  ">
+                <!-- Playwright -->
+                <span class="font-weight-bold">Playwright :
+                  <span class="font-weight-normal">Lorem Ipsum</span>
+                </span>
+                <br>
+                <!-- Description -->
+                <span class="font-weight-bold">Description :
+                  <span class="font-weight-normal">Lorem Ipsum</span>
+                </span>
+                <br>
+                <!-- Date -->
+                <span class="font-weight-bold">Date :
+                  <span class="font-weight-normal">Lorem Ipsum</span>
+                </span>
+                <br>
+                <!-- Time  -->
+                <span class="font-weight-bold">Time :
+                  <span class="font-weight-normal">Lorem Ipsum</span>
+                </span>
+                <br>
+                <!-- Venue -->
+                <span class="font-weight-bold">Venue :
+                  <span class="font-weight-normal">Lorem Ipsum</span>
+                </span>
+                <br>
+                <!-- Rating -->
+                <span class="font-weight-bold">Rating :
+                  <span class="font-weight-normal">Lorem Ipsum</span>
+                </span>
+                <br>
+              </div>
+              <!-- details of the show END -->
+              <div class="col-lg lead" style="border:1px ">
+                <div class="component pb-1 mt-1  seats_rounded bg-warning" style="border:2px solid grey">
+                  <!-- Seats Heading -->
+                  <p class="font-weight-bold text-center rounded ">
+                    SEATS
+                  </p>
+                  <!-- Total Seats -->
+                  <span class="px-3  font-weight-bold">Total :
+                    <span class="font-weight-normal">30</span>
+                  </span>
+                  <br>
+                  <!-- Reserved Seats -->
+                  <span class="px-3 font-weight-bold">Reserved :
+                    <span class="font-weight-normal">20</span>
+                  </span>
+                  <br>
+                  <!-- Remaining Seats -->
+                  <span class="px-3  font-weight-bold">Remaining :
+                    <span class="font-weight-normal">10</span>
+                  </span>
+                  <br>
+                </div>
+                <!-- Adult Ticket -->
+                <h1 class="mt-2 text-danger text-center lead">
+                    <span class="font-weight-bold display"> $ 5.99 </span>
+                    <span class="font-weight-normal">For Adult</span>
+                </h1>
+                <!-- Children Ticket -->
+                <h1 class="text-danger text-center lead">
+                    <span class="font-weight-bold display"> $ 2.99 </span>
+                    <span class="font-weight-normal">For Children</span>
+                </h1>
+              </div>
+            </div>
+            <!-- buttons inside the card -->
+            <div class="row justify-content-around m-2 bg-white rounded " style="border:1px ">
+              <button class="col-sm m-2 btn btn-outline-primary" type="button">
+                <strong>Email</strong>
+              </button>
+              <button class="col-sm m-2 btn btn-outline-secondary" type="button">
+                <strong>Generate Report</strong>
+              </button>
+              <button class="col-sm m-2 btn btn-outline-warning" type="button" @click="emitevent()">
+                <strong>Reserve Tickets</strong>
+              </button>
+              <button class="col-sm m-2 btn btn-outline-success" type="button">
+                <strong>Edit Outline</strong>
+              </button>
+            </div>
+          <!-- end buttons inside card -->
+          </div>
+          <!-- card-content-body -->
+        </div>
+      <!-- card-body -->
       </div>
+    <!-- card -->
     </div>
-    <table :class="{'d-none': check }">
-      <thead>
-        </thead>
-        <tr>
-          <th>Professor</th>
-          <th>Class Meeting</th>
-          <th>Day</th>
-        </tr>
-      <tbody>
-        <tr>
-          <td>Bob John</td>
-          <td>08:00 AM</td>
-          <td>Monday</td>
-        </tr>
-        <tr>
-          <td>Bob John</td>
-          <td>08:00 AM</td>
-          <td>Monday</td>
-        </tr>
-        <tr>
-          <td>Bob John</td>
-          <td>08:00 AM</td>
-          <td>Monday</td>
-        </tr>
-        <tr>
-          <td>Bob John</td>
-          <td>08:00 AM</td>
-          <td>Monday</td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Modal -->
   </div>
 </template>
 
 <script>
 export default {
   name: 'AdminShow',
-  data () {
-    return {
-      /* global $ */
-      check: false,
-      isTheatreAppreciationStudent: ''
+  methods: {
+    emitevent () {
+      this.$emit('showmodal')
     }
-  },
-  mounted () {
-    $('#pop').popover({
-      content: $('table')[0].outerHTML
-    })
-    console.log('mounted')
-    this.check = true
   }
 }
 </script>
 
 <style scoped>
+  .btn-default.btn-on.active {
+      background-color: #5BB75B;
+      color: white;
+  }
 
+  .btn-default.btn-off.active {
+      background-color: #DA4F49;
+      color: white;
+  }
+
+  .btn-default.btn-on-1.active {
+      background-color: #006FFC;
+      color: white;
+  }
+
+  .btn-default.btn-off-1.active {
+      background-color: #DA4F49;
+      color: white;
+  }
+
+  .btn-default.btn-on-2.active {
+      background-color: #00D590;
+      color: white;
+  }
+
+  .btn-default.btn-off-2.active {
+      background-color: #A7A7A7;
+      color: white;
+  }
+
+  .btn-default.btn-on-3.active {
+      color: #5BB75B;
+      font-weight: bolder;
+  }
+
+  .btn-default.btn-off-3.active {
+      color: #DA4F49;
+      font-weight: bolder;
+  }
+
+  .btn-default.btn-on-4.active {
+      background-color: #006FFC;
+      color: #5BB75B;
+  }
+
+  .btn-default.btn-off-4.active {
+      background-color: #DA4F49;
+      color: #DA4F49;
+  }
+
+  .seats_rounded {
+      border-radius: 10%;
+
+  }
 </style>
