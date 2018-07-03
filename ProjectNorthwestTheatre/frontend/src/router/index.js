@@ -7,6 +7,7 @@ import AdminDashboard from '../components/Admin/AdminDashboard.vue'
 import AddAdmin from '../components/Admin/AddAdmin.vue'
 import AddSection from '../components/Admin/AddSection.vue'
 import Guard from '../services/authservice'
+import AdminList from '../components/Admin/AdminList.vue'
 
 Vue.use(Router)
 
@@ -44,6 +45,11 @@ export default new Router({
       name: AddSection,
       beforeEnter: Guard.auth,
       component: AddSection
+    },
+    {
+      path: '/admin/adminlist',
+      name: AdminList,
+      component: AdminList
     }
   ]
 })
