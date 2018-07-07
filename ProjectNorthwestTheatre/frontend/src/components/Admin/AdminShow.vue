@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <div class="col-md-10">
-      <div class="card shadow">
-        <div class="card-header bg-info text-white">
-          <div class="d-inline-block font-weight-bold ">
+    <div class="col-md-12 col-sm-12">
+      <div class="card shadow rounded mb-3" >
+        <div class="card-header grey text-white">
+          <div class="d-inline-block  font-weight-bold ">
               <h1> Show Name</h1>
           </div>
           <div class="d-inline-block component float-right ">
@@ -24,50 +23,50 @@
             </button>
           </div>
         </div>
-        <div class="card-body bg-danger">
+        <div class="card-body green">
           <div class="content">
             <div class="row justify-content-around m-3 rounded  bg-light">
               <!-- image column -->
               <div class="col-lg ">
-                <img src="pic.png" class="rounded mx-5 my-5  w-50 " alt="...">
+                <img src="../../assets/logoproject.jpg" class="rounded mx-5 my-5  w-50 " alt="...">
               </div>
               <!-- image column end -->
               <!-- details of the show -->
-              <div class="col-lg lead " style="border:1px  ">
+              <div class="col-lg lead text-left font" style="border:1px  ">
                 <!-- Playwright -->
                 <span class="font-weight-bold">Playwright :
-                  <span class="font-weight-normal">Lorem Ipsum</span>
+                  <span class="font-weight-normal">By John</span>
                 </span>
                 <br>
                 <!-- Description -->
                 <span class="font-weight-bold">Description :
-                  <span class="font-weight-normal">Lorem Ipsum</span>
+                  <span class="font-weight-normal">This show is about</span>
                 </span>
                 <br>
                 <!-- Date -->
                 <span class="font-weight-bold">Date :
-                  <span class="font-weight-normal">Lorem Ipsum</span>
+                  <span class="font-weight-normal">23th August, 2018</span>
                 </span>
                 <br>
                 <!-- Time  -->
                 <span class="font-weight-bold">Time :
-                  <span class="font-weight-normal">Lorem Ipsum</span>
+                  <span class="font-weight-normal">3:00 PM CST</span>
                 </span>
                 <br>
                 <!-- Venue -->
                 <span class="font-weight-bold">Venue :
-                  <span class="font-weight-normal">Lorem Ipsum</span>
+                  <span class="font-weight-normal">Ron Houston</span>
                 </span>
                 <br>
                 <!-- Rating -->
                 <span class="font-weight-bold">Rating :
-                  <span class="font-weight-normal">Lorem Ipsum</span>
+                  <span class="font-weight-normal">UA</span>
                 </span>
                 <br>
               </div>
               <!-- details of the show END -->
               <div class="col-lg lead" style="border:1px ">
-                <div class="component pb-1 mt-1  seats_rounded bg-warning" style="border:2px solid grey">
+                <div class="component pb-1 mt-1 text-left seats_rounded bg-success text-light " style="border:2px solid grey">
                   <!-- Seats Heading -->
                   <p class="font-weight-bold text-center rounded ">
                     SEATS
@@ -102,16 +101,18 @@
             </div>
             <!-- buttons inside the card -->
             <div class="row justify-content-around m-2 bg-white rounded " style="border:1px ">
-              <button class="col-sm m-2 btn btn-outline-primary" type="button">
+              <button class="col-sm m-2 btn btn-outline-primary" type="button"
+              @click="emailevent()">
                 <strong>Email</strong>
               </button>
-              <button class="col-sm m-2 btn btn-outline-secondary" type="button">
+              <button class="col-sm m-2 btn btn-outline-warning" type="button">
                 <strong>Generate Report</strong>
               </button>
-              <button class="col-sm m-2 btn btn-outline-warning" type="button" @click="emitevent()">
+              <button class="col-sm m-2 btn btn-outline-success" type="button" @click="emitevent()">
                 <strong>Reserve Tickets</strong>
               </button>
-              <button class="col-sm m-2 btn btn-outline-success" type="button">
+              <button class="col-sm m-2 btn btn-outline-secondary" type="button"
+              @click="editevent()">
                 <strong>Edit Outline</strong>
               </button>
             </div>
@@ -122,7 +123,6 @@
       <!-- card-body -->
       </div>
     <!-- card -->
-    </div>
     <!-- Modal -->
   </div>
 </template>
@@ -133,6 +133,12 @@ export default {
   methods: {
     emitevent () {
       this.$emit('showmodal')
+    },
+    emailevent () {
+      this.$emit('showemailmodal')
+    },
+    editevent () {
+      this.$emit('editeventmodal')
     }
   }
 }
@@ -189,8 +195,16 @@ export default {
       color: #DA4F49;
   }
 
+  .green {
+      background-color: rgb(0, 92, 50);
+  }
+  .grey {
+      background-color: #A9A9A9;
+  }
   .seats_rounded {
       border-radius: 10%;
-
+  }
+  .font1{
+    font-size:8vw;
   }
 </style>

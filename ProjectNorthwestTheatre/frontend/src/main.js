@@ -9,8 +9,7 @@ window.moment = require('moment')
 window.axioslogin = require('axios')
 window.axios = require('axios').create({
   baseURL: url.url,
-  timeout: 1000,
-  headers: { token: window.localStorage.getItem('AccessToken') }
+  timeout: 1000
 })
 window.url = url.url
 

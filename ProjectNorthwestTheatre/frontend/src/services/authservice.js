@@ -1,7 +1,13 @@
 export default {
   auth (to, from, next) {
-    /* global axios */
-    axios.post('/guard')
+    /* global axios url */
+    axios({
+      method: 'post',
+      headers: {
+        token: window.localStorage.getItem('AccessToken')
+      },
+      url: url + '/guard'
+    })
       .then(function (response) {
         next(true)
       })

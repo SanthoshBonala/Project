@@ -1,10 +1,48 @@
 <template>
    <div>
-     <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#myModal">
+     <div class="row float-center m-2 "> <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
       <i class="fas fa-plus"></i>
     </button>
-    <AdminShow @showmodal="showmodal()" class="m-5"></AdminShow>
-    <hr>
+    </div>
+    
+
+    <!--  -->
+    
+    <div class="row col-sm-12 "> <AdminShow v-for="ele of [1,2,3]" :key="ele"  @showmodal="showmodal()" @showemailmodal="showemailmodal()" @editeventmodal="editeventmodal()" ></AdminShow></div>
+   
+    <!-- The Modal -->
+    <div class="modal fade" id="emailmodal" tabindex="-1" role="dialog" aria-labelledby="ReserveTickets" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Email</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form>
+              <div class="form-group row">
+                <label class="col-sm-2 form-label">Subject:</label>
+                <input class="col-sm-10 form-control" type="text" id="emailSubject">
+              </div>
+              <div class="form-group row">
+                <label for="Email1msg" class="col-sm-2 control-label">Message:</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control inputstl" rows="10"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+      </div>
+        </div>
+      </div>
+    </div>
     <div class="modal fade" id="ReserveTickets" tabindex="-1" role="dialog" aria-labelledby="ReserveTickets" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -103,7 +141,7 @@
       </tbody>
     </table>
     <!-- The Modal -->
-    <div class="modal" id="myModal">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -232,6 +270,12 @@ export default {
     },
     showmodal () {
       $('#ReserveTickets').modal('show')
+    },
+    showemailmodal () {
+      $('#emailmodal').modal('show')
+    },
+    editeventmodal () {
+      $('#myModal').modal('show')
     }
   },
   mounted () {
