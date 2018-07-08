@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navbar :login="login"></Navbar>
+    <Navbar :login="login" class="container-fluid"><router-view></router-view></Navbar>
   </div>
 </template>
 
@@ -38,4 +38,10 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+.container-fluid {
+    padding-right:0;
+    padding-left:0;
+    margin-right:auto;
+    margin-left:auto
+ }
 </style>

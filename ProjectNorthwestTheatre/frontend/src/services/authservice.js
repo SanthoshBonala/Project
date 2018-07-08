@@ -9,7 +9,13 @@ export default {
       url: url + '/guard'
     })
       .then(function (response) {
-        next(true)
+        if (to.name === 'AdminLogin') {
+          next({
+            path: '/admin/dashboard'
+          })
+        } else {
+          next(true)
+        }
       })
       .catch(function (error) {
         next({

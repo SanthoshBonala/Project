@@ -12,6 +12,7 @@ window.axios = require('axios').create({
   timeout: 1000
 })
 window.url = url.url
+Vue.prototype.$eventbus = new Vue()
 
 /* eslint-disable no-new */
 new Vue({

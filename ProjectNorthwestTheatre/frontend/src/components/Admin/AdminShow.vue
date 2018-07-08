@@ -1,25 +1,25 @@
 <template>
-    <div class="col-md-12 col-sm-12">
+    <div class="col-md-12 col-sm-12 my-3">
       <div class="card shadow rounded mb-3" >
         <div class="card-header grey text-white">
-          <div class="d-inline-block  font-weight-bold ">
-              <h1> Show Name</h1>
+          <div class="d-inline-block font-weight-bold float-left">
+              <h1>The Magician</h1>
           </div>
-          <div class="d-inline-block component float-right ">
-            <span class=" rounded py-2 m-5" style="border:2px solid white">
-              <div class="btn-group" id="status" data-toggle="buttons">
-                <label class="btn btn-default btn-on  active">
-                  <input class="d-none" type="radio" value="1" name="multifeatured_module[module_id][status]" checked="checked">
+          <div class="d-inline-block component float-right">
+            <span class="mx-5" >
+              <div class="btn-group rounded" id="status" data-toggle="buttons">
+                <label class="btn btn-default btn-on active" style="border:2px solid white">
+                  <input class="d-none" type="radio" value="1" name="" checked="checked">
                   <strong>Publish</strong>
                 </label>
-                <label class="btn btn-default btn-off ">
-                  <input class="d-none" type="radio" value="0" name="multifeatured_module[module_id][status]">
+                <label class="btn btn-default btn-off" style="border:2px solid white">
+                  <input class="d-none" type="radio" value="0" name="">
                   <strong>Un Publish</strong>
                 </label>
               </div>
             </span>
-            <button type="button" class="btn btn-danger rounded-circle float-right">
-                <span>&times;</span>
+            <button type="button" class="btn rounded-circle float-right" id="delete">
+                <i class="fas fa-trash"></i>
             </button>
           </div>
         </div>
@@ -113,7 +113,7 @@
               </button>
               <button class="col-sm m-2 btn btn-outline-secondary" type="button"
               @click="editevent()">
-                <strong>Edit Outline</strong>
+                <strong>Edit Show</strong>
               </button>
             </div>
           <!-- end buttons inside card -->
@@ -145,6 +145,14 @@ export default {
 </script>
 
 <style scoped>
+  #delete:hover {
+    color: #910000;
+    background-color: #DA7A7A
+  }
+  #delete {
+    color: #D14F4F;
+    background-color: none
+  }
   .btn-default.btn-on.active {
       background-color: #5BB75B;
       color: white;

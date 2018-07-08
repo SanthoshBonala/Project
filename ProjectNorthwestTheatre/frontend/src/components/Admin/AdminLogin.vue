@@ -1,14 +1,20 @@
 <template>
-    <div id="AdminLogin">
-        <form class="form-signin" @submit.prevent = "formsubmit" >
-         <img class="mb-4" src="../../assets/logoproject.jpg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" v-model="formdata.Username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" v-model="formdata.Password" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
-        </form>
+    <div id="AdminLogin" class="col-sm-10">
+      <div class="row mt-5">
+        <div class="col-sm-6">
+           <img class="mb-4 w-50" src="../../assets/logoproject.jpg" alt="">
+        </div>
+        <div class="col-sm-6">
+          <form class="form-signin" @submit.prevent = "formsubmit">
+            <h1>Sign in</h1>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="text" v-model="formdata.Username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" v-model="formdata.Password" class="form-control" placeholder="Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
+          </form>
+        </div>
+      </div>
     </div>
 </template>
 

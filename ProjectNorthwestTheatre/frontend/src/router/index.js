@@ -6,8 +6,9 @@ import UserReservation from '../components/User/UserShowReservation.vue'
 import AdminDashboard from '../components/Admin/AdminDashboard.vue'
 import AddAdmin from '../components/Admin/AddAdmin.vue'
 import AddSection from '../components/Admin/AddSection.vue'
-// import Guard from '../services/authservice'
+import Guard from '../services/authservice'
 import AdminList from '../components/Admin/AdminList.vue'
+import Admin from '../components/Admin/Admin.vue'
 
 Vue.use(Router)
 
@@ -19,34 +20,44 @@ export default new Router({
       component: UserDashboard
     },
     {
-      path: '/admin/login',
-      name: AdminLogin,
-      component: AdminLogin
-    },
-    {
       path: '/user/reservation',
       name: UserReservation,
       component: UserReservation
     },
     {
-      path: '/admin/dashboard',
-      name: AdminDashboard,
-      component: AdminDashboard
-    },
-    {
-      path: '/admin/addadmin',
-      name: AddAdmin,
-      component: AddAdmin
-    },
-    {
-      path: '/admin/addsection',
-      name: AddSection,
-      component: AddSection
-    },
-    {
-      path: '/admin/adminlist',
-      name: AdminList,
-      component: AdminList
+      path: '/admin',
+      component: Admin,
+      children: [
+        {
+          path: 'login',
+          name: AdminLogin,
+          component: AdminLogin
+        },
+        {
+          path: 'dashboard',
+          name: AdminDashboard,
+          beforeEnter: Guard.auth,
+          component: AdminDashboard
+        },
+        {
+          path: 'addadmin',
+          name: AddAdmin,
+          beforeEnter: Guard.auth,
+          component: AddAdmin
+        },
+        {
+          path: 'addsection',
+          name: AddSection,
+          beforeEnter: Guard.auth,
+          component: AddSection
+        },
+        {
+          path: 'adminlist',
+          name: AdminList,
+          beforeEnter: Guard.auth,
+          component: AdminList
+        }
+      ]
     }
   ]
 })
