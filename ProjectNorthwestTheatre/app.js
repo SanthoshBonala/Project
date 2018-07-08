@@ -39,9 +39,9 @@ app.use('/users', users);
 app.use('/register', audienceRoutes);
 
 let tokenAuthentication = (req, res, next) => {
-  if (req.headers.token) {
+  if (req.headers.token || req.query.token) {
     try {
-      jwt.verify(req.headers.token, config.tokensecret)
+      jwt.verify(req.headers.token || req.query.token, config.tokensecret)
       next()
     } catch (err) {
       res.status(401).send("Unauthorized")

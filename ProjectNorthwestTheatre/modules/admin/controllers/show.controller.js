@@ -2,16 +2,15 @@ var mongoose = require('mongoose');
 var ShowModel = require('../../../models/Show.model')
 
 let addShow = (req, res, next) => {
-
-        var Show = new ShowModel(req.body);
-        Show.save()
-            .then(function (Show) {
-                return res.send('Show Added successfully')
-            })
-            .catch(function (err) {
-                return res.status(400).send('error while adding a show')
-            })
-
+    var Show = new ShowModel(req.body);
+    Show.ShowImage = req.file.buffer
+    Show.save()
+        .then(function (Show) {
+            return res.send('Show Added successfully')
+        })
+        .catch(function (err) {
+            return res.status(400).send('error while adding a show', err)
+        })
 }
 
 module.exports.addShow = addShow;
@@ -28,7 +27,7 @@ let deleteShow = (req, res, next) => {
 module.exports.deleteShow = deleteShow
 
 let GetShowList = (req, res, next) => {
-    ShowModel.find({},'-__v',function (err, ShowList) {
+    ShowModel.find({},'-__v -ShowImage',function (err, ShowList) {
         if (err) return res.status(400).send('Error while getting Shows list')
         if (ShowList) {
             return res.json(ShowList)
@@ -48,3 +47,13 @@ let UpdateShow = (req, res, next) => {
 }
 
 module.exports.UpdateShow = UpdateShow
+
+
+ var imagebyid = (req, res) => {
+     ShowModel.findById(req.query._id, ['ShowImage'], (err, image) => {
+        if (err) console.log(err)
+        return res.send(image.ShowImage)
+    })
+}
+
+module.exports.imagebyid = imagebyid

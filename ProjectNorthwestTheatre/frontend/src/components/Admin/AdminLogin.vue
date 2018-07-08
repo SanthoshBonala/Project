@@ -32,8 +32,8 @@ export default {
   methods: {
     formsubmit () {
       var _this = this
-      /* global axioslogin url */
-      axioslogin.post(url + '/authenticate', this.formdata)
+      /* global axios url */
+      axios.post(url + '/authenticate', this.formdata)
         .then(function (response) {
           window.localStorage.setItem('AccessToken', response.data.token)
           _this.$router.push('/admin/dashboard')

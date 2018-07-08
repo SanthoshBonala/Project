@@ -14,16 +14,16 @@
             <div class="col-sm-10 bg-dark pt-2" v-if="login">
                 <ul class="nav flex-column flex-nowrap ">
                     <li class="nav-item my-2">
-                        <router-link to="/admin/adminlist" class="btn btn-primary btn-block">Admin List</router-link>to="admin/" 
+                        <router-link to="/admin/adminlist" class="btn btn-primary btn-block">Admin List</router-link>
                     </li>
                     <li class="nav-item my-2">
-                        <router-link to="/admin/addadmin" class="btn btn-primary btn-block">Add Admin</router-link>to="admin/" 
+                        <router-link to="/admin/addadmin" class="btn btn-primary btn-block">Add Admin</router-link>
                     </li>
                     <li class="nav-item my-2">
-                        <router-link to="/admin/" class="btn btn-primary btn-block">Section List</router-link>to="admin/" 
+                        <router-link to="/admin/" class="btn btn-primary btn-block">Section List</router-link>
                     </li>
                     <li class="nav-item my-2">
-                        <router-link to="/admin/addsection" class="btn btn-primary btn-block">Add Section </router-link>to="admin/" 
+                        <router-link to="/admin/addsection" class="btn btn-primary btn-block">Add Section </router-link>
                     </li>
                     <li class="nav-item my-2">
                         <button class="btn btn-primary btn-block" @click="addshowevent()">Add Show </button>
@@ -48,19 +48,19 @@
             <form @submit.prevent="addshow" id="addshow">
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Name:</label>
-                <input class="col-sm-7 form-control" type="text" id="showname" v-model="formdata.ShowTitle" required>
+                <input class="col-sm-7 form-control" type="text" id="showname" name="ShowTitle" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Playwright:</label>
-                <input class="col-sm-7 form-control" type="text" id="playwright" v-model="formdata.ShowPlaywright" required>
+                <input class="col-sm-7 form-control" type="text" id="playwright" name="ShowPlaywright" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Description:</label>
-                <input class="col-sm-7 form-control" type="text" id="description" v-model="formdata.ShowDescription" required>
+                <input class="col-sm-7 form-control" type="text" id="description" name="ShowDescription" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Date:</label>
-                <input class="col-sm-7 form-control" type="date" id="showdate" v-model="formdata.ShowDate" required>
+                <input class="col-sm-7 form-control" type="date" id="showdate" name="ShowDate" required>
               </div>
                 <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Time:</label>
@@ -68,15 +68,15 @@
               </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Total Seats:</label>
-                  <input class="col-sm-7 form-control" type="number" id="totalseats" v-model="formdata.NumberOfTickets" required>
+                  <input class="col-sm-7 form-control" type="number" id="totalseats" name="NumberOfTickets" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Venue:</label>
-                  <input class="col-sm-7 form-control" type="text" id="showvenue" v-model="formdata.ShowVenue" required>
+                  <input class="col-sm-7 form-control" type="text" id="showvenue" name="ShowVenue" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Show Rating:</label>
-                  <select id="inputState" class="form-control col-sm-7" required v-model="formdata.ShowRating" >
+                  <select id="inputState" class="form-control col-sm-7" required name="ShowRating" >
                     <option selected>Choose...</option>
                     <option>A</option>
                     <option>U/A</option>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Adult Price:</label>
-                  <input class="col-sm-7 form-control" type="number" id="adultprice" v-model="formdata.ShowPrice" required>
+                  <input class="col-sm-7 form-control" type="number" id="adultprice" name="ShowPrice" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Children Price:</label>
@@ -94,14 +94,14 @@
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Upload Image:</label>
                   <div class="form-group col-sm-7">
-                    <input type="file" class="form-control-file" id="InputFile" aria-describedby="fileHelp" required>
+                    <input type="file" class="form-control-file" id="InputFile" aria-describedby="fileHelp" name="ShowImage" required>
                     <small id="fileHelp" class="form-text text-muted"></small>
                   </div>
                 </div>
                  <div class="form-group row">
                    <label class="col-sm-4 form-label">Publish:</label>
               <label class="switch float-right form-group">
-                <input type="checkbox" class="sliderinput" v-model="formdata.isPublished" required>
+                <input type="checkbox" class="sliderinput" v-model="formdata.isPublished" value="true" name="isPublished" required>
                 <span class="slider round"></span>
               </label>
             </div>
@@ -125,18 +125,10 @@ export default {
     return {
       pathname: '',
       formdata: {
-        ShowTitle: '',
-        ShowPlaywright: '',
-        ShowDescription: '',
-        ShowDate: '',
-        NumberOfTickets: 0,
-        ShowVenue: '',
-        ShowRating: '',
-        ShowPrice: 0,
         isPublished: false
       },
       /* global moment  */
-      showtime: moment().format('HH:mm:ss'),
+      showtime: moment().format('HH:mm:ss')
     }
   },
   props: ['login'],
@@ -151,26 +143,38 @@ export default {
       this.$eventbus.$emit('addshow')
     },
     addshow () {
-      console.log(this.formdata)
+      var data = new FormData(document.querySelector('#addshow'))
       /* global $ axios url */
       axios.create({
         baseURL: url,
         timeout: 1000,
         headers: { 'token': window.localStorage.getItem('AccessToken') }
-      }).post('/addadmin', this.formdata)
-        .then(function (response) {
-          console.log(response)
-          $('#myModal').modal('hide')
+      }).post('/addshow', data)
+        .then(res => {
+          axios({
+            method: 'get',
+            headers: {
+              token: window.localStorage.getItem('AccessToken')
+            },
+            url: url + '/showlist'
+          })
+            .then(response => {
+              this.$eventbus.$emit('refreshdata', response.data)
+              $('#myModal').modal('hide')
+            })
+            .catch(err => {
+              console.log('error while getting show list', err)
+            })
         })
-        .catch(function (error) {
+        .catch(error => {
           console.log(error)
         })
     }
   },
   mounted () {
     this.$eventbus.$on('addshow', function () {
-    console.log('detected')
-    $('#myModal').modal('show')
+      console.log('detected')
+      $('#myModal').modal('show')
     })
   }
 }

@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Navbar :login="login" class="container-fluid"><router-view></router-view></Navbar>
+    <Navbar :login="login" class="container-fluid">
+        <router-view></router-view>
+    </Navbar>
   </div>
 </template>
 

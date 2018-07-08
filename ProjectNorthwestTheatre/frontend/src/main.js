@@ -6,12 +6,9 @@ import router from './router'
 import url from './config/config'
 Vue.config.productionTip = false
 window.moment = require('moment')
-window.axioslogin = require('axios')
-window.axios = require('axios').create({
-  baseURL: url.url,
-  timeout: 1000
-})
+window.axios = require('axios')
 window.url = url.url
+window.swal = require('sweetalert2')
 Vue.prototype.$eventbus = new Vue()
 
 /* eslint-disable no-new */

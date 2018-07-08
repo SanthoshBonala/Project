@@ -6,7 +6,7 @@
       </button>
     </div> -->
     <div class="row col-sm-12 ">
-      <AdminShow v-for="ele of [1,2,3]" :key="ele"  @showmodal="showmodal()" @showemailmodal="showemailmodal()" @editeventmodal="editeventmodal()" >
+      <AdminShow v-for="ele of showlist" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal()" @editeventmodal="editeventmodal()" >
       </AdminShow>
     </div>
     <!-- The Modal -->
@@ -149,9 +149,10 @@ export default {
   name: 'AdminDashboard',
   data () {
     return {
-      /* global $ */
+      /* global $ axios url */
       check: false,
-      isTheatreAppreciationStudent: ''
+      isTheatreAppreciationStudent: '',
+      showlist: []
     }
   },
   components: {
@@ -166,6 +167,23 @@ export default {
     },
     editeventmodal () {
       $('#myModal').modal('show')
+    },
+    refreshData () {
+      var _this = this
+      axios({
+        method: 'get',
+        headers: {
+          token: window.localStorage.getItem('AccessToken')
+        },
+        url: url + '/showlist'
+      })
+        .then(function (response) {
+          console.log(response.data)
+          _this.showlist = response.data
+        })
+        .catch(function (err) {
+          console.log('error while getting show list', err)
+        })
     }
   },
   mounted () {
@@ -174,6 +192,18 @@ export default {
     })
     console.log('mounted')
     this.check = true
+  },
+  created () {
+    this.refreshData()
+    this.$eventbus.$on('refreshdata', function (data) {
+      this.showlist = data
+      console.log(data, this.showlist)
+    }.bind(this))
+  },
+  watch: {
+    showlist: function () {
+      console.log('changed')
+    }
   }
 }
 </script>

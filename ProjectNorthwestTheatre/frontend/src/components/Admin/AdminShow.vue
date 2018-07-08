@@ -3,22 +3,22 @@
       <div class="card shadow rounded mb-3" >
         <div class="card-header grey text-white">
           <div class="d-inline-block font-weight-bold float-left">
-              <h1>The Magician</h1>
+              <h1>{{ show.ShowTitle }}</h1>
           </div>
           <div class="d-inline-block component float-right">
             <span class="mx-5" >
               <div class="btn-group rounded" id="status" data-toggle="buttons">
-                <label class="btn btn-default btn-on active" style="border:2px solid white">
-                  <input class="d-none" type="radio" value="1" name="" checked="checked">
+                <label class="btn btn-default btn-on" style="border:2px solid white" :class="{ active: show.isPublished }">
+                  <input class="d-none" type="radio" value="1">
                   <strong>Publish</strong>
                 </label>
-                <label class="btn btn-default btn-off" style="border:2px solid white">
-                  <input class="d-none" type="radio" value="0" name="">
+                <label class="btn btn-default btn-off" style="border:2px solid white" :class="{ active: !show.isPublished }">
+                  <input class="d-none" type="radio" value="0" >
                   <strong>Un Publish</strong>
                 </label>
               </div>
             </span>
-            <button type="button" class="btn rounded-circle float-right" id="delete">
+            <button type="button" class="btn rounded-circle float-right" id="delete" @click="deleteshow">
                 <i class="fas fa-trash"></i>
             </button>
           </div>
@@ -28,7 +28,7 @@
             <div class="row justify-content-around m-3 rounded  bg-light">
               <!-- image column -->
               <div class="col-lg ">
-                <img src="../../assets/logoproject.jpg" class="rounded mx-5 my-5  w-50 " alt="...">
+                <img :src="`http://localhost:3000/admin/image?_id=${show._id}&token=${token}`" class="rounded mx-5 my-5  w-50 " alt="Image">
               </div>
               <!-- image column end -->
               <!-- details of the show -->
@@ -40,17 +40,17 @@
                 <br>
                 <!-- Description -->
                 <span class="font-weight-bold">Description :
-                  <span class="font-weight-normal">This show is about</span>
+                  <span class="font-weight-normal">{{ show.ShowDescription }}</span>
                 </span>
                 <br>
                 <!-- Date -->
                 <span class="font-weight-bold">Date :
-                  <span class="font-weight-normal">23th August, 2018</span>
+                  <span class="font-weight-normal">{{ ShowDate }}</span>
                 </span>
                 <br>
                 <!-- Time  -->
                 <span class="font-weight-bold">Time :
-                  <span class="font-weight-normal">3:00 PM CST</span>
+                  <span class="font-weight-normal">{{ ShowTime }}</span>
                 </span>
                 <br>
                 <!-- Venue -->
@@ -60,7 +60,7 @@
                 <br>
                 <!-- Rating -->
                 <span class="font-weight-bold">Rating :
-                  <span class="font-weight-normal">UA</span>
+                  <span class="font-weight-normal">{{ show.ShowRating}}</span>
                 </span>
                 <br>
               </div>
@@ -73,7 +73,7 @@
                   </p>
                   <!-- Total Seats -->
                   <span class="px-3  font-weight-bold">Total :
-                    <span class="font-weight-normal">30</span>
+                    <span class="font-weight-normal">{{ show.NumberOfTickets }}</span>
                   </span>
                   <br>
                   <!-- Reserved Seats -->
@@ -83,18 +83,18 @@
                   <br>
                   <!-- Remaining Seats -->
                   <span class="px-3  font-weight-bold">Remaining :
-                    <span class="font-weight-normal">10</span>
+                    <span class="font-weight-normal">{{ show.NumberOfTickets - 20 }}</span>
                   </span>
                   <br>
                 </div>
                 <!-- Adult Ticket -->
                 <h1 class="mt-2 text-danger text-center lead">
-                    <span class="font-weight-bold display"> $ 5.99 </span>
+                    <span class="font-weight-bold display"> $ {{ show.ShowPrice }} </span>
                     <span class="font-weight-normal">For Adult</span>
                 </h1>
                 <!-- Children Ticket -->
                 <h1 class="text-danger text-center lead">
-                    <span class="font-weight-bold display"> $ 2.99 </span>
+                    <span class="font-weight-bold display"> $ {{ show.ShowPrice }} </span>
                     <span class="font-weight-normal">For Children</span>
                 </h1>
               </div>
@@ -130,6 +130,15 @@
 <script>
 export default {
   name: 'AdminShow',
+  data () {
+    return {
+      /* global moment */
+      ShowDate: moment.utc(this.show.ShowDate).format('MMMM Do YYYY'),
+      ShowTime: moment.utc(this.show.ShowDate).format('h:mm:ss a'),
+      token: window.localStorage.getItem('AccessToken')
+    }
+  },
+  props: ['show'],
   methods: {
     emitevent () {
       this.$emit('showmodal')
@@ -139,6 +148,50 @@ export default {
     },
     editevent () {
       this.$emit('editeventmodal')
+    },
+    deleteshow () {
+      /* global swal axios url */
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      })
+        .then((result) => {
+          if (result.value) {
+            axios.create({
+              baseURL: url,
+              timeout: 1000,
+              headers: { 'token': window.localStorage.getItem('AccessToken') }
+            }).post('/deleteshow', { id: this.show._id })
+              .then(res => {
+                swal(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+                )
+                axios({
+                  method: 'get',
+                  headers: {
+                    token: window.localStorage.getItem('AccessToken')
+                  },
+                  url: url + '/showlist'
+                })
+                  .then(response => {
+                    this.$eventbus.$emit('refreshdata', response.data)
+                  })
+                  .catch(err => {
+                    console.log('error while getting show list', err)
+                  })
+              })
+              .catch(error => {
+                console.log(error)
+              })
+          }
+        })
     }
   }
 }
