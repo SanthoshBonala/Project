@@ -5,6 +5,10 @@ var ShowSchema = new mongoose.Schema({
         type : String,
         trim : true
     },
+    ShowPlayWright: {
+        type: String,
+        trim: true
+    },
     ShowDescription : {
         type : String,
         trim: true
@@ -26,13 +30,26 @@ var ShowSchema = new mongoose.Schema({
     ShowImage : {
         type : Buffer
     },
-    ShowPrice : {
+    ShowPriceForAdult : {
         type : Number,
         min : [0, 'Price Cannot be negative']
+    },
+    ShowPriceForChildren: {
+        type: Number,
+        min: [0, 'Price Cannot be negative']
     },
     ShowRating : {
         type : String,
         trim : true
+    },
+    ReservedSeats: {
+        type: Number,
+        default: 0,
+        min: [0, 'Tickets Reserved Cannot be negative']
+    },
+    ShowVenue: {
+        type: String,
+        trim: true
     }
 })
 

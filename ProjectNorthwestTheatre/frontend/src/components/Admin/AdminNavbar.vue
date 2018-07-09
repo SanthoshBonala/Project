@@ -52,11 +52,12 @@
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Playwright:</label>
-                <input class="col-sm-7 form-control" type="text" id="playwright" name="ShowPlaywright" required>
+                <input class="col-sm-7 form-control" type="text" id="playwright" name="ShowPlayWright" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Description:</label>
-                <input class="col-sm-7 form-control" type="text" id="description" name="ShowDescription" required>
+                <textarea class="col-sm-7 form-control" type="text" id="description" name="ShowDescription" required>
+                </textarea>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Date:</label>
@@ -68,7 +69,7 @@
               </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Total Seats:</label>
-                  <input class="col-sm-7 form-control" type="number" id="totalseats" name="NumberOfTickets" min="1" required>
+                  <input class="col-sm-7 form-control" type="number" id="totalseats" name="NumberOfTickets" min="1" max="10000" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Venue:</label>
@@ -85,11 +86,11 @@
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Adult Price:</label>
-                  <input class="col-sm-7 form-control" type="number" id="adultprice" name="ShowPrice" min="1" required>
+                  <input class="col-sm-7 form-control" type="number" id="adultprice" name="ShowPriceForAdult" min="1" max="1000" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Children Price:</label>
-                  <input class="col-sm-7 form-control" type="number" id="childrenprice" min="1" required>
+                  <input class="col-sm-7 form-control" type="number" id="childrenprice" min="1" name="ShowPriceForChildren" max="1000" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Upload Image:</label>
@@ -172,26 +173,42 @@ export default {
     }
   },
   mounted () {
-    this.$eventbus.$on('addshow', function () {
-      console.log('detected')
-      $('#myModal').modal('show')
-    })
-    /* global $ */
+    console.log("mounted admin navbar")
+    console.log("element ",document.getElementById('rem_content'))
     function myFunction1 () {
+      console.log('myfunction1 show content')
       $('#sidebar').toggle()
     }
     function myFunction () {
+      console.log('myfunction remainig content')
       $('#sidebar').hide()
     }
     if (document.getElementById('rem_content')) {
       document.getElementById('rem_content').addEventListener('click', myFunction)
     }
-    document.getElementById('show_content').addEventListener('click', myFunction1)
+    if (document.getElementById('show_content')) {
+      document.getElementById('show_content').addEventListener('click', myFunction1)
+    }
+    this.$eventbus.$on('addshow', function () {
+      $('#myModal').modal('show')
+    })
   }
 }
 /* global $ */
-$(function () {
-})
+/* $(function () {
+  function myFunction1 () {
+    console.log('myfunction1 show content')
+    $('#sidebar').toggle()
+  }
+  function myFunction () {
+    console.log('myfunction remainig content')
+    $('#sidebar').hide()
+  }
+  if (document.getElementById('rem_content')) {
+    document.getElementById('rem_content').addEventListener('click', myFunction)
+  }
+  document.getElementById('show_content').addEventListener('click', myFunction1)
+}) */
 
 </script>
 
