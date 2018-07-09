@@ -5,7 +5,7 @@
             <a href="" data-target="#sidebar" data-toggle="collapse" class="d-md-none" id="show_content">
                 <i class="fa fa-bars"></i>
             </a>
-            <router-link class="navbar-brand" to="/admin/dashboard">Northwest Theatre</router-link>
+            <router-link class="navbar-brand" to="/admin/dashboard">Theatre Northwest</router-link>
             <button class="btn btn-primary" @click="logout()" v-if="login">Logout</button>
         </nav>
     </div>
@@ -68,7 +68,7 @@
               </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Total Seats:</label>
-                  <input class="col-sm-7 form-control" type="number" id="totalseats" name="NumberOfTickets" required>
+                  <input class="col-sm-7 form-control" type="number" id="totalseats" name="NumberOfTickets" min="1" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Venue:</label>
@@ -85,30 +85,30 @@
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Adult Price:</label>
-                  <input class="col-sm-7 form-control" type="number" id="adultprice" name="ShowPrice" required>
+                  <input class="col-sm-7 form-control" type="number" id="adultprice" name="ShowPrice" min="1" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Children Price:</label>
-                  <input class="col-sm-7 form-control" type="number" id="childrenprice" required>
+                  <input class="col-sm-7 form-control" type="number" id="childrenprice" min="1" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Upload Image:</label>
                   <div class="form-group col-sm-7">
-                    <input type="file" class="form-control-file" id="InputFile" aria-describedby="fileHelp" name="ShowImage" required>
+                    <input type="file" accept="image/*" class="form-control-file" id="InputFile" aria-describedby="fileHelp" name="ShowImage" required>
                     <small id="fileHelp" class="form-text text-muted"></small>
                   </div>
                 </div>
-                 <div class="form-group row">
-                   <label class="col-sm-4 form-label">Publish:</label>
-              <label class="switch float-right form-group">
-                <input type="checkbox" class="sliderinput" v-model="formdata.isPublished" value="true" name="isPublished" required>
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <div class="">
-                <button type="reset" class=" btn btn-danger">Reset</button>
-                <button type="submit" class=" btn btn-success">Add & Save</button>
-            </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 form-label">Publish:</label>
+                    <label class="switch float-right form-group">
+                      <input type="checkbox" class="sliderinput" v-model="formdata.isPublished" name="isPublished" value="true">
+                      <span class="slider round"></span>
+                   </label>
+                 </div>
+                <div class="">
+                    <button type="reset" class=" btn btn-danger">Reset</button>
+                    <button type="submit" class=" btn btn-success">Add & Save</button>
+                </div>
              </form>
             </div>
           </div>
@@ -176,20 +176,21 @@ export default {
       console.log('detected')
       $('#myModal').modal('show')
     })
+    /* global $ */
+    function myFunction1 () {
+      $('#sidebar').toggle()
+    }
+    function myFunction () {
+      $('#sidebar').hide()
+    }
+    if (document.getElementById('rem_content')) {
+      document.getElementById('rem_content').addEventListener('click', myFunction)
+    }
+    document.getElementById('show_content').addEventListener('click', myFunction1)
   }
 }
 /* global $ */
 $(function () {
-  function myFunction1 () {
-    $('#sidebar').toggle()
-  }
-  function myFunction () {
-    $('#sidebar').hide()
-  }
-  if (document.getElementById('rem_content')) {
-    document.getElementById('rem_content').addEventListener('click', myFunction)
-  }
-  document.getElementById('show_content').addEventListener('click', myFunction1)
 })
 
 </script>
@@ -205,4 +206,59 @@ $(function () {
     margin-right:auto;
     margin-left:auto
  }
+ .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch .sliderinput {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.sliderinput:checked + .slider {
+  background-color: green;
+}
+
+.sliderinput:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.sliderinput:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
 </style>

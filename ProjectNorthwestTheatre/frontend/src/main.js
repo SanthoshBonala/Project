@@ -9,6 +9,7 @@ window.moment = require('moment')
 window.axios = require('axios')
 window.url = url.url
 window.swal = require('sweetalert2')
+window._ = require('underscore')
 Vue.prototype.$eventbus = new Vue()
 
 /* eslint-disable no-new */

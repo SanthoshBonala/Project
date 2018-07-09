@@ -1,47 +1,128 @@
 <template>
    <div>
     <h1 class = "h2 mb-3 font-weight-normal">ADMIN List </h1>
-    <table class="table table-bordered align = middle">
-    <thead class="thead-dark">
-  <thead>
-    <tr>
-      <th scope="col">SNO</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Email Address</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>The Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-   </div>
-
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">SNO</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(ele,index) of adminlist" :key="ele._id">
+          <th scope="row">
+            {{ index + 1 }}
+          </th>
+          <td>
+            {{ ele.Username }}
+          </td>
+          <td>
+            {{ ele.Email }}
+            <button type="button" class="btn rounded-circle float-right m-2" id="delete" @click="deleteadmin(ele._id)">
+                <i class="fas fa-trash"></i>
+            </button>
+            <button type="button" class="btn rounded-circle float-right m-2" id="edit" @click="editadmin(ele._id)">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
 export default {
+  name: 'AdminList',
+  data () {
+    return {
+      adminlist: [],
+      count: 0
+    }
+  },
+  methods: {
+    getlist () {
+      /* global axios url */
+      axios({
+        method: 'get',
+        headers: {
+          token: window.localStorage.getItem('AccessToken')
+        },
+        url: url + '/all'
+      })
+        .then(response => {
+          this.adminlist = response.data
+          console.log(this.adminlist)
+        })
+        .catch(err => {
+          console.log('error while getting admin list', err)
+        })
+    },
+    storelist (data) {
+      this.adminlist = data
+      console.log(this.adminlist)
+    },
+    deleteadmin (adminid) {
+      /* global swal axios url */
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      })
+      .then((result) => {
+        if (result.value) {
+          axios.create({
+            baseURL: url,
+            timeout: 1000,
+            headers: { 'token': window.localStorage.getItem('AccessToken') }
+          }).post('/deleteadmin', { id: adminid })
+            .then(res => {
+              swal(
+                'Deleted!',
+                'Selected Admin has been deleted.',
+                'success'
+              )
+              this.getlist()
+            })
+            .catch(error => {
+              console.log(error)
+            })
+        }
+      })
+    }
+  },
+  created () {
+    this.getlist()
+    this.$eventbus.$on('admindata', data => {
+      this.storelist(data)
+    })
+  }
 }
 </script>
 
 <style scoped>
-div{
+div {
+  margin-right: 50px;
+}
+#delete:hover {
+  color: #910000;
+  background-color: #DA7A7A
+}
+#delete {
+  color: #D14F4F;
+  background-color: none
+}
+#edit:hover {
+  color: #1A1818;
+  background-color: #AB9898
+}
+#edit {
+  color: #746967;
+  background-color: none
 }
 </style>

@@ -170,7 +170,7 @@ export default {
               .then(res => {
                 swal(
                   'Deleted!',
-                  'Your file has been deleted.',
+                  'Show has been deleted.',
                   'success'
                 )
                 axios({

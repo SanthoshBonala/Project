@@ -1,5 +1,6 @@
 export default {
   auth (to, from, next) {
+    console.log(to.name.name, to.name.name === 'AdminLogin')
     /* global axios url */
     axios({
       method: 'post',
@@ -9,21 +10,25 @@ export default {
       url: url + '/guard'
     })
       .then(function (response) {
-        if (to.name === 'AdminLogin') {
+        console.log(response)
+        if (to.name.name === 'AdminLogin') {
+          console.log('Admin')
           next({
             path: '/admin/dashboard'
           })
         } else {
-          next(true)
+          next()
         }
       })
       .catch(function (error) {
-        next({
-          path: '/admin/login',
-          query: {
-            redirect: to.name
-          }
-        })
+        console.log(to.name.name)
+        if (to.name.name === 'AdminLogin') {
+          next()
+        } else {
+          next({
+            path: '/admin/login'
+          })
+        }
         console.log(error)
       })
   }
