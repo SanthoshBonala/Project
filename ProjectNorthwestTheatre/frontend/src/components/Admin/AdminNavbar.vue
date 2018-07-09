@@ -63,58 +63,58 @@
                 <label class="col-sm-4 form-label">Show Date:</label>
                 <input class="col-sm-7 form-control" type="date" id="showdate" name="ShowDate" required>
               </div>
-                <div class="form-group row">
+              <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Time:</label>
                  <input class="col-sm-7 form-control" type="time" :value="showtime" id="showtime" required>
               </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 form-label">Total Seats:</label>
-                  <input class="col-sm-7 form-control" type="number" id="totalseats" name="NumberOfTickets" min="1" max="10000" required>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Total Seats:</label>
+                <input class="col-sm-7 form-control" type="number" id="totalseats" name="NumberOfTickets" min="1" max="10000" required>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Venue:</label>
+                <input class="col-sm-7 form-control" type="text" id="showvenue" name="ShowVenue" required>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Show Rating:</label>
+                <select id="inputState" class="form-control col-sm-7" required name="ShowRating" >
+                  <option selected>Choose...</option>
+                  <option>A</option>
+                  <option>U/A</option>
+                  <option>R</option>
+                </select>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Adult Price:</label>
+                <input class="col-sm-7 form-control" type="number" id="adultprice" name="ShowPriceForAdult" min="1" max="1000" required>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Children Price:</label>
+                <input class="col-sm-7 form-control" type="number" id="childrenprice" min="1" name="ShowPriceForChildren" max="1000" required>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Upload Image:</label>
+                <div class="form-group col-sm-7">
+                  <input type="file" accept="image/*" class="form-control-file" id="InputFile" aria-describedby="fileHelp" name="ShowImage" required>
+                  <small id="fileHelp" class="form-text text-muted"></small>
                 </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 form-label">Venue:</label>
-                  <input class="col-sm-7 form-control" type="text" id="showvenue" name="ShowVenue" required>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 form-label">Show Rating:</label>
-                  <select id="inputState" class="form-control col-sm-7" required name="ShowRating" >
-                    <option selected>Choose...</option>
-                    <option>A</option>
-                    <option>U/A</option>
-                    <option>R</option>
-                  </select>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 form-label">Adult Price:</label>
-                  <input class="col-sm-7 form-control" type="number" id="adultprice" name="ShowPriceForAdult" min="1" max="1000" required>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 form-label">Children Price:</label>
-                  <input class="col-sm-7 form-control" type="number" id="childrenprice" min="1" name="ShowPriceForChildren" max="1000" required>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 form-label">Upload Image:</label>
-                  <div class="form-group col-sm-7">
-                    <input type="file" accept="image/*" class="form-control-file" id="InputFile" aria-describedby="fileHelp" name="ShowImage" required>
-                    <small id="fileHelp" class="form-text text-muted"></small>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 form-label">Publish:</label>
-                    <label class="switch float-right form-group">
-                      <input type="checkbox" class="sliderinput" v-model="formdata.isPublished" name="isPublished" value="true">
-                      <span class="slider round"></span>
-                   </label>
-                 </div>
-                <div class="">
-                    <button type="reset" class=" btn btn-danger">Reset</button>
-                    <button type="submit" class=" btn btn-success">Add & Save</button>
-                </div>
-             </form>
-            </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Publish:</label>
+                  <label class="switch float-right form-group">
+                    <input type="checkbox" class="sliderinput" v-model="formdata.isPublished" name="isPublished" value="true">
+                    <span class="slider round"></span>
+                  </label>
+              </div>
+              <div class="">
+                  <button type="reset" class=" btn btn-danger">Reset</button>
+                  <button type="submit" class=" btn btn-success">Add & Save</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
 </div>
 
 </template>
@@ -173,8 +173,8 @@ export default {
     }
   },
   mounted () {
-    console.log("mounted admin navbar")
-    console.log("element ",document.getElementById('rem_content'))
+    console.log('mounted admin navbar')
+    console.log('element ', document.getElementById('rem_content'))
     function myFunction1 () {
       console.log('myfunction1 show content')
       $('#sidebar').toggle()
