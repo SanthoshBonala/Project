@@ -10,6 +10,7 @@ import Guard from '../services/authservice'
 import AdminList from '../components/Admin/AdminList.vue'
 import Admin from '../components/Admin/Admin.vue'
 import PageNotFound from '../components/Admin/PageNotFound.vue'
+import SectionList from '../components/Admin/SectionList.vue'
 
 Vue.use(Router)
 
@@ -58,6 +59,12 @@ export default new Router({
           name: AdminList,
           beforeEnter: Guard.auth,
           component: AdminList
+        },
+        {
+          path: 'sectionlist',
+          name: SectionList,
+          beforeEnter: Guard.auth,
+          component: SectionList
         }
       ]
     },

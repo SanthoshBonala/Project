@@ -20,7 +20,7 @@
                         <router-link to="/admin/addadmin" class="btn btn-primary btn-block">Add Admin</router-link>
                     </li>
                     <li class="nav-item my-2">
-                        <router-link to="/admin/" class="btn btn-primary btn-block">Section List</router-link>
+                        <router-link to="/admin/sectionlist" class="btn btn-primary btn-block">Section List</router-link>
                     </li>
                     <li class="nav-item my-2">
                         <router-link to="/admin/addsection" class="btn btn-primary btn-block">Add Section </router-link>
