@@ -1,33 +1,40 @@
 <template>
-<div class="container-fluid">
-    <div class="sticky-top">
-        <nav class="navbar bg-dark text-light sticky-top">
+<!-- Ashwith Gundu - Created side navigation bar -->
+<div class="container-fluid" style=" ">
+    <div class="sticky-top" >
+        <nav class="navbar bg-dark bor text-light sticky-top" style="overflow-x:hidden;" >
             <a href="" data-target="#sidebar" data-toggle="collapse" class="d-md-none" id="show_content">
                 <i class="fa fa-bars"></i>
             </a>
-            <router-link class="navbar-brand" to="/admin/dashboard">Theatre Northwest</router-link>
-            <button class="btn btn-primary" @click="logout()" v-if="login">Logout</button>
+            <router-link class="navbar-brand tex " to="/admin/dashboard"><h1>Theatre Northwest</h1></router-link>
+            <button class="btn white_green px-4" @click="logout()" v-if="login"><span class="mr-2"><i class="fas fa-sign-out-alt"></i></span>Logout</button>
         </nav>
     </div>
     <div id="adminnavbar" class="row">
         <div class="col-sm-2 collapse d-sm-flex position-fixed" id="sidebar">
             <div class="col-sm-10 bg-dark pt-2" v-if="login">
                 <ul class="nav flex-column flex-nowrap ">
-                    <li class="nav-item my-2">
-                        <router-link to="/admin/adminlist" class="btn btn-primary btn-block">Admin List</router-link>
+                   <li class="nav-item my-2">
+                        <button class="btn white_green btn-block" @click="addshowevent()">
+                          <span class="mr-2"><i class="fas fa-plus-circle"></i> </span>
+                          Add Show </button>
                     </li>
                     <li class="nav-item my-2">
-                        <router-link to="/admin/addadmin" class="btn btn-primary btn-block">Add Admin</router-link>
+                        <router-link to="/admin/adminlist" class="btn white_green btn-block">
+                         <span class="mr-2"><i class="fas fa-list-ul"></i></span>Admin List</router-link>
                     </li>
                     <li class="nav-item my-2">
-                        <router-link to="/admin/sectionlist" class="btn btn-primary btn-block">Section List</router-link>
+                        <router-link to="/admin/addadmin" class="btn white_green  btn-block">
+                         <span class="mr-2"><i class="fas fa-user"></i></span>Add Admin</router-link>
                     </li>
                     <li class="nav-item my-2">
-                        <router-link to="/admin/addsection" class="btn btn-primary btn-block">Add Section </router-link>
+                        <router-link to="/admin/sectionlist" class="btn white_green btn-block"> <span class="mr-2"><i class="fas fa-th-list"></i></span>Section List</router-link>
                     </li>
                     <li class="nav-item my-2">
-                        <button class="btn btn-primary btn-block" @click="addshowevent()">Add Show </button>
+                        <router-link to="/admin/addsection" class="btn white_green btn-block">
+                        <span class="mr-2"><i class="fas fa-plus"></i></span>Add Section </router-link>
                     </li>
+                   
                 </ul>
             </div>
         </div>
@@ -260,5 +267,45 @@ $(function () {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+
+
+
+/* .white_green{
+  color: #003300;
+  background-color: white;
+   font-weight: bold;
+} */
+
+.white_green {
+  padding: 15px 5px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #003300;
+  background-color: #f5f5ef;
+  border: none;
+  box-shadow: 4px 4px 8px 0 #999;
+  
+}
+
+.white_green:hover {background-color: #aae8aa}
+
+.white_green:active {
+  background-color: #7fe682;
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+
+
+.bor {
+    box-shadow: 4px 10px 2px -4px rgba(74, 243, 18, 0.172);
+}
+
+.tex {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px #7fe682, 0 0 5px rgba(74, 243, 18, 0.172);
 }
 </style>
