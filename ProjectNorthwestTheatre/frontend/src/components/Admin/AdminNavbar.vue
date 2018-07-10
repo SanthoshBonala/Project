@@ -48,15 +48,15 @@
             <form @submit.prevent="addshow" id="addshow">
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Name:</label>
-                <input class="col-sm-7 form-control" type="text" id="showname" name="ShowTitle" required>
+                <input class="col-sm-7 form-control" type="text" placeholder="Show Name" id="showname" name="ShowTitle" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Playwright:</label>
-                <input class="col-sm-7 form-control" type="text" id="playwright" name="ShowPlaywright" required>
+                <input class="col-sm-7 form-control" type="text" placeholder="Playwright" id="playwright" name="ShowPlaywright" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Description:</label>
-                <input class="col-sm-7 form-control" type="text" id="description" name="ShowDescription" required>
+                <input class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Date:</label>
@@ -68,11 +68,11 @@
               </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Total Seats:</label>
-                  <input class="col-sm-7 form-control" type="number" id="totalseats" name="NumberOfTickets" min="1" required>
+                  <input class="col-sm-7 form-control" type="number" placeholder="Total No. of Tickets" id="totalseats" name="NumberOfTickets" min="1" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Venue:</label>
-                  <input class="col-sm-7 form-control" type="text" id="showvenue" name="ShowVenue" required>
+                  <input class="col-sm-7 form-control" type="text" placeholder="Venue" id="showvenue" name="ShowVenue" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Show Rating:</label>
@@ -84,12 +84,18 @@
                   </select>
                 </div>
                 <div class="form-group row">
-                  <label class="col-sm-4 form-label">Adult Price:</label>
-                  <input class="col-sm-7 form-control" type="number" id="adultprice" name="ShowPrice" min="1" required>
+                  <label class="col-sm-4 form-label">Adult Ticket:</label>
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">$</div>
+                    </div>
+                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for Adult" id="adultprice" name="ShowPrice" min="1" required>
                 </div>
                 <div class="form-group row">
-                  <label class="col-sm-4 form-label">Children Price:</label>
-                  <input class="col-sm-7 form-control" type="number" id="childrenprice" min="1" required>
+                  <label class="col-sm-4 form-label">Children Ticket:</label>
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">$</div>
+                    </div>
+                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for children" id="childrenprice" min="1" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Upload Image:</label>
@@ -128,7 +134,7 @@ export default {
         isPublished: false
       },
       /* global moment  */
-      showtime: moment().format('HH:mm:ss')
+      showtime: moment().format('HH:mm')
     }
   },
   props: ['login'],
@@ -147,7 +153,6 @@ export default {
       /* global $ axios url */
       axios.create({
         baseURL: url,
-        timeout: 1000,
         headers: { 'token': window.localStorage.getItem('AccessToken') }
       }).post('/addshow', data)
         .then(res => {

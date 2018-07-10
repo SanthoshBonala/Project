@@ -25,7 +25,7 @@
             <form>
               <div class="form-group row">
                 <label class="col-sm-2 form-label">Subject:</label>
-                <input class="col-sm-10 form-control" type="text" id="emailSubject">
+                <input class="col-sm-10 form-control" type="text" placeholder="Subject" id="emailSubject">
               </div>
               <div class="form-group row">
                 <label for="Email1msg" class="col-sm-2 control-label">Message:</label>

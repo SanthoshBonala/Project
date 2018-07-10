@@ -74,26 +74,26 @@ export default {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       })
-      .then((result) => {
-        if (result.value) {
-          axios.create({
-            baseURL: url,
-            timeout: 1000,
-            headers: { 'token': window.localStorage.getItem('AccessToken') }
-          }).post('/deleteadmin', { id: adminid })
-            .then(res => {
-              swal(
-                'Deleted!',
-                'Selected Admin has been deleted.',
-                'success'
-              )
-              this.getlist()
-            })
-            .catch(error => {
-              console.log(error)
-            })
-        }
-      })
+        .then((result) => {
+          if (result.value) {
+            axios.create({
+              baseURL: url,
+              timeout: 1000,
+              headers: { 'token': window.localStorage.getItem('AccessToken') }
+            }).post('/deleteadmin', { id: adminid })
+              .then(res => {
+                swal(
+                  'Deleted!',
+                  'Selected Admin has been deleted.',
+                  'success'
+                )
+                this.getlist()
+              })
+              .catch(error => {
+                console.log(error)
+              })
+          }
+        })
     }
   },
   created () {
