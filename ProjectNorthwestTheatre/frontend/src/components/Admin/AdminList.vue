@@ -23,7 +23,7 @@
                 <button type="button" class="btn rounded-circle float-right m-2" id="delete" @click="deleteadmin(ele._id)">
                     <i class="fas fa-trash"></i>
                 </button>
-                <button type="button" class="btn rounded-circle float-right m-2" id="edit" @click="editadmin(ele._id)">
+                <button type="button" class="btn rounded-circle float-right m-2" id="edit" @click="editadmin(ele)">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
               </td>
@@ -45,11 +45,11 @@
           <form>
             <div class="form-group row">
               <label class="col-sm-5 form-label">Username:</label>
-              <input class="col-sm-6 form-control" type="text" id="username" placeholder="Username">
+              <input class="col-sm-6 form-control" type="text" :value="admin.Username" id="username" placeholder="Username">
             </div>
             <div class="form-group row">
               <label class="col-sm-5 form-label">Email Address:</label>
-              <input class="col-sm-6 form-control" type="text" id="email" placeholder="Email">
+              <input class="col-sm-6 form-control" type="text" id="email" :value="admin.Email" placeholder="Email">
             </div>
           </form>
           </div>
@@ -69,11 +69,13 @@ export default {
   data () {
     return {
       adminlist: [],
-      count: 0
+      count: 0,
+      admin: {}
     }
   },
   methods: {
-    editadmin (adminid) {
+    editadmin (admin) {
+      this.admin = admin
       /* global $ */
       $('#editModal').modal('show')
     },

@@ -1,34 +1,45 @@
 <template>
-
-  <form class="justify-content-center" @submit.prevent="AddAdmin" id="addadmin">
-    <h1 class="h3 mb-3 font-weight-normal">Add Admin</h1>
+<div class="card m-5 w-75">
+  <div class="card-header">
+    <strong ><h1> Add Admin</h1></strong>
+  </div>
+  <div class="card-body">
+  
+     <form class="justify-content-center " @submit.prevent="AddAdmin" id="addadmin">
+    <h1 class="h3 mb-3 font-weight-normal"></h1>
     <div class="form-group row justify-content-center">
-      <label for="username" class="col-sm-2 col-form-label">Username:</label>
+      <label for="username" class="col-sm-3 float-left col-form-label">Username:</label>
       <div class="col-sm-4">
         <input type="username" class="form-control" id="username" name="RegUsername" placeholder="Username" required>
       </div>
     </div>
     <div class="form-group row justify-content-center">
-      <label for="email" class="col-sm-2 col-form-label">Email:</label>
+      <label for="email" class="col-sm-3 col-form-label">Email:</label>
       <div class="col-sm-4">
         <input type="email" class="form-control" id="email" placeholder="Email" name="RegEmail" required>
       </div>
     </div>
     <div class="form-group row justify-content-center">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Password:</label>
+      <label for="inputPassword3" class="col-sm-3 col-form-label">Password:</label>
       <div class="col-sm-4">
         <input type="password" class="form-control" id="Password" name="RegPassword" placeholder="Password" required>
       </div>
     </div>
     <div class="form-group row justify-content-center">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm Password:</label>
+      <label for="inputPassword3" class="col-sm-3 col-form-label">Confirm Password:</label>
       <div class="col-sm-4">
         <input type="password" class="form-control" id="confirmpassword" placeholder="Password" required>
       </div>
     </div>
+
     <button type="reset" class="btn btn-danger">Reset</button>
     <button type="submit" class="btn btn-success">Create Admin</button>
   </form>
+  </div>
+</div>
+
+
+ 
 </template>
 
 <script>
@@ -82,6 +93,10 @@ export default {
     }
   }
 }
+
+//Regular Expression
+
+
 </script>
 
 <style scoped>
