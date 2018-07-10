@@ -24,8 +24,29 @@
               </div>
   <div class="form-group row justify-content-center">
                 <label class="col-sm-2 form-label">Section Number:</label>
-                <input class="col-sm-4 form-control" type="text" id="secnumber" >
+                <input class="col-sm-4 form-control" type="number" id="secnumber" >
               </div>
+            <div class="form-group row justify-content-center">
+                        <label class="col-sm-2 form-label">Semester:</label>
+                          <div class="col-sm-4 float-left">
+                            <div class="form-check form-check-inline col-sm-3">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="yes" value="true">
+                              <label class="form-check-label" for="yes">Fall</label>
+                            </div>
+                            <div class="form-check form-check-inline col-sm-3">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="no" value="false">
+                              <label class="form-check-label" for="no">Spring</label>
+                            </div>
+                            <div class="form-check form-check-inline col-sm-3">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="no" value="false">
+                              <label class="form-check-label" for="no">Summer</label>
+                            </div>
+                          </div>
+                        </div>
+  <div class="form-group row justify-content-center">
+      <label class="col-sm-2 form-label">Year:</label>
+        <input class="col-sm-4 form-control" type="number" id="year" required>
+  </div>
   <button type="submit" class="btn btn-success">Add section</button>
 </form>
 </template>
