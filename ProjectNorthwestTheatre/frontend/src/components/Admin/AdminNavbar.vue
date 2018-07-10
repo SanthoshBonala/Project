@@ -52,20 +52,11 @@
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Playwright:</label>
-<<<<<<< HEAD
                 <input class="col-sm-7 form-control" type="text" placeholder="Playwright" id="playwright" name="ShowPlaywright" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Description:</label>
                 <input class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription" required>
-=======
-                <input class="col-sm-7 form-control" type="text" id="playwright" name="ShowPlayWright" required>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-4 form-label">Description:</label>
-                <textarea class="col-sm-7 form-control" type="text" id="description" name="ShowDescription" required>
-                </textarea>
->>>>>>> b1f8c3314ee0b9a2e15e073a710cf07b2d0e240d
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Date:</label>
@@ -124,18 +115,6 @@
                     <button type="reset" class=" btn btn-danger">Reset</button>
                     <button type="submit" class=" btn btn-success">Add & Save</button>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-4 form-label">Publish:</label>
-                  <label class="switch float-right form-group">
-                    <input type="checkbox" class="sliderinput" v-model="formdata.isPublished" name="isPublished" value="true">
-                    <span class="slider round"></span>
-                  </label>
-              </div>
-              <div class="">
-                  <button type="reset" class=" btn btn-danger">Reset</button>
-                  <button type="submit" class=" btn btn-success">Add & Save</button>
-              </div>
             </form>
           </div>
         </div>

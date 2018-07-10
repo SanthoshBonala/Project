@@ -30,7 +30,7 @@
             </tr>
           </tbody>
         </table>
-     </div> 
+     </div>
       <!-- Modal -->
     <div class="modal fade" id="editModal" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -50,8 +50,8 @@
             <div class="form-group row">
               <label class="col-sm-5 form-label">Email Address:</label>
               <input class="col-sm-6 form-control" type="text" id="email">
-            </div> 
-          </form>           
+            </div>
+          </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -165,7 +165,7 @@ div.tb {
   text-align: center;
 }
 
-@media screen and (min-width: 768px) { 
+@media screen and (min-width: 768px) {
   .modal:before {
     display: inline-block;
     vertical-align: middle;
