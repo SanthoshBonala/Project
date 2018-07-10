@@ -1,12 +1,15 @@
 <template>
-<form class="justify-content-center" @submit.prevent="addsection" id="addsection">
-  <h1 class="h3 mb-3 font-weight-normal">Add Section</h1>
+<div class="card border-secondary my-3 w-75" >
+  <div class="card-header"><strong ><h1> Add Section</h1></strong></div>
+  <div class="card-body text-secondary">
+    <form class="justify-content-center" @submit.prevent="addsection" id="addsection">
+  
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">Professor Name:</label>
+    <label class="col-sm-4 text-right form-label">Professor Name:</label>
     <input class="col-sm-4 form-control" type="text" name="ProfessorName" placeholder="Professor Name" id="profname">
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">Day:</label>
+    <label class="col-sm-4 text-right form-label">Day:</label>
     <select id="inputState" class="col-sm-4 form-control" name="ClassDay" required >
       <option selected>Choose...</option>
       <option>Monday</option>
@@ -19,15 +22,15 @@
     </select>
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">Section Time:</label>
+    <label class="col-sm-4 text-right form-label">Section Time:</label>
       <input class="col-sm-4 form-control" type="time"  id="sectiontime" name="ClassTime" required>
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">Section Number:</label>
+    <label class="col-sm-4 text-right form-label">Section Number:</label>
     <input class="col-sm-4 form-control" type="number" placeholder="Section Number" name="SectionNumber" id="secnumber" >
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">
+    <label class="col-sm-4 text-right form-label">
     Semester:
     </label>
       <div class="col-sm-4 float-left">
@@ -46,13 +49,17 @@
       </div>
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">
+    <label class="col-sm-4 text-right form-label">
       Year:
     </label>
     <input class="col-sm-4 form-control" type="number" id="year" :min="Date().year" required>
   </div>
   <button type="submit" class="btn btn-success">Add section</button>
 </form>
+  </div>
+</div>
+
+
 </template>
 
 <script>
