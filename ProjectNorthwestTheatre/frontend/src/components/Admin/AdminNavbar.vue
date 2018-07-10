@@ -34,7 +34,6 @@
                         <router-link to="/admin/addsection" class="btn white_green btn-block">
                         <span class="mr-2"><i class="fas fa-plus"></i></span>Add Section </router-link>
                     </li>
-                   
                 </ul>
             </div>
         </div>
@@ -59,11 +58,12 @@
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Playwright:</label>
-                <input class="col-sm-7 form-control" type="text" placeholder="Playwright" id="playwright" name="ShowPlaywright" required>
+                <input class="col-sm-7 form-control" type="text" placeholder="Playwright" id="playwright" name="ShowPlayWright" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Description:</label>
-                <input class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription" required>
+                <textarea class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription" required>
+                </textarea>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Date:</label>
@@ -95,14 +95,14 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
                     </div>
-                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for Adult" id="adultprice" name="ShowPrice" min="1" required>
+                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for Adult" id="adultprice" name="ShowPriceForAdult" min="1" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Children Ticket:</label>
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
                     </div>
-                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for children" id="childrenprice" min="1" required>
+                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for children" id="childrenprice" min="1" name="ShowPriceForChildren" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Upload Image:</label>
@@ -289,9 +289,6 @@ export default {
   border-radius: 50%;
 }
 
-
-
-
 /* .white_green{
   color: #003300;
   background-color: white;
@@ -308,7 +305,6 @@ export default {
   background-color: #f5f5ef;
   border: none;
   box-shadow: 4px 4px 8px 0 #999;
-  
 }
 
 .white_green:hover {background-color: #aae8aa}
@@ -318,7 +314,6 @@ export default {
   box-shadow: 0 2px #666;
   transform: translateY(2px);
 }
-
 
 .bor {
     box-shadow: 4px 10px 2px -4px rgba(74, 243, 18, 0.172);

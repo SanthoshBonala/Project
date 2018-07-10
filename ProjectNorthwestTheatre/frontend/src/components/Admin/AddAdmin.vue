@@ -4,7 +4,6 @@
     <strong ><h1> Add Admin</h1></strong>
   </div>
   <div class="card-body">
-  
      <form class="justify-content-center " @submit.prevent="AddAdmin" id="addadmin">
     <h1 class="h3 mb-3 font-weight-normal"></h1>
     <div class="form-group row justify-content-center">
@@ -37,9 +36,6 @@
   </form>
   </div>
 </div>
-
-
- 
 </template>
 
 <script>
@@ -94,9 +90,7 @@ export default {
   }
 }
 
-//Regular Expression
-
-
+// Regular Expression
 </script>
 
 <style scoped>

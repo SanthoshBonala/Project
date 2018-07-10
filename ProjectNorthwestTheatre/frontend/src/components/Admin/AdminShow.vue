@@ -165,7 +165,6 @@ export default {
           if (result.value) {
             axios.create({
               baseURL: url,
-              timeout: 1000,
               headers: { 'token': window.localStorage.getItem('AccessToken') }
             }).post('/deleteshow', { id: this.show._id })
               .then(res => {
@@ -272,7 +271,6 @@ export default {
 .card {
     box-shadow: 5px 4px 8px 0 rgba(20, 53, 40,0.2);
     transition: 0.3s;
-   
 }
 
 .card:hover {

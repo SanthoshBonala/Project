@@ -90,13 +90,13 @@ export default {
         Semester: formdata.get('Semester'),
         Year: formdata.get('Year')
       }
-       /* global axios url swal */
+      /* global axios url swal */
       axios.create({
         baseURL: url,
         headers: { 'token': window.localStorage.getItem('AccessToken') }
       }).post('/addsection', data)
         .then(res => {
-          this.alert('Congratulations!','Section has been added successfully','success')
+          this.alert('Congratulations!', 'Section has been added successfully', 'success')
         })
         .catch(error => {
           this.alert(error.response.data, 'Please try again', 'error')
