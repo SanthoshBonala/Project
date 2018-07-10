@@ -35,3 +35,13 @@
      </div>
   </div>
 </template>
+
+<script>
+
+</script>
+
+<style scoped>
+div.tb {
+  margin-right: 50px;
+}
+</style>
