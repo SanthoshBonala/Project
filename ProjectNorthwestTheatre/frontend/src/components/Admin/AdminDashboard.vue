@@ -29,7 +29,7 @@
               </div>
               <div class="form-group row">
                 <label for="Email1msg" class="col-sm-3 form-label">Message:</label>
-                  <textarea class="form-control inputstl col-sm-8" placeholder="Type the message here...." rows="10"></textarea>
+                  <textarea class="form-control inputstl col-sm-8" placeholder="Type the mesaage here...." rows="10"></textarea>
               </div>
             </form>
           </div>
