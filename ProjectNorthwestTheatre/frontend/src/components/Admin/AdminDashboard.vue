@@ -24,14 +24,12 @@
           <div class="modal-body">
             <form>
               <div class="form-group row">
-                <label class="col-sm-2 form-label">Subject:</label>
-                <input class="col-sm-10 form-control" type="text" id="emailSubject">
+                <label class="col-sm-3 form-label">Subject:</label>
+                <input class="col-sm-8 form-control" type="text" placeholder="Subject">
               </div>
               <div class="form-group row">
-                <label for="Email1msg" class="col-sm-2 control-label">Message:</label>
-                <div class="col-sm-10">
-                  <textarea class="form-control inputstl" rows="10"></textarea>
-                </div>
+                <label for="Email1msg" class="col-sm-3 form-label">Message:</label>
+                  <textarea class="form-control inputstl col-sm-8" placeholder="Type the message here...." rows="10"></textarea>
               </div>
             </form>
           </div>
