@@ -5,7 +5,7 @@ var path = require('path')
 
 let addShow = (req, res, next) => {
     var Show = new ShowModel(req.body)
-    buffer = req.file.buffer
+    Show.ShowImage = null
     Show.save()
         .then(function (Show) {
             fs.open('images/' + Show.id, 'w', function (err, fd) {
