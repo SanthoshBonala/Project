@@ -34,7 +34,6 @@
                         <router-link to="/admin/addsection" class="btn white_green btn-block">
                         <span class="mr-2"><i class="fas fa-plus"></i></span>Add Section </router-link>
                     </li>
-                   
                 </ul>
             </div>
         </div>
@@ -289,9 +288,6 @@ export default {
   border-radius: 50%;
 }
 
-
-
-
 /* .white_green{
   color: #003300;
   background-color: white;
@@ -308,7 +304,6 @@ export default {
   background-color: #f5f5ef;
   border: none;
   box-shadow: 4px 4px 8px 0 #999;
-  
 }
 
 .white_green:hover {background-color: #aae8aa}
@@ -318,7 +313,6 @@ export default {
   box-shadow: 0 2px #666;
   transform: translateY(2px);
 }
-
 
 .bor {
     box-shadow: 4px 10px 2px -4px rgba(74, 243, 18, 0.172);
