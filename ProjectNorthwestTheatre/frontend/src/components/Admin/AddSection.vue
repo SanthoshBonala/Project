@@ -7,7 +7,7 @@
               </div>
   <div class="form-group row justify-content-center">
                   <label class="col-sm-2 form-label">Day:</label>
-                  <select id="inputState" class="col-sm-4 form-control" required v-model="formdata.ShowRating" >
+                  <select id="inputState" class="col-sm-4 form-control" required >
                     <option selected>Choose...</option>
                     <option>Monday</option>
                     <option>Tuesday</option>
@@ -45,7 +45,7 @@
                         </div>
   <div class="form-group row justify-content-center">
       <label class="col-sm-2 form-label">Year:</label>
-        <input class="col-sm-4 form-control" type="number" id="year" required>
+        <input class="col-sm-4 form-control" type="number" id="year" placeholder="Year" required>
   </div>
   <button type="submit" class="btn btn-success">Add section</button>
 </form>
