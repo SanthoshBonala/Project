@@ -28,7 +28,7 @@
                          <span class="mr-2"><i class="fas fa-user"></i></span>Add Admin</router-link>
                     </li>
                     <li class="nav-item my-2">
-                        <router-link to="/admin/sectionlist" class="btn white_green btn-block"> <span class="mr-2"><i class="fas fa-th-list"></i></span>Section List</router-link>
+                        <router-link to="/admin/sectionlist" class="btn white_green btn-block"> <span class="mr-2"><i class="fas fa-th-list"></i></span>View Section</router-link>
                     </li>
                     <li class="nav-item my-2">
                         <router-link to="/admin/addsection" class="btn white_green btn-block">
