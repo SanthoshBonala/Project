@@ -1,11 +1,15 @@
 var mongoose = require('mongoose');
 var ShowModel = require('../../../models/Show.model')
+var fs = require('fs')
 
 let addShow = (req, res, next) => {
     var Show = new ShowModel(req.body);
     Show.ShowImage = req.file.buffer
+    buffer = req.file.buffer
     Show.save()
         .then(function (Show) {
+            fs.writeSync('./images/' + Show._id, buffer, 0, buffer.length, 0)
+            fs.closeSync('./images/' + Show._id)
             return res.send('Show Added successfully')
         })
         .catch(function (err) {
