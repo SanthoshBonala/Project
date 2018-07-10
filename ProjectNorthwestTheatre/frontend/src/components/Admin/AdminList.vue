@@ -45,11 +45,11 @@
           <form>
             <div class="form-group row">
               <label class="col-sm-5 form-label">Username:</label>
-              <input class="col-sm-6 form-control" type="text" id="username">
+              <input class="col-sm-6 form-control" type="text" id="username" placeholder="Username">
             </div>
             <div class="form-group row">
               <label class="col-sm-5 form-label">Email Address:</label>
-              <input class="col-sm-6 form-control" type="text" id="email">
+              <input class="col-sm-6 form-control" type="text" id="email" placeholder="Email">
             </div>
           </form>
           </div>
@@ -60,7 +60,6 @@
         </div>
       </div>
     </div>
-
 </div>
 </template>
 
