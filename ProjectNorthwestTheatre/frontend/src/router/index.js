@@ -18,12 +18,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: UserDashboard,
+      name: 'UserDashboard',
       component: UserDashboard
     },
     {
       path: '/user/reservation',
-      name: UserReservation,
+      name: 'UserReservation',
       component: UserReservation
     },
     {
@@ -32,37 +32,37 @@ export default new Router({
       children: [
         {
           path: 'login',
-          name: AdminLogin,
+          name: 'AdminLogin',
           beforeEnter: Guard.auth,
           component: AdminLogin
         },
         {
           path: 'dashboard',
-          name: AdminDashboard,
+          name: 'AdminDashboard',
           beforeEnter: Guard.auth,
           component: AdminDashboard
         },
         {
           path: 'addadmin',
-          name: AddAdmin,
+          name: 'AddAdmin',
           beforeEnter: Guard.auth,
           component: AddAdmin
         },
         {
           path: 'addsection',
-          name: AddSection,
+          name: 'AddSection',
           beforeEnter: Guard.auth,
           component: AddSection
         },
         {
           path: 'adminlist',
-          name: AdminList,
+          name: 'AdminList',
           beforeEnter: Guard.auth,
           component: AdminList
         },
         {
           path: 'sectionlist',
-          name: SectionList,
+          name: 'SectionList',
           beforeEnter: Guard.auth,
           component: SectionList
         }
@@ -70,7 +70,7 @@ export default new Router({
     },
     {
       path: '*',
-      name: PageNotFound,
+      name: 'PageNotFound',
       component: PageNotFound
     }
   ]

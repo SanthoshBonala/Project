@@ -1,35 +1,67 @@
 <template>
    <div>
-    <h1 class = "h2 mb-3 font-weight-normal">ADMIN List </h1>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">SNO</th>
-          <th scope="col">Username</th>
-          <th scope="col">Email Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(ele,index) of adminlist" :key="ele._id">
-          <th scope="row">
-            {{ index + 1 }}
-          </th>
-          <td>
-            {{ ele.Username }}
-          </td>
-          <td>
-            {{ ele.Email }}
-            <button type="button" class="btn rounded-circle float-right m-2" id="delete" @click="deleteadmin(ele._id)">
-                <i class="fas fa-trash"></i>
+     <div class="tb">
+       <h1 class = "h2 mb-3 font-weight-normal">ADMIN List </h1>
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">SNO</th>
+              <th scope="col">Username</th>
+              <th scope="col">Email Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(ele,index) of adminlist" :key="ele._id">
+              <th scope="row">
+                {{ index + 1 }}
+              </th>
+              <td>
+                {{ ele.Username }}
+              </td>
+              <td>
+                {{ ele.Email }}
+                <button type="button" class="btn rounded-circle float-right m-2" id="delete" @click="deleteadmin(ele._id)">
+                    <i class="fas fa-trash"></i>
+                </button>
+                <button type="button" class="btn rounded-circle float-right m-2" id="edit" @click="editadmin(ele._id)">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+     </div> 
+      <!-- Modal -->
+    <div class="modal fade" id="editModal" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Admin details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
             </button>
-            <button type="button" class="btn rounded-circle float-right m-2" id="edit" @click="editadmin(ele._id)">
-                <i class="fas fa-pencil-alt"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+          </div>
+          <div class="modal-body">
+          <form>
+            <div class="form-group row">
+              <label class="col-sm-5 form-label">Username:</label>
+              <input class="col-sm-6 form-control" type="text" id="username">
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-5 form-label">Email Address:</label>
+              <input class="col-sm-6 form-control" type="text" id="email">
+            </div> 
+          </form>           
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-success">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
 </template>
 
 <script>
@@ -42,6 +74,10 @@ export default {
     }
   },
   methods: {
+    editadmin (adminid) {
+      /* global $ */
+      $('#editModal').modal('show')
+    },
     getlist () {
       /* global axios url */
       axios({
@@ -106,7 +142,7 @@ export default {
 </script>
 
 <style scoped>
-div {
+div.tb {
   margin-right: 50px;
 }
 #delete:hover {
@@ -125,4 +161,22 @@ div {
   color: #746967;
   background-color: none
 }
+/* .modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+} */
 </style>

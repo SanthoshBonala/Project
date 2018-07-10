@@ -35,7 +35,7 @@
               <div class="col-lg lead text-left font" style="border:1px  ">
                 <!-- Playwright -->
                 <span class="font-weight-bold">Playwright :
-                  <span class="font-weight-normal">By John</span>
+                  <span class="font-weight-normal">{{ show.ShowPlayWright }}</span>
                 </span>
                 <br>
                 <!-- Description -->
@@ -55,7 +55,7 @@
                 <br>
                 <!-- Venue -->
                 <span class="font-weight-bold">Venue :
-                  <span class="font-weight-normal">Ron Houston</span>
+                  <span class="font-weight-normal">{{ show.ShowVenue }}</span>
                 </span>
                 <br>
                 <!-- Rating -->
@@ -78,23 +78,23 @@
                   <br>
                   <!-- Reserved Seats -->
                   <span class="px-3 font-weight-bold">Reserved :
-                    <span class="font-weight-normal">20</span>
+                    <span class="font-weight-normal">{{ show.ReservedSeats }}</span>
                   </span>
                   <br>
                   <!-- Remaining Seats -->
                   <span class="px-3  font-weight-bold">Remaining :
-                    <span class="font-weight-normal">{{ show.NumberOfTickets - 20 }}</span>
+                    <span class="font-weight-normal">{{ show.NumberOfTickets - show.ReservedSeats }}</span>
                   </span>
                   <br>
                 </div>
                 <!-- Adult Ticket -->
                 <h1 class="mt-2 text-danger text-center lead">
-                    <span class="font-weight-bold display"> $ {{ show.ShowPrice }} </span>
+                    <span class="font-weight-bold display"> $ {{ show.ShowPriceForAdult }} </span>
                     <span class="font-weight-normal">For Adult</span>
                 </h1>
                 <!-- Children Ticket -->
                 <h1 class="text-danger text-center lead">
-                    <span class="font-weight-bold display"> $ {{ show.ShowPrice }} </span>
+                    <span class="font-weight-bold display"> $ {{ show.ShowPriceForChildren }} </span>
                     <span class="font-weight-normal">For Children</span>
                 </h1>
               </div>
@@ -108,7 +108,8 @@
               <button class="col-sm m-2 btn btn-outline-warning" type="button">
                 <strong>Generate Report</strong>
               </button>
-              <button class="col-sm m-2 btn btn-outline-success" type="button" @click="emitevent()">
+              <button class="col-sm m-2 btn btn-outline-success" type="button"
+              @click="emitevent()">
                 <strong>Reserve Tickets</strong>
               </button>
               <button class="col-sm m-2 btn btn-outline-secondary" type="button"
