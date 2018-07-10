@@ -3,7 +3,7 @@
 <h1 class="h3 mb-3 font-weight-normal">Add Section</h1>
 <div class="form-group row justify-content-center">
                 <label class="col-sm-2 form-label">Professor Name:</label>
-                <input class="col-sm-4 form-control" type="text" id="profname">
+                <input class="col-sm-4 form-control" type="text" placeholder="Professor Name" id="profname">
               </div>
   <div class="form-group row justify-content-center">
                   <label class="col-sm-2 form-label">Day:</label>
@@ -24,7 +24,7 @@
               </div>
   <div class="form-group row justify-content-center">
                 <label class="col-sm-2 form-label">Section Number:</label>
-                <input class="col-sm-4 form-control" type="number" id="secnumber" >
+                <input class="col-sm-4 form-control" type="number" placeholder="Section Number" id="secnumber" >
               </div>
             <div class="form-group row justify-content-center">
                         <label class="col-sm-2 form-label">Semester:</label>
