@@ -62,7 +62,8 @@
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Description:</label>
-                <input class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription" required>
+                <textarea class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription" required>
+                </textarea>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Date:</label>
