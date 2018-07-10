@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 var ShowModel = require('../../../models/Show.model')
 var fs = require('fs')
 var path = require('path')
@@ -10,10 +10,10 @@ let addShow = (req, res, next) => {
         .then(function (Show) {
             fs.open('images/' + Show.id, 'w', function (err, fd) {
                 if (err) {
-                    throw 'error opening file: ' + err;
+                    throw 'error opening file: ' + err
                 }
                 fs.write(fd, buffer, 0, buffer.length, null, function (err) {
-                    if (err) throw 'error writing file: ' + err;
+                    if (err) throw 'error writing file: ' + err
                     fs.close(fd, function () {
                         console.log('file written')
                     })
@@ -26,13 +26,13 @@ let addShow = (req, res, next) => {
         })
 }
 
-module.exports.addShow = addShow;
+module.exports.addShow = addShow
 
 let deleteShow = (req, res, next) => {
     ShowModel.findByIdAndRemove(req.body.id, function (err, Show) {
         if (err || !Show) return res.status(400).send('Cannot Delete, Show not found')
         fs.unlink(path.join(__dirname, '../../../images', req.body.id), (err) => {
-            if (err) throw err;
+            if (err) throw err
             return res.send("Delete Successfull")
         })
     })
@@ -58,10 +58,10 @@ let UpdateShow = (req, res, next) => {
         if (err || !Show) return res.status(400).send('Show not found')
         fs.open('images/' + Show.id, 'w', function (err, fd) {
             if (err) {
-                throw 'error opening file: ' + err;
+                throw 'error opening file: ' + err
             }
             fs.write(fd, buffer, 0, buffer.length, null, function (err) {
-                if (err) throw 'error writing file: ' + err;
+                if (err) throw 'error writing file: ' + err
                 fs.close(fd, function () {
                     console.log('file written')
                 })
