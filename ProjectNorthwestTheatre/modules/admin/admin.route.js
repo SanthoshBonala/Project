@@ -22,7 +22,7 @@ router.post('/addshow', multer().single('ShowImage'), ShowController.addShow);
 
 router.get('/showlist', ShowController.GetShowList);
 
-router.post('/updateshow', ShowController.UpdateShow);
+router.post('/updateshow', multer().single('ShowImage'), ShowController.UpdateShow);
 
 router.post('/deleteshow', ShowController.deleteShow);
 
@@ -34,7 +34,7 @@ router.get('/image', ShowController.imagebyid);
 router.post('/addsection', SectionController.addSection);
 
 router.post('/updatesection', SectionController.UpdateSection);
-    
+
 router.get('/sectionlist', SectionController.GetSectionList);
 
 router.post('/deletesection', SectionController.deleteSection);
