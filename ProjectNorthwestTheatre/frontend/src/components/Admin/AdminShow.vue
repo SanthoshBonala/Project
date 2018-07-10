@@ -1,6 +1,7 @@
 <template>
+<!-- Ashwith Gundu - Created Admin Show Card -->
     <div class="col-md-12 col-sm-12 my-3">
-      <div class="card shadow rounded mb-3" >
+      <div class="card rounded mb-3" >
         <div class="card-header grey text-white">
           <div class="d-inline-block font-weight-bold float-left">
               <h1>{{ show.ShowTitle }}</h1>
@@ -27,8 +28,8 @@
           <div class="content">
             <div class="row justify-content-around m-3 rounded  bg-light">
               <!-- image column -->
-              <div class="col-lg ">
-                <img :src="`http://localhost:3000/admin/image?_id=${show._id}&token=${token}`" class="rounded mx-5 my-5  w-50 " alt="Image">
+              <div class="col-lg align-self-center">
+                <img :src="`http://localhost:3000/admin/image?_id=${show._id}&token=${token}`" class="rounded mx-1 my-1  w-50 " alt="Image">
               </div>
               <!-- image column end -->
               <!-- details of the show -->
@@ -103,18 +104,17 @@
             <div class="row justify-content-around m-2 bg-white rounded " style="border:1px ">
               <button class="col-sm m-2 btn btn-outline-primary" type="button"
               @click="emailevent()">
-                <strong>Email</strong>
+                <strong><span class = "mr-2"><i class="fas fa-envelope"></i></span>Email</strong>
               </button>
               <button class="col-sm m-2 btn btn-outline-warning" type="button">
-                <strong>Generate Report</strong>
+                <strong><span class = "mr-2"><i class="fas fa-file-excel"></i></span> Report</strong>
               </button>
-              <button class="col-sm m-2 btn btn-outline-success" type="button"
-              @click="emitevent()">
-                <strong>Reserve Tickets</strong>
+              <button class="col-sm m-2 btn btn-outline-success" type="button" @click="emitevent()">
+                <strong><span class = "mr-2"><i class="fas fa-ticket-alt"></i></span>Reserve Tickets</strong>
               </button>
               <button class="col-sm m-2 btn btn-outline-secondary" type="button"
               @click="editevent()">
-                <strong>Edit Show</strong>
+                <strong><span class = "mr-2"><i class="far fa-edit"></i></span>Edit Show</strong>
               </button>
             </div>
           <!-- end buttons inside card -->
@@ -264,9 +264,18 @@ export default {
       background-color: #A9A9A9;
   }
   .seats_rounded {
-      border-radius: 10%;
+      border-radius: 30px;
   }
   .font1{
     font-size:8vw;
   }
+.card {
+    box-shadow: 5px 4px 8px 0 rgba(20, 53, 40,0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 10px 10px 35px 0 #006600;
+}
+
 </style>
