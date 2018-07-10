@@ -10,7 +10,8 @@ var SectionSchema = mongoose.Schema({
         trim: true
     },
     ClassTime: {
-        type: Date
+        type: String,
+        trim: true
     },
     SectionNumber: {
         type: Number,

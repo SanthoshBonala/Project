@@ -1,51 +1,55 @@
 <template>
 <form class="justify-content-center" @submit.prevent="addsection" id="addsection">
-<h1 class="h3 mb-3 font-weight-normal">Add Section</h1>
-<div class="form-group row justify-content-center">
-                <label class="col-sm-2 form-label">Professor Name:</label>
-                <input class="col-sm-4 form-control" type="text" name="ProfessorName" placeholder="Professor Name" id="profname">
-              </div>
+  <h1 class="h3 mb-3 font-weight-normal">Add Section</h1>
   <div class="form-group row justify-content-center">
-                  <label class="col-sm-2 form-label">Day:</label>
-                  <select id="inputState" class="col-sm-4 form-control" name="ClassDay" required v-model="formdata.ShowRating" >
-                    <option selected>Choose...</option>
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednesday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
-                    <option>Sunday</option>
-                  </select>
-                </div>
+    <label class="col-sm-2 form-label">Professor Name:</label>
+    <input class="col-sm-4 form-control" type="text" name="ProfessorName" placeholder="Professor Name" id="profname">
+  </div>
   <div class="form-group row justify-content-center">
-                <label class="col-sm-2 form-label">Section Time:</label>
-                 <input class="col-sm-4 form-control" type="time"  id="sectiontime" name="ClassTime" required>
-              </div>
+    <label class="col-sm-2 form-label">Day:</label>
+    <select id="inputState" class="col-sm-4 form-control" name="ClassDay" required >
+      <option selected>Choose...</option>
+      <option>Monday</option>
+      <option>Tuesday</option>
+      <option>Wednesday</option>
+      <option>Thursday</option>
+      <option>Friday</option>
+      <option>Saturday</option>
+      <option>Sunday</option>
+    </select>
+  </div>
   <div class="form-group row justify-content-center">
-                <label class="col-sm-2 form-label">Section Number:</label>
-                <input class="col-sm-4 form-control" type="number" placeholder="Section Number" name="SectionNumber" id="secnumber" >
-              </div>
-            <div class="form-group row justify-content-center">
-                        <label class="col-sm-2 form-label">Semester:</label>
-                          <div class="col-sm-4 float-left">
-                            <div class="form-check form-check-inline col-sm-3">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="yes" value="true">
-                              <label class="form-check-label" for="yes">Fall</label>
-                            </div>
-                            <div class="form-check form-check-inline col-sm-3">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="no" value="false">
-                              <label class="form-check-label" for="no">Spring</label>
-                            </div>
-                            <div class="form-check form-check-inline col-sm-3">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="no" value="false">
-                              <label class="form-check-label" for="no">Summer</label>
-                            </div>
-                          </div>
-                        </div>
+    <label class="col-sm-2 form-label">Section Time:</label>
+      <input class="col-sm-4 form-control" type="time"  id="sectiontime" name="ClassTime" required>
+  </div>
   <div class="form-group row justify-content-center">
-      <label class="col-sm-2 form-label">Year:</label>
-        <input class="col-sm-4 form-control" type="number" id="year" required>
+    <label class="col-sm-2 form-label">Section Number:</label>
+    <input class="col-sm-4 form-control" type="number" placeholder="Section Number" name="SectionNumber" id="secnumber" >
+  </div>
+  <div class="form-group row justify-content-center">
+    <label class="col-sm-2 form-label">
+    Semester:
+    </label>
+      <div class="col-sm-4 float-left">
+        <div class="form-check form-check-inline col-sm-3">
+          <input class="form-check-input" type="radio" name="Semester" id="yes" value="Fall">
+          <label class="form-check-label" for="yes">Fall</label>
+        </div>
+        <div class="form-check form-check-inline col-sm-3">
+          <input class="form-check-input" type="radio" name="Semester" id="no" value="Spring">
+          <label class="form-check-label" for="no">Spring</label>
+        </div>
+        <div class="form-check form-check-inline col-sm-3">
+          <input class="form-check-input" type="radio" name="Semester" id="no" value="Summer">
+          <label class="form-check-label" for="no">Summer</label>
+        </div>
+      </div>
+  </div>
+  <div class="form-group row justify-content-center">
+    <label class="col-sm-2 form-label">
+      Year:
+    </label>
+    <input class="col-sm-4 form-control" type="number" id="year" :min="Date().year" required>
   </div>
   <button type="submit" class="btn btn-success">Add section</button>
 </form>
@@ -62,8 +66,35 @@ export default {
     }
   },
   methods: {
+    alert (header, msg, type) {
+      swal(
+        header,
+        msg,
+        type
+      )
+    },
     addsection () {
-      console.log(new FormData(document.querySelector('#addsection')).get('ClassTime'))
+      var formdata = new FormData(document.querySelector('#addsection'))
+      var data = {
+        ProfessorName: formdata.get('ProfessorName'),
+        ClassDay: formdata.get('ClassDay'),
+        ClassTime: formdata.get('ClassTime'),
+        SectionNumber: formdata.get('SectionNumber'),
+        Semester: formdata.get('Semester'),
+        Year: formdata.get('Year')
+      }
+       /* global axios url swal */
+      axios.create({
+        baseURL: url,
+        headers: { 'token': window.localStorage.getItem('AccessToken') }
+      }).post('/addsection', data)
+        .then(res => {
+          this.alert('Congratulations!','Section has been added successfully','success')
+        })
+        .catch(error => {
+          this.alert(error.response.data, 'Please try again', 'error')
+          console.log(error)
+        })
     }
   }
 }
