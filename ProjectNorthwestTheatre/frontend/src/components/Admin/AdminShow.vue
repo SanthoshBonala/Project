@@ -108,7 +108,8 @@
               <button class="col-sm m-2 btn btn-outline-warning" type="button">
                 <strong>Generate Report</strong>
               </button>
-              <button class="col-sm m-2 btn btn-outline-success" type="button" @click="emitevent()">
+              <button class="col-sm m-2 btn btn-outline-success" type="button"
+              @click="emitevent()">
                 <strong>Reserve Tickets</strong>
               </button>
               <button class="col-sm m-2 btn btn-outline-secondary" type="button"
