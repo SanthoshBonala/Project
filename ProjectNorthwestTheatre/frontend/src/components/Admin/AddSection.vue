@@ -2,7 +2,7 @@
 <form class="justify-content-center">
 <h1 class="h3 mb-3 font-weight-normal">Add Section</h1>
 <div class="form-group row justify-content-center">
-                <label class="col-sm-2 form-label">Professor Name:</label>
+                <label class="col-sm-2 form-label">Instructor:</label>
                 <input class="col-sm-4 form-control" type="text" id="profname">
               </div>
   <div class="form-group row justify-content-center">
