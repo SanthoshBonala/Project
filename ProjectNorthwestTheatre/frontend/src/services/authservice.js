@@ -1,6 +1,6 @@
 export default {
   auth (to, from, next) {
-    console.log(to.name.name, to.name.name === 'AdminLogin')
+    console.log(to.name, to.name === 'AdminLogin')
     /* global axios url */
     axios({
       method: 'post',
@@ -11,7 +11,7 @@ export default {
     })
       .then(function (response) {
         console.log(response)
-        if (to.name.name === 'AdminLogin') {
+        if (to.name === 'AdminLogin') {
           console.log('Admin')
           next({
             path: '/admin/dashboard'
@@ -21,8 +21,8 @@ export default {
         }
       })
       .catch(function (error) {
-        console.log(to.name.name)
-        if (to.name.name === 'AdminLogin') {
+        console.log(to.name)
+        if (to.name === 'AdminLogin') {
           next()
         } else {
           next({
