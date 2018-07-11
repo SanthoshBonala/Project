@@ -1,5 +1,6 @@
 <template>
    <div>
+    <!--Saivarun Illendula : Added Card to Section List -->
      <div class="tb">
        <h1 class = "h2 mb-3 font-weight-normal">View Section </h1>
         <table class="table table-bordered">

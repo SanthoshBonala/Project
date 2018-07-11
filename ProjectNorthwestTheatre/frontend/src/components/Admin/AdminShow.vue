@@ -1,5 +1,6 @@
 <template>
 <!-- Ashwith Gundu - Created Admin Show Card -->
+<!-- Saivarun Illendula - Added Modal for Add Show -->
     <div class="col-md-12 col-sm-12 my-3">
       <div class="card rounded mb-3" >
         <div class="card-header grey text-white">
@@ -106,9 +107,9 @@
               @click="emailevent()">
                 <strong><span class = "mr-2"><i class="fas fa-envelope"></i></span>Email</strong>
               </button>
-              <button class="col-sm m-2 btn btn-outline-warning" type="button">
+              <a class="col-sm m-2 btn btn-outline-warning" type="button" href="http://localhost:3000/Reports/SampleExcelReport.xlsx">
                 <strong><span class = "mr-2"><i class="fas fa-file-excel"></i></span> Report</strong>
-              </button>
+              </a>
               <button class="col-sm m-2 btn btn-outline-success" type="button" @click="emitevent()">
                 <strong><span class = "mr-2"><i class="fas fa-ticket-alt"></i></span>Reserve Tickets</strong>
               </button>
