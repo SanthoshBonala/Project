@@ -32,7 +32,7 @@
         </table>
      </div>
       <!-- Modal -->
-    <div class="modal fade" id="editModal" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModaladmin" role="dialog" aria-labelledby="editModaladmin" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -42,20 +42,21 @@
             </button>
           </div>
           <div class="modal-body">
-          <form>
+          <form id="editModaladminform" @submit.prevent="editadminform">
             <div class="form-group row">
               <label class="col-sm-5 form-label">Username:</label>
-              <input class="col-sm-6 form-control" type="text" :value="admin.Username" id="username" placeholder="Username">
+              <input class="col-sm-6 form-control" type="text" name="username" :value="admin.Username" id="username" placeholder="Username">
             </div>
             <div class="form-group row">
               <label class="col-sm-5 form-label">Email Address:</label>
-              <input class="col-sm-6 form-control" type="text" id="email" :value="admin.Email" placeholder="Email">
+              <input class="col-sm-6 form-control" type="text" id="email" name="email" :value="admin.Email" placeholder="Email">
             </div>
-          </form>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              <button type="reset" class="btn btn-primary">Reset</button>
+              <button type="submit" class="btn btn-success">Save changes</button>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-success">Save changes</button>
+          </form>
           </div>
         </div>
       </div>
@@ -77,7 +78,46 @@ export default {
     editadmin (admin) {
       this.admin = admin
       /* global $ */
-      $('#editModal').modal('show')
+      $('#editModaladmin').modal('show')
+    },
+    editadminform () {
+      console.log('edit form clicked')
+      var formdata = new FormData(document.querySelector('#editModaladminform'))
+      var data = {
+        updateusername: formdata.get('username'),
+        id: this.admin._id,
+        updateemail: formdata.get('email')
+      }
+      /* global axios url swal */
+      axios.create({
+        baseURL: url,
+        headers: { 'token': window.localStorage.getItem('AccessToken') }
+      }).post('/updateadmin', data)
+        .then(function(res){
+          $('#editModaladmin').modal('hide')
+          swal(
+            'Updated!',
+            'Admin has been successfully updated.',
+            'success'
+          )
+           axios({
+            method: 'get',
+            headers: {
+              token: window.localStorage.getItem('AccessToken')
+            },
+            url: url + '/all'
+          })
+            .then(response => {
+              this.adminlist = response.data
+              console.log(this.adminlist)
+            })
+            .catch(err => {
+              console.log('error while getting admin list', err)
+            })
+        }.bind(this))
+        .catch(error => {
+          console.log(error)
+        })
     },
     getlist () {
       /* global axios url */

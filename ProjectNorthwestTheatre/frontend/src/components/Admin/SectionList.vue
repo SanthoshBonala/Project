@@ -2,9 +2,10 @@
 
 <template>
    <div>
+    <!--Saivarun Illendula : Added Card to Section List -->
      <div class="tb">
-       <h1 class = "h2 mb-3 font-weight-normal">Section List </h1>
-        <table class="table table-bordered-sm">
+       <h1 class = "h2 mb-3 font-weight-normal">View Section </h1>
+        <table class="table table-bordered">
           <thead class="thead-dark">
             <tr>
               <th scope="col">S.NO</th>
@@ -38,3 +39,13 @@
      </div>
   </div>
 </template>
+
+<script>
+
+</script>
+
+<style scoped>
+div.tb {
+  margin-right: 50px;
+}
+</style>

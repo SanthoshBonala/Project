@@ -1,5 +1,6 @@
 <template>
-<div class="card m-5 w-75">
+<!-- Saivarun Illendula - Added Model for adding new admin -->
+<div class="card m-5 w-75 align-self-center">
   <div class="card-header">
     <strong ><h1> Add Admin</h1></strong>
   </div>
@@ -7,25 +8,25 @@
      <form class="justify-content-center " @submit.prevent="AddAdmin" id="addadmin">
     <h1 class="h3 mb-3 font-weight-normal"></h1>
     <div class="form-group row justify-content-center">
-      <label for="username" class="col-sm-3 float-left col-form-label">Username:</label>
+      <label for="username" class="col-sm-3 text-right col-form-label">Username:</label>
       <div class="col-sm-4">
         <input type="username" class="form-control" id="username" name="RegUsername" placeholder="Username" required>
       </div>
     </div>
     <div class="form-group row justify-content-center">
-      <label for="email" class="col-sm-3 col-form-label">Email:</label>
+      <label for="email" class="col-sm-3 col-form-label text-right">Email:</label>
       <div class="col-sm-4">
         <input type="email" class="form-control" id="email" placeholder="Email" name="RegEmail" required>
       </div>
     </div>
     <div class="form-group row justify-content-center">
-      <label for="inputPassword3" class="col-sm-3 col-form-label">Password:</label>
+      <label for="inputPassword3" class="col-sm-3 col-form-label text-right">Password:</label>
       <div class="col-sm-4">
         <input type="password" class="form-control" id="Password" name="RegPassword" placeholder="Password" required>
       </div>
     </div>
     <div class="form-group row justify-content-center">
-      <label for="inputPassword3" class="col-sm-3 col-form-label">Confirm Password:</label>
+      <label for="inputPassword3" class="col-sm-3 col-form-label text-right">Confirm Password:</label>
       <div class="col-sm-4">
         <input type="password" class="form-control" id="confirmpassword" placeholder="Password" required>
       </div>

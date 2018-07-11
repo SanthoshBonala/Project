@@ -1,14 +1,15 @@
 <template>
-   <div>
+ <div>
     <!-- <div class="row m-1 float-right">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         <i class="fas fa-plus"></i>
       </button>
     </div> -->
     <div class="row col-sm-12 ">
-      <AdminShow v-for="ele of showlist" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal()" @editeventmodal="editeventmodal()" >
+      <AdminShow v-for="ele of showlist" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal()" >
       </AdminShow>
     </div>
+    <!--Saivarun Illendula - Added Email Model to Dashboard-->
     <!-- The Modal -->
     <div class="modal fade" id="emailmodal" tabindex="-1" role="dialog" aria-labelledby="ReserveTickets" aria-hidden="true">
       <div class="modal-dialog">
@@ -19,7 +20,6 @@
             <h4 class="modal-title">Email</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-
           <!-- Modal body -->
           <div class="modal-body">
             <form>
@@ -53,15 +53,15 @@
             <form>
                   <div class="form-group row">
                     <label class="col-sm-4 form-label">First Name:</label>
-                    <input class="col-sm-7 form-control" type="text" id="firstname">
+                    <input class="col-sm-7 form-control" type="text" id="firstname" placeholder="Firstname">
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-4 form-label">Last Name:</label>
-                    <input class="col-sm-7 form-control" type="text" id="lastname">
+                    <input class="col-sm-7 form-control" type="text" id="lastname" placeholder="Lastname">
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-4 form-label">Email:</label>
-                    <input class="col-sm-7 form-control" type="text" id="email">
+                    <input class="col-sm-7 form-control" type="text" id="email" placeholder="Email">
                   </div>
                     <fieldset class="form-group">
                         <div class="row">
@@ -142,7 +142,7 @@
 
 <script>
 import AdminShow from './AdminShow.vue'
-
+/* Saivarun Illendula - Added API Calls */
 export default {
   name: 'AdminDashboard',
   data () {
@@ -162,9 +162,6 @@ export default {
     },
     showemailmodal () {
       $('#emailmodal').modal('show')
-    },
-    editeventmodal () {
-      $('#myModal').modal('show')
     },
     refreshData () {
       var _this = this

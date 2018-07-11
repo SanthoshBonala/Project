@@ -28,7 +28,7 @@
                          <span class="mr-2"><i class="fas fa-user"></i></span>Add Admin</router-link>
                     </li>
                     <li class="nav-item my-2">
-                        <router-link to="/admin/sectionlist" class="btn white_green btn-block"> <span class="mr-2"><i class="fas fa-th-list"></i></span>Section List</router-link>
+                        <router-link to="/admin/sectionlist" class="btn white_green btn-block"> <span class="mr-2"><i class="fas fa-th-list"></i></span>View Section</router-link>
                     </li>
                     <li class="nav-item my-2">
                         <router-link to="/admin/addsection" class="btn white_green btn-block">
@@ -57,12 +57,12 @@
                 <input class="col-sm-7 form-control" type="text" placeholder="Show Name" id="showname" name="ShowTitle" required>
               </div>
               <div class="form-group row">
-                <label class="col-sm-4 form-label">Playwright:</label>
+                <label class="col-sm-4 form-label required">Playwright:</label>
                 <input class="col-sm-7 form-control" type="text" placeholder="Playwright" id="playwright" name="ShowPlayWright" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Description:</label>
-                <textarea class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription" required>
+                <textarea class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription">
                 </textarea>
               </div>
               <div class="form-group row">
@@ -71,7 +71,7 @@
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Time:</label>
-                 <input class="col-sm-7 form-control" type="time" :value="showtime" id="showtime" required>
+                 <input class="col-sm-7 form-control" type="time" name="ShowTime" id="showtime" required>
               </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Total Seats:</label>
@@ -172,6 +172,7 @@ export default {
             .then(response => {
               this.$eventbus.$emit('refreshdata', response.data)
               $('#myModal').modal('hide')
+              $('#addshow')[0].reset()
             })
             .catch(err => {
               console.log('error while getting show list', err)
@@ -288,7 +289,6 @@ export default {
 .slider.round:before {
   border-radius: 50%;
 }
-
 /* .white_green{
   color: #003300;
   background-color: white;
@@ -314,7 +314,6 @@ export default {
   box-shadow: 0 2px #666;
   transform: translateY(2px);
 }
-
 .bor {
     box-shadow: 4px 10px 2px -4px rgba(74, 243, 18, 0.172);
 }
@@ -323,4 +322,8 @@ export default {
     color: white;
     text-shadow: 1px 1px 2px black, 0 0 25px #7fe682, 0 0 5px rgba(74, 243, 18, 0.172);
 }
+.required:after {
+        content: '*';
+        color: red;
+    }
 </style>

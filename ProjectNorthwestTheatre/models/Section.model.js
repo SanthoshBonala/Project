@@ -1,3 +1,5 @@
+/* Author: santhosh Bonala */
+
 const mongoose = require('mongoose')
 
 var SectionSchema = mongoose.Schema({
