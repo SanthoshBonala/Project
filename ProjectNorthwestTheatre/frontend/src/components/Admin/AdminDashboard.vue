@@ -21,6 +21,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <!-- Modal body -->
+          <!-- Rahul Reddy Lankala - Added placeholders -->
           <div class="modal-body">
             <form>
               <div class="form-group row">
@@ -40,6 +41,7 @@
         </div>
       </div>
     </div>
+    <!-- Keerthi Chiduruppa - Added ReserveTickets Model to Dashboard -->
     <div class="modal fade" id="ReserveTickets" tabindex="-1" role="dialog" aria-labelledby="ReserveTickets" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
