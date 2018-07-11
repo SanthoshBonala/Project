@@ -9,11 +9,11 @@
   <div class="card-body">
   <form class="justify-content-center" @submit.prevent="addsection" id="addsection">
   <div class="form-group row justify-content-center">
-    <label class="col-sm-4 text-right form-label">Professor Name:</label>
+    <label class="col-sm-4 text-right form-label required">Professor Name:</label>
     <input class="col-sm-4 form-control" type="text" name="ProfessorName" placeholder="Professor Name" id="profname">
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-4 form-label text-right">Day:</label>
+    <label class="col-sm-4 form-label text-right required">Day:</label>
     <div class="col-sm-4" >
         <div class="col-sm-2 form-check form-check-inline justify-content-center">
       <input class="form-check-input " type="checkbox" id="inlineCheckbox1" name="M" value="M">
@@ -38,15 +38,15 @@
     </div>
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-4 text-right form-label">Section Time:</label>
+    <label class="col-sm-4 text-right form-label required">Section Time:</label>
       <input class="col-sm-4 form-control" type="time"  id="sectiontime" name="ClassTime" required>
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-4 text-right form-label">Section Number:</label>
+    <label class="col-sm-4 text-right form-label required">Section Number:</label>
     <input class="col-sm-4 form-control" type="number" placeholder="Section Number" name="SectionNumber" id="secnumber" >
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-4 text-right form-label">
+    <label class="col-sm-4 text-right form-label required">
     Semester:
     </label>
       <div class="col-sm-4 float-left">
@@ -65,7 +65,7 @@
       </div>
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-4 text-right form-label">
+    <label class="col-sm-4 text-right form-label required">
       Year:
     </label>
     <input class="col-sm-4 form-control" type="number" id="year" :min="mindate" name="Year" required>
@@ -124,4 +124,8 @@ export default {
 .card {
   width: 80%
 }
+.required:after {
+        content: '*';
+        color: red;
+    }
 </style>
