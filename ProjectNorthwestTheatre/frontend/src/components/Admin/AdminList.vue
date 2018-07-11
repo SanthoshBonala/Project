@@ -155,7 +155,6 @@ export default {
           if (result.value) {
             axios.create({
               baseURL: url,
-              timeout: 1000,
               headers: { 'token': window.localStorage.getItem('AccessToken') }
             }).post('/deleteadmin', { id: adminid })
               .then(res => {

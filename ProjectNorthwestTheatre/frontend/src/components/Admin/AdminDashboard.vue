@@ -108,33 +108,36 @@
     </div>
     <table :class="{'d-none': check }">
       <thead>
-        </thead>
         <tr>
-          <th>Professor</th>
-          <th>Class Meeting</th>
+          <th >Semester</th>
+          <th >Section</th>
           <th>Day</th>
+          <th>Time</th>
+          <th>Professor</th>
         </tr>
+      </thead>
       <tbody>
-        <tr>
-          <td>Bob John</td>
-          <td>08:00 AM</td>
-          <td>Monday</td>
-        </tr>
-        <tr>
-          <td>Bob John</td>
-          <td>08:00 AM</td>
-          <td>Monday</td>
-        </tr>
-        <tr>
-          <td>Bob John</td>
-          <td>08:00 AM</td>
-          <td>Monday</td>
-        </tr>
-        <tr>
-          <td>Bob John</td>
-          <td>08:00 AM</td>
-          <td>Monday</td>
-        </tr>
+          <tr>
+            <td>Fall 2018</td>
+            <td>01</td>
+            <td>MWF</td>
+            <td>08:10 AM</td>
+            <td>John Bob</td>
+          </tr>
+          <tr>
+            <td>Fall 2018</td>
+            <td>02</td>
+            <td>TR</td>
+            <td>09:10 AM</td>
+            <td>Scott Robert</td>
+          </tr>
+          <tr>
+            <td>Fall 2018</td>
+            <td>03</td>
+            <td>MWF</td>
+            <td>10:10 AM</td>
+            <td>Mark Richael</td>
+          </tr>
       </tbody>
     </table>
     </div>
@@ -150,6 +153,7 @@ export default {
       /* global $ axios url */
       check: false,
       isTheatreAppreciationStudent: '',
+      sectionlist: [],
       showlist: []
     }
   },
@@ -165,6 +169,24 @@ export default {
     },
     refreshData () {
       var _this = this
+       /* global axios moment _ */
+        axios({
+          method: 'get',
+          headers: {
+            token: window.localStorage.getItem('AccessToken')
+          },
+          url: url + '/sectionlist'
+        })
+          .then(function (response) {
+            console.log(response.data)
+            _this.sectionlist = response.data
+            _.each(_this.sectionlist, function(section){
+              section.ClassTime12hrs = moment(section.ClassTime, 'HH:mm').format('hh:mm a')             
+            })
+          })
+          .catch(function (err) {
+            console.log('error while getting section list', err)
+          })
       axios({
         method: 'get',
         headers: {
@@ -179,14 +201,16 @@ export default {
         .catch(function (err) {
           console.log('error while getting show list', err)
         })
+       
     }
   },
   mounted () {
-    $('#pop').popover({
-      content: $('table')[0].outerHTML
-    })
     console.log('mounted')
     this.check = true
+    console.log($('table')[0].outerHTML)
+    $('#pop').popover({
+        content: $('table')[0].outerHTML
+      })
   },
   created () {
     this.refreshData()

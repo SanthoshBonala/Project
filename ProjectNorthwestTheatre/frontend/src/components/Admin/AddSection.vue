@@ -113,7 +113,7 @@ export default {
         .catch(error => {
           this.alert(error.response.data, "Please try again", "error");
           console.log(error);
-        });
+        })
     }
   }
 };
