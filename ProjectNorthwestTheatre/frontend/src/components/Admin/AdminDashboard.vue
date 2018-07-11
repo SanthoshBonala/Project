@@ -41,6 +41,7 @@
         </div>
       </div>
     </div>
+    <!-- Keerthi Chiduruppa - Added ReserveTickets Model to Dashboard -->
     <div class="modal fade" id="ReserveTickets" tabindex="-1" role="dialog" aria-labelledby="ReserveTickets" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
