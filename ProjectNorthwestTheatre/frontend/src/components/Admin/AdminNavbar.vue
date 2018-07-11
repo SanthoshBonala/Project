@@ -28,7 +28,7 @@
                          <span class="mr-2"><i class="fas fa-user"></i></span>Add Admin</router-link>
                     </li>
                     <li class="nav-item my-2">
-                        <router-link to="/admin/sectionlist" class="btn white_green btn-block"> <span class="mr-2"><i class="fas fa-th-list"></i></span>Section List</router-link>
+                        <router-link to="/admin/sectionlist" class="btn white_green btn-block"> <span class="mr-2"><i class="fas fa-th-list"></i></span>View Section</router-link>
                     </li>
                     <li class="nav-item my-2">
                         <router-link to="/admin/addsection" class="btn white_green btn-block">
@@ -58,11 +58,12 @@
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Playwright:</label>
-                <input class="col-sm-7 form-control" type="text" placeholder="Playwright" id="playwright" name="ShowPlaywright" required>
+                <input class="col-sm-7 form-control" type="text" placeholder="Playwright" id="playwright" name="ShowPlayWright" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Description:</label>
-                <input class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription" required>
+                <textarea class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription" required>
+                </textarea>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Date:</label>
@@ -94,14 +95,14 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
                     </div>
-                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for Adult" id="adultprice" name="ShowPrice" min="1" required>
+                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for Adult" id="adultprice" name="ShowPriceForAdult" min="1" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Children Ticket:</label>
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
                     </div>
-                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for children" id="childrenprice" min="1" required>
+                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for children" id="childrenprice" min="1" name="ShowPriceForChildren" required>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Upload Image:</label>

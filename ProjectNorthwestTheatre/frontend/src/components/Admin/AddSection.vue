@@ -6,11 +6,11 @@
   <div class="card-body">
 <form class="justify-content-center" @submit.prevent="addsection" id="addsection">
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">Professor Name:</label>
+    <label class="col-sm-4 text-right form-label">Professor Name:</label>
     <input class="col-sm-4 form-control" type="text" name="ProfessorName" placeholder="Professor Name" id="profname">
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">Day:</label>
+    <label class="col-sm-2 form-label float-right">Day:</label>
     <div class="col-sm-4">
     <div class="col-sm-2 form-check form-check-inline justify-content-center">
   <input class="form-check-input " type="checkbox" id="inlineCheckbox1" value="option1">
@@ -35,15 +35,15 @@
     </div>
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">Section Time:</label>
+    <label class="col-sm-4 text-right form-label">Section Time:</label>
       <input class="col-sm-4 form-control" type="time"  id="sectiontime" name="ClassTime" required>
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">Section Number:</label>
+    <label class="col-sm-4 text-right form-label">Section Number:</label>
     <input class="col-sm-4 form-control" type="number" placeholder="Section Number" name="SectionNumber" id="secnumber" >
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">
+    <label class="col-sm-4 text-right form-label">
     Semester:
     </label>
       <div class="col-sm-4 float-left">
@@ -62,7 +62,7 @@
       </div>
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label">
+    <label class="col-sm-4 text-right form-label">
       Year:
     </label>
     <input class="col-sm-4 form-control" type="number" id="year" :min="Date().year" required>
@@ -91,26 +91,20 @@ export default {
     addsection() {
       var formdata = new FormData(document.querySelector("#addsection"));
       var data = {
-        ProfessorName: formdata.get("ProfessorName"),
-        ClassDay: formdata.get("ClassDay"),
-        ClassTime: formdata.get("ClassTime"),
-        SectionNumber: formdata.get("SectionNumber"),
-        Semester: formdata.get("Semester"),
-        Year: formdata.get("Year")
-      };
+        ProfessorName: formdata.get('ProfessorName'),
+        ClassDay: formdata.get('ClassDay'),
+        ClassTime: formdata.get('ClassTime'),
+        SectionNumber: formdata.get('SectionNumber'),
+        Semester: formdata.get('Semester'),
+        Year: formdata.get('Year')
+      }
       /* global axios url swal */
-      axios
-        .create({
-          baseURL: url,
-          headers: { token: window.localStorage.getItem("AccessToken") }
-        })
-        .post("/addsection", data)
+      axios.create({
+        baseURL: url,
+        headers: { 'token': window.localStorage.getItem('AccessToken') }
+      }).post('/addsection', data)
         .then(res => {
-          this.alert(
-            "Congratulations!",
-            "Section has been added successfully",
-            "success"
-          );
+          this.alert('Congratulations!', 'Section has been added successfully', 'success')
         })
         .catch(error => {
           this.alert(error.response.data, "Please try again", "error");

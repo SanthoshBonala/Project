@@ -1,27 +1,42 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 var ShowModel = require('../../../models/Show.model')
+var fs = require('fs')
+var path = require('path')
 
 let addShow = (req, res, next) => {
-    var Show = new ShowModel(req.body);
-    Show.ShowImage = req.file.buffer
+    var Show = new ShowModel(req.body)
+    Show.ShowImage = null
+    buffer = req.file.buffer
     Show.save()
         .then(function (Show) {
-            return res.send('Show Added successfully')
+            fs.open('images/' + Show.id, 'w', function (err, fd) {
+                if (err) {
+                    throw 'error opening file: ' + err
+                }
+                fs.write(fd, buffer, 0, buffer.length, null, function (err) {
+                    if (err) throw 'error writing file: ' + err
+                    fs.close(fd, function () {
+                        console.log('file written')
+                    })
+                return res.send('Show Added successfully')
+                })
+            })
         })
         .catch(function (err) {
             return res.status(400).send('error while adding a show', err)
         })
 }
 
-module.exports.addShow = addShow;
+module.exports.addShow = addShow
 
 let deleteShow = (req, res, next) => {
-
     ShowModel.findByIdAndRemove(req.body.id, function (err, Show) {
         if (err || !Show) return res.status(400).send('Cannot Delete, Show not found')
-        res.send("Delete Successfull")
+        fs.unlink(path.join(__dirname, '../../../images', req.body.id), (err) => {
+            if (err) throw err
+            return res.send("Delete Successfull")
+        })
     })
-
 }
 
 module.exports.deleteShow = deleteShow
@@ -41,19 +56,28 @@ module.exports.GetShowList = GetShowList
 
 let UpdateShow = (req, res, next) => {
     ShowModel.findByIdAndUpdate(req.body.id,req.body, function (err, Show) {
-            if (err || !Show) return res.status(400).send('Show not found')
-            res.send("Updated Successfully")
+        if (err || !Show) return res.status(400).send('Show not found')
+        fs.open('images/' + Show.id, 'w', function (err, fd) {
+            if (err) {
+                throw 'error opening file: ' + err
+            }
+            fs.write(fd, buffer, 0, buffer.length, null, function (err) {
+                if (err) throw 'error writing file: ' + err
+                fs.close(fd, function () {
+                    console.log('file written')
+                })
+                return res.send("Updated Successfully")
+            })
         })
+    })
 }
 
 module.exports.UpdateShow = UpdateShow
 
-
  var imagebyid = (req, res) => {
-     ShowModel.findById(req.query._id, ['ShowImage'], (err, image) => {
-        if (err) console.log(err)
-        return res.send(image.ShowImage)
-    })
+     res.sendFile(path.join(__dirname,'../../../images',req.query._id), function(err){
+         console.log(err)
+     })
 }
 
 module.exports.imagebyid = imagebyid
