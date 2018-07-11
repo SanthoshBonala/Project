@@ -1,3 +1,5 @@
+/* Author: santhosh Bonala */
+
 var mongoose = require('mongoose')
 var ShowModel = require('../../../models/Show.model')
 var fs = require('fs')
@@ -57,25 +59,31 @@ module.exports.GetShowList = GetShowList
 let UpdateShow = (req, res, next) => {
     ShowModel.findByIdAndUpdate(req.body.id,req.body, function (err, Show) {
         if (err || !Show) return res.status(400).send('Show not found')
-        fs.open('images/' + Show.id, 'w', function (err, fd) {
-            if (err) {
-                throw 'error opening file: ' + err
-            }
-            fs.write(fd, buffer, 0, buffer.length, null, function (err) {
-                if (err) throw 'error writing file: ' + err
-                fs.close(fd, function () {
-                    console.log('file written')
+        if (req.file && req.file.buffer){
+            buffer = req.file.buffer
+            fs.open('images/' + Show.id, 'w', function (err, fd) {
+                if (err) {
+                    throw 'error opening file: ' + err
+                }
+                fs.write(fd, buffer, 0, buffer.length, null, function (err) {
+                    if (err) throw 'error writing file: ' + err
+                    fs.close(fd, function () {
+                        console.log('file written')
+                    })
+                    return res.send("Updated Successfully")
                 })
-                return res.send("Updated Successfully")
             })
-        })
+        } else {
+            return res.send("Updated Successfully")
+        }
     })
+
 }
 
 module.exports.UpdateShow = UpdateShow
 
  var imagebyid = (req, res) => {
-     res.sendFile(path.join(__dirname,'../../../images',req.query._id), function(err){
+     res.sendFile(path.join(__dirname, '../../../images', req.query._id.trim()), function(err){
          console.log(err)
      })
 }

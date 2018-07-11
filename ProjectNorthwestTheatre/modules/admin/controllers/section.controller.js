@@ -1,3 +1,5 @@
+/* Author: santhosh Bonala */
+
 var SectionModel = require('../../../models/Section.model')
 
 let addSection = (req, res, next) => {

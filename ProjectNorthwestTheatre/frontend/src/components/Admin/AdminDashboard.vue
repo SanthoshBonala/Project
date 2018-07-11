@@ -6,7 +6,7 @@
       </button>
     </div> -->
     <div class="row col-sm-12 ">
-      <AdminShow v-for="ele of showlist" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal()" @editeventmodal="editeventmodal()" >
+      <AdminShow v-for="ele of showlist" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal()" >
       </AdminShow>
     </div>
     <!-- The Modal -->
@@ -162,9 +162,6 @@ export default {
     },
     showemailmodal () {
       $('#emailmodal').modal('show')
-    },
-    editeventmodal () {
-      $('#myModal').modal('show')
     },
     refreshData () {
       var _this = this
