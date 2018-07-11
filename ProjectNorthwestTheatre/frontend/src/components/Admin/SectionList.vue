@@ -1,15 +1,18 @@
+<!--Created by Supraja Kumbam-- >
+
 <template>
    <div>
      <div class="tb">
        <h1 class = "h2 mb-3 font-weight-normal">Section List </h1>
-        <table class="table table-bordered">
+        <table class="table table-bordered-sm">
           <thead class="thead-dark">
             <tr>
               <th scope="col">S.NO</th>
+              <th scope="col">Semester</th>
               <th scope="col">Section no</th>
               <th scope="col">Instructor</th>
               <th scope="col">Day</th>
-              <th scope="col">Class timings</th>
+              <th scope="col">Time</th>
             </tr>
           </thead>
           <tbody>
