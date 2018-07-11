@@ -53,15 +53,15 @@
             <form>
                   <div class="form-group row">
                     <label class="col-sm-4 form-label">First Name:</label>
-                    <input class="col-sm-7 form-control" type="text" id="firstname">
+                    <input class="col-sm-7 form-control" type="text" id="firstname" placeholder="Firstname">
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-4 form-label">Last Name:</label>
-                    <input class="col-sm-7 form-control" type="text" id="lastname">
+                    <input class="col-sm-7 form-control" type="text" id="lastname" placeholder="Lastname">
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-4 form-label">Email:</label>
-                    <input class="col-sm-7 form-control" type="text" id="email">
+                    <input class="col-sm-7 form-control" type="text" id="email" placeholder="Email">
                   </div>
                     <fieldset class="form-group">
                         <div class="row">
