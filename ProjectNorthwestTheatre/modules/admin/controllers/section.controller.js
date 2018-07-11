@@ -11,7 +11,6 @@ let addSection = (req, res, next) => {
             .catch(function (err) {
                 return res.status(400).send('error while adding a Section', err)
             })
-
 }
 module.exports.addSection = addSection
 

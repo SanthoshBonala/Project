@@ -1,16 +1,18 @@
 <template>
    <div>
-    <!--Saivarun Illendula : Added Card to Section List -->
+     <!-- Created by Supraja Kumbam -->
+    <!-- Saivarun Illendula : Added Card to Section List -->
      <div class="tb">
        <h1 class = "h2 mb-3 font-weight-normal">View Section </h1>
         <table class="table table-bordered">
           <thead class="thead-dark">
             <tr>
               <th scope="col">S.NO</th>
+              <th scope="col">Semester</th>
               <th scope="col">Section no</th>
               <th scope="col">Instructor</th>
               <th scope="col">Day</th>
-              <th scope="col">Class timings</th>
+              <th scope="col">Time</th>
             </tr>
           </thead>
           <tbody>
@@ -38,7 +40,14 @@
 </template>
 
 <script>
-
+export default {
+  name: 'SectionList',
+  data () {
+    return {
+      adminlist: []
+    }
+  }
+}
 </script>
 
 <style scoped>
