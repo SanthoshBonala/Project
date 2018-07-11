@@ -272,7 +272,6 @@ export default {
 .card {
     box-shadow: 5px 4px 8px 0 rgba(20, 53, 40,0.2);
     transition: 0.3s;
-   
 }
 
 .card:hover {

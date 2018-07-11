@@ -4,10 +4,7 @@
         <div class="col-sm-6">
            <img class="mb-4 w-50" src="../../assets/logoproject.jpg" alt="">
         </div>
-       
           <div class="col-sm-6 align-self-center">
-               
-          
         <div class="card text-white w-100   mb-3" style="max-width: 18rem;">
           <div class="card-header bg-success display-4">Login</div>
             <div class="card-body bg-light">
@@ -22,38 +19,37 @@
         </div>
 
         </div>
-        
       </div>
     </div>
 </template>
 
 <script>
 export default {
-  name: "AdminLogin",
-  data() {
+  name: 'AdminLogin',
+  data () {
     return {
       formdata: {
-        Username: "",
-        Password: ""
+        Username: '',
+        Password: ''
       }
-    };
+    }
   },
   methods: {
-    formsubmit() {
-      var _this = this;
+    formsubmit () {
+      var _this = this
       /* global axios url */
       axios
-        .post(url + "/authenticate", this.formdata)
-        .then(function(response) {
-          window.localStorage.setItem("AccessToken", response.data.token);
-          _this.$router.push("/admin/dashboard");
+        .post(url + '/authenticate', this.formdata)
+        .then(function (response) {
+          window.localStorage.setItem('AccessToken', response.data.token)
+          _this.$router.push('/admin/dashboard')
         })
-        .catch(function(error) {
-          console.log(error);
-        });
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   }
-};
+}
 </script>
 
 <style scoped>
