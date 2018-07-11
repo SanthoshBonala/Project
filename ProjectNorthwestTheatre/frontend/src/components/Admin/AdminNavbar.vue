@@ -71,7 +71,7 @@
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Time:</label>
-                 <input class="col-sm-7 form-control" type="time" :value="showtime" id="showtime" required>
+                 <input class="col-sm-7 form-control" type="time" name="ShowTime" id="showtime" required>
               </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Total Seats:</label>
@@ -172,6 +172,7 @@ export default {
             .then(response => {
               this.$eventbus.$emit('refreshdata', response.data)
               $('#myModal').modal('hide')
+              $('#addshow')[0].reset()
             })
             .catch(err => {
               console.log('error while getting show list', err)
@@ -288,7 +289,6 @@ export default {
 .slider.round:before {
   border-radius: 50%;
 }
-
 /* .white_green{
   color: #003300;
   background-color: white;
@@ -314,7 +314,6 @@ export default {
   box-shadow: 0 2px #666;
   transform: translateY(2px);
 }
-
 .bor {
     box-shadow: 4px 10px 2px -4px rgba(74, 243, 18, 0.172);
 }

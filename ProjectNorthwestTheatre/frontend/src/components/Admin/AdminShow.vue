@@ -29,8 +29,8 @@
           <div class="content">
             <div class="row justify-content-around m-3 rounded  bg-light">
               <!-- image column -->
-              <div class="col-lg align-self-center">
-                <img :src="`http://localhost:3000/admin/image?_id=${show._id}&token=${token}`" class="rounded mx-1 my-1  w-50 " alt="Image">
+              <div class="col-lg align-self-center" id="imagediv">
+                <img :src="'http://localhost:3000/admin/image?_id=' + show._id + '&token=' + token + '&time=' + time" class="rounded mx-1 my-1 w-50" alt="Image" id="imagesrc" />
               </div>
               <!-- image column end -->
               <!-- details of the show -->
@@ -126,6 +126,93 @@
       </div>
     <!-- card -->
     <!-- Modal -->
+    <div class="modal fade" :id="'editshow'+show._id" tabindex="-1" role="dialog" :aria-labelledby="'editshow'+show._id" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Show Details:</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form @submit.prevent="editshow" :id="'editshowform'+show._id">
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Show Name:</label>
+                <input class="col-sm-7 form-control" type="text" placeholder="Show Name" id="showname" :value="show.ShowTitle" name="ShowTitle" required>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Playwright:</label>
+                <input class="col-sm-7 form-control" type="text" placeholder="Playwright" id="playwright" :value="show.ShowPlayWright" name="ShowPlayWright" required>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Description:</label>
+                <textarea class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" :value="show.ShowDescription" name="ShowDescription" required>
+                </textarea>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Show Date:</label>
+                <input class="col-sm-7 form-control" type="date" id="showdate" :value="show.ShowDate" name="ShowDate" required>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 form-label">Show Time:</label>
+                 <input class="col-sm-7 form-control" type="time" :value="show.ShowTime" id="showtime" name="ShowTime" required>
+              </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 form-label">Total Seats:</label>
+                  <input class="col-sm-7 form-control" type="number" placeholder="Total No. of Tickets" id="totalseats" :value="show.NumberOfTickets" name="NumberOfTickets" min="1" required>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 form-label">Venue:</label>
+                  <input class="col-sm-7 form-control" type="text" placeholder="Venue" id="showvenue" :value="show.ShowVenue" name="ShowVenue" required>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 form-label">Show Rating:</label>
+                  <select id="inputState" class="form-control col-sm-7" required :value="show.ShowRating" name="ShowRating" >
+                    <option selected>Choose...</option>
+                    <option>A</option>
+                    <option>U/A</option>
+                    <option>R</option>
+                  </select>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 form-label">Adult Ticket:</label>
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">$</div>
+                    </div>
+                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for Adult" id="adultprice" :value="show.ShowPriceForAdult" name="ShowPriceForAdult" min="1" required>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 form-label">Children Ticket:</label>
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">$</div>
+                    </div>
+                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for children" id="childrenprice" min="1" :value="show.ShowPriceForChildren" name="ShowPriceForChildren" required>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 form-label">Upload Image:</label>
+                  <div class="form-group col-sm-7">
+                    <input type="file" accept="image/*" class="form-control-file" id="InputFile" aria-describedby="fileHelp" :value="show.ShowImage" name="ShowImage" >
+                    <small id="fileHelp" class="form-text text-muted"></small>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 form-label">Publish:</label>
+                    <label class="switch float-right form-group">
+                      <input type="checkbox" class="sliderinput" v-model="show.isPublished" name="isPublished" value="true">
+                      <span class="slider round"></span>
+                   </label>
+                 </div>
+                 <input type="hidden" :value="show._id" name="id">
+                <div class="">
+                    <button type="reset" class=" btn btn-danger">Reset</button>
+                    <button type="submit" class=" btn btn-success">Save Changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -135,9 +222,11 @@ export default {
   data () {
     return {
       /* global moment */
-      ShowDate: moment.utc(this.show.ShowDate).format('MMMM Do YYYY'),
-      ShowTime: moment.utc(this.show.ShowDate).format('h:mm:ss a'),
-      token: window.localStorage.getItem('AccessToken')
+      ShowDate: moment(this.show.ShowDate, 'YYYY-MM-DD').format('MMMM Do YYYY'),
+      ShowTime: moment(this.show.ShowTime, 'HH:mm').format('hh:mm a'),
+      token: window.localStorage.getItem('AccessToken'),
+      showImg: true,
+      time: Date()
     }
   },
   props: ['show'],
@@ -149,7 +238,43 @@ export default {
       this.$emit('showemailmodal')
     },
     editevent () {
-      this.$emit('editeventmodal')
+      /* global $ */
+      console.log("editclicked",this.show._id)
+      $('#editshow'+ this.show._id).modal('show')
+    },
+    editshow () {
+      console.log("editclicked")
+      var formdata = new FormData(document.querySelector('#editshowform'+ this.show._id))
+      var _this = this
+      axios.create({
+        baseURL: url,
+        headers: { 'token': window.localStorage.getItem('AccessToken') }
+      }).post('/updateshow', formdata)
+        .then(function(res){
+          $('#editshow'+ this.show._id).modal('hide')
+          swal(
+            'Updated!',
+            'Show has been successfully updated.',
+            'success'
+          )
+          this.time = Date()
+          axios({
+            method: 'get',
+            headers: {
+              token: window.localStorage.getItem('AccessToken')
+            },
+            url: url + '/showlist'
+          })
+            .then(response => {
+              this.$eventbus.$emit('refreshdata', response.data)
+            })
+            .catch(err => {
+              console.log('error while getting show list', err)
+            })
+        }.bind(this))
+        .catch(error => {
+          console.log(error)
+        })
     },
     deleteshow () {
       /* global swal axios url */
@@ -193,6 +318,12 @@ export default {
               })
           }
         })
+    }
+  },
+  watch: {
+    show: function (newVal, oldVal) {
+      this.ShowDate = moment(newVal.ShowDate, 'YYYY-MM-DD').format('MMMM Do YYYY')
+      this.ShowTime = moment(newVal.ShowTime, 'HH:mm').format('hh:mm a')
     }
   }
 }
@@ -276,6 +407,61 @@ export default {
 
 .card:hover {
     box-shadow: 10px 10px 35px 0 #006600;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch .sliderinput {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.sliderinput:checked + .slider {
+  background-color: green;
+}
+
+.sliderinput:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.sliderinput:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
 </style>
