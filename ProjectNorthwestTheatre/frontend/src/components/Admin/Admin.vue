@@ -34,8 +34,7 @@ export default {
   watch: {
     $route (to, from) {
       console.log('route')
-      var _this = this
-      if (_this.$route.name.name !== 'AdminLogin') {
+      if (to.name !== 'AdminLogin') {
         this.login = true
       } else {
         this.login = false
