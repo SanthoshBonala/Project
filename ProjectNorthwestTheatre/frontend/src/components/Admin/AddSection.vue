@@ -1,6 +1,8 @@
-<!--Created by Supraja Kumbam-- >
+
 <template>
 <div class="card m-5">
+
+<!-- Rahul Reddy Lankala- added placeholders -->
   <div class="card-header">
     <strong ><h1> Add Section</h1></strong>
   </div>

@@ -1,5 +1,6 @@
 <template>
    <div>
+     <!-- Rahul Reddy Lankala - Added adminList -->
      <div class="tb">
        <h1 class = "h2 mb-3 font-weight-normal">ADMIN List </h1>
         <table class="table table-bordered">

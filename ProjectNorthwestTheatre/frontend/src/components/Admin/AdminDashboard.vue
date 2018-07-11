@@ -21,6 +21,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <!-- Modal body -->
+          <!-- Rahul Reddy Lankala - Added placeholders -->
           <div class="modal-body">
             <form>
               <div class="form-group row">
