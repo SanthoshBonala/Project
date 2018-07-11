@@ -14,23 +14,23 @@
     <label class="col-sm-4 form-label text-right">Day:</label>
     <div class="col-sm-4" >
         <div class="col-sm-2 form-check form-check-inline justify-content-center">
-      <input class="form-check-input " type="checkbox" id="inlineCheckbox1" value="option1">
+      <input class="form-check-input " type="checkbox" id="inlineCheckbox1" name="M" value="M">
       <label class="form-check-label justify-content-center" for="inlineCheckbox1">M</label>
     </div>
     <div class="col-sm-1 form-check form-check-inline justify-content-center">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="T" value="T">
       <label class="form-check-label justify-content-center" for="inlineCheckbox2">T</label>
     </div>
     <div class="col-sm-2 form-check form-check-inline justify-content-center">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="W" value="W">
       <label class="form-check-label justify-content-center" for="inlineCheckbox3">W</label>
     </div>
     <div class="col-sm-1 form-check form-check-inline justify-content-center">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="R" value="R">
       <label class="form-check-label justify-content-center" for="inlineCheckbox3">R</label>
     </div>
     <div class="col-sm-2 form-check form-check-inline justify-content-center">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="F" value="F">
       <label class="form-check-label justify-content-center" for="inlineCheckbox3">F</label>
     </div>
     </div>
@@ -66,7 +66,7 @@
     <label class="col-sm-4 text-right form-label">
       Year:
     </label>
-    <input class="col-sm-4 form-control" type="number" id="year" :min="mindate" required>
+    <input class="col-sm-4 form-control" type="number" id="year" :min="mindate" name="Year" required>
   </div>
   <button type="reset" class="btn btn-danger">Reset</button>
   <button type="submit" class="btn btn-success">Add section</button>
@@ -95,7 +95,7 @@ export default {
       var formdata = new FormData(document.querySelector("#addsection"));
       var data = {
         ProfessorName: formdata.get('ProfessorName'),
-        ClassDay: formdata.get('ClassDay'),
+        ClassDay: '' + (formdata.get('M') ? formdata.get('M') : '' )  + (formdata.get('T') ? formdata.get('T') : '' ) + (formdata.get('W') ? formdata.get('W') : '' ) + (formdata.get('R') ? formdata.get('R') : '' ) + (formdata.get('F') ? formdata.get('F') : '' ),
         ClassTime: formdata.get('ClassTime'),
         SectionNumber: formdata.get('SectionNumber'),
         Semester: formdata.get('Semester'),
@@ -108,6 +108,7 @@ export default {
       }).post('/addsection', data)
         .then(res => {
           this.alert('Congratulations!', 'Section has been added successfully', 'success')
+          $('#addsection')[0].reset()
         })
         .catch(error => {
           this.alert(error.response.data, "Please try again", "error");
