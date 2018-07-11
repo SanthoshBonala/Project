@@ -31,6 +31,7 @@
           </tbody>
         </table>
      </div>
+     <!-- Keerthi Chiduruppa: Created a modal for edit admin -->
       <!-- Modal -->
     <div class="modal fade" id="editModaladmin" role="dialog" aria-labelledby="editModaladmin" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -79,7 +80,7 @@ export default {
       this.admin = admin
       /* global $ */
       $('#editModaladmin').modal('show')
-    },
+    },  
     editadminform () {
       console.log('edit form clicked')
       var formdata = new FormData(document.querySelector('#editModaladminform'))

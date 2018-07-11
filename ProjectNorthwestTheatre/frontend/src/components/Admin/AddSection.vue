@@ -1,4 +1,5 @@
 <template>
+<!-- Keerthi Chiduruppa : Added Card to Add Section -->
 <div class="card m-5">
   <div class="card-header">
     <strong ><h1> Add Section</h1></strong>
@@ -9,6 +10,7 @@
     <label class="col-sm-4 text-right form-label">Professor Name:</label>
     <input class="col-sm-4 form-control" type="text" name="ProfessorName" placeholder="Professor Name" id="profname">
   </div>
+  <!-- Keerthi Chiduruppa : Added checkboxes for days -->
   <div class="form-group row justify-content-center">
     <label class="col-sm-4 form-label text-right">Day:</label>
     <div class="col-sm-4" >
@@ -42,6 +44,7 @@
     <label class="col-sm-4 text-right form-label">Section Number:</label>
     <input class="col-sm-4 form-control" type="number" placeholder="Section Number" name="SectionNumber" id="secnumber" >
   </div>
+  <!--Keerthi Chiduruppa : Added radio buttons for semester -->
   <div class="form-group row justify-content-center">
     <label class="col-sm-4 text-right form-label">
     Semester:
