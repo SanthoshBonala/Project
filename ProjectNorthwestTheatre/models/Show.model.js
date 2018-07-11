@@ -1,3 +1,4 @@
+/* Author: santhosh Bonala */
 const mongoose = require('mongoose')
 
 var ShowSchema = new mongoose.Schema({
@@ -14,10 +15,12 @@ var ShowSchema = new mongoose.Schema({
         trim: true
     },
     ShowTime : {
-        type : Date
+        type : String,
+        trim: true
     },
     ShowDate : {
-        type : Date,
+        type : String,
+        trim: true,
         default: Date()
     },
     NumberOfTickets : {

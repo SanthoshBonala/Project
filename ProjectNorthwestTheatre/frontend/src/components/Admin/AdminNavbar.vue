@@ -71,7 +71,7 @@
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Show Time:</label>
-                 <input class="col-sm-7 form-control" type="time" :value="showtime" id="showtime" required>
+                 <input class="col-sm-7 form-control" type="time" name="ShowTime" id="showtime" required>
               </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label">Total Seats:</label>
@@ -172,6 +172,7 @@ export default {
             .then(response => {
               this.$eventbus.$emit('refreshdata', response.data)
               $('#myModal').modal('hide')
+              $('#addshow')[0].reset()
             })
             .catch(err => {
               console.log('error while getting show list', err)
