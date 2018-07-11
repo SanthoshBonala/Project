@@ -1,6 +1,7 @@
 <!-- Created by Supraja Kumbam -->
 <template>
 <!-- Keerthi Chiduruppa : Added Card to Add Section -->
+<!-- Rahul Reddy Lankala : Added Place holders to Add Section -->
 <div class="card m-5">
     <div class="card-header">
       <strong ><h1> Add Section</h1></strong>
@@ -45,7 +46,7 @@
         <label class="col-sm-4 text-right form-label">Section Number:</label>
         <input class="col-sm-4 form-control" type="number" placeholder="Section Number" name="SectionNumber" id="secnumber" >
       </div>
-  <!-- Keerthi Chiduruppa : Added radi buttons for semester -->   
+  <!-- Keerthi Chiduruppa : Added radio buttons for semester -->   
       <div class="form-group row justify-content-center">
         <label class="col-sm-4 text-right form-label">
         Semester:
