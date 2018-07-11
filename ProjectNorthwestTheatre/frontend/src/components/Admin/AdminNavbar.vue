@@ -57,12 +57,12 @@
                 <input class="col-sm-7 form-control" type="text" placeholder="Show Name" id="showname" name="ShowTitle" required>
               </div>
               <div class="form-group row">
-                <label class="col-sm-4 form-label">Playwright:</label>
+                <label class="col-sm-4 form-label required">Playwright:</label>
                 <input class="col-sm-7 form-control" type="text" placeholder="Playwright" id="playwright" name="ShowPlayWright" required>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label">Description:</label>
-                <textarea class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription" required>
+                <textarea class="col-sm-7 form-control" type="text" placeholder="Description of Show" id="description" name="ShowDescription">
                 </textarea>
               </div>
               <div class="form-group row">
@@ -323,4 +323,8 @@ export default {
     color: white;
     text-shadow: 1px 1px 2px black, 0 0 25px #7fe682, 0 0 5px rgba(74, 243, 18, 0.172);
 }
+.required:after {
+        content: '*';
+        color: red;
+    }
 </style>

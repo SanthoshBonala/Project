@@ -3,7 +3,6 @@
   <div class="card-header"><strong ><h1> Add Section</h1></strong></div>
   <div class="card-body text-secondary">
     <form class="justify-content-center" @submit.prevent="addsection" id="addsection">
-  
   <div class="form-group row justify-content-center">
     <label class="col-sm-4 text-right form-label">Professor Name:</label>
     <input class="col-sm-4 form-control" type="text" name="ProfessorName" placeholder="Professor Name" id="profname">
@@ -58,7 +57,6 @@
 </form>
   </div>
 </div>
-
 
 </template>
 

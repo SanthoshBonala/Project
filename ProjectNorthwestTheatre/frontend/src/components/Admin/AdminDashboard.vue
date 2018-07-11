@@ -1,5 +1,5 @@
 <template>
-   <div>
+ <div>
     <!-- <div class="row m-1 float-right">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         <i class="fas fa-plus"></i>
@@ -9,6 +9,7 @@
       <AdminShow v-for="ele of showlist" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal()" @editeventmodal="editeventmodal()" >
       </AdminShow>
     </div>
+    <!--Saivarun Illendula - Added Email Model to Dashboard-->
     <!-- The Modal -->
     <div class="modal fade" id="emailmodal" tabindex="-1" role="dialog" aria-labelledby="ReserveTickets" aria-hidden="true">
       <div class="modal-dialog">
@@ -19,7 +20,6 @@
             <h4 class="modal-title">Email</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-
           <!-- Modal body -->
           <div class="modal-body">
             <form>
@@ -142,7 +142,7 @@
 
 <script>
 import AdminShow from './AdminShow.vue'
-
+/* Saivarun Illendula - Added API Calls */
 export default {
   name: 'AdminDashboard',
   data () {
