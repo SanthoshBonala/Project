@@ -1,5 +1,5 @@
 <template>
-<div class="card m-5 w-76">
+<div class="card m-5">
   <div class="card-header">
     <strong ><h1> Add Section</h1></strong>
   </div>
@@ -10,28 +10,28 @@
     <input class="col-sm-4 form-control" type="text" name="ProfessorName" placeholder="Professor Name" id="profname">
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 form-label float-right">Day:</label>
-    <div class="col-sm-4">
+    <label class="col-sm-4 form-label text-right">Day:</label>
+    <div class="col-sm-4" >
+        <div class="col-sm-2 form-check form-check-inline justify-content-center">
+      <input class="form-check-input " type="checkbox" id="inlineCheckbox1" value="option1">
+      <label class="form-check-label justify-content-center" for="inlineCheckbox1">M</label>
+    </div>
+    <div class="col-sm-1 form-check form-check-inline justify-content-center">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+      <label class="form-check-label justify-content-center" for="inlineCheckbox2">T</label>
+    </div>
     <div class="col-sm-2 form-check form-check-inline justify-content-center">
-  <input class="form-check-input " type="checkbox" id="inlineCheckbox1" value="option1">
-  <label class="form-check-label justify-content-center" for="inlineCheckbox1">M</label>
-</div>
-<div class="col-sm-1 form-check form-check-inline justify-content-center">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-  <label class="form-check-label justify-content-center" for="inlineCheckbox2">T</label>
-</div>
-<div class="col-sm-2 form-check form-check-inline justify-content-center">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-  <label class="form-check-label justify-content-center" for="inlineCheckbox3">W</label>
-</div>
-<div class="col-sm-1 form-check form-check-inline justify-content-center">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-  <label class="form-check-label justify-content-center" for="inlineCheckbox3">R</label>
-</div>
-<div class="col-sm-2 form-check form-check-inline justify-content-center">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-  <label class="form-check-label justify-content-center" for="inlineCheckbox3">F</label>
-</div>
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+      <label class="form-check-label justify-content-center" for="inlineCheckbox3">W</label>
+    </div>
+    <div class="col-sm-1 form-check form-check-inline justify-content-center">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+      <label class="form-check-label justify-content-center" for="inlineCheckbox3">R</label>
+    </div>
+    <div class="col-sm-2 form-check form-check-inline justify-content-center">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+      <label class="form-check-label justify-content-center" for="inlineCheckbox3">F</label>
+    </div>
     </div>
   </div>
   <div class="form-group row justify-content-center">
@@ -65,8 +65,9 @@
     <label class="col-sm-4 text-right form-label">
       Year:
     </label>
-    <input class="col-sm-4 form-control" type="number" id="year" :min="Date().year" required>
+    <input class="col-sm-4 form-control" type="number" id="year" :min="mindate" required>
   </div>
+  <button type="reset" class="btn btn-danger">Reset</button>
   <button type="submit" class="btn btn-success">Add section</button>
 </form>
   </div>
@@ -79,7 +80,9 @@ export default {
     return {
       formdata: {
         ShowRating: ""
-      }
+      },
+      /* global moment */
+      mindate: moment().format('YYYY')
     };
   },
   methods: {
@@ -114,5 +117,7 @@ export default {
 };
 </script>
 <style scoped>
-
+.card {
+  width: 80%
+}
 </style>
