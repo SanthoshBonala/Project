@@ -11,6 +11,7 @@ import AdminList from '../components/Admin/AdminList.vue'
 import Admin from '../components/Admin/Admin.vue'
 import PageNotFound from '../components/Admin/PageNotFound.vue'
 import SectionList from '../components/Admin/SectionList.vue'
+import UserCancelTicket from '../components/User/UserCancelTicket.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/user/reservation',
       name: 'UserReservation',
       component: UserReservation
+    },
+    {
+      path: '/user/CancelTicket',
+      name: 'UserCacelTicket',
+      component: UserCancelTicket
     },
     {
       path: '/admin',
