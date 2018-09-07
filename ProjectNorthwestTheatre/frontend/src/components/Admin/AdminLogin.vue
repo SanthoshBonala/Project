@@ -13,7 +13,7 @@
               <input type="text" v-model="formdata.Username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
               <label for="inputPassword" class="sr-only">Password</label>
               <input type="password" id="inputPassword" v-model="formdata.Password" class="form-control" placeholder="Password" required>
-              <button class="btn btn-lg btn-success btn-block" type="submit" >Sign in</button>
+              <button class="btn btn-lg btn-success btn-block" type="submit" >Login</button>
           </form>
           </div>
         </div>

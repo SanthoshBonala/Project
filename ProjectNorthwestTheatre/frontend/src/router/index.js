@@ -12,25 +12,34 @@ import Admin from '../components/Admin/Admin.vue'
 import PageNotFound from '../components/Admin/PageNotFound.vue'
 import SectionList from '../components/Admin/SectionList.vue'
 import UserCancelTicket from '../components/User/UserCancelTicket.vue'
+import UserShow from '../components/User/UserShow.vue'
+import User from '../components/User/User.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'UserDashboard',
-      component: UserDashboard
-    },
-    {
-      path: '/user/reservation',
-      name: 'UserReservation',
-      component: UserReservation
-    },
-    {
-      path: '/user/CancelTicket',
-      name: 'UserCacelTicket',
-      component: UserCancelTicket
+      path: '/user',
+      name: 'User',
+      component: User,
+      children: [
+        {
+          path: 'dashboard',
+          name: 'Userdashboard',
+          component: UserDashboard
+        },
+        {
+          path: 'reservation',
+          name: 'UserReservation',
+          component: UserReservation
+        },
+        {
+          path: 'CancelTicket',
+          name: 'UserCancelTicket',
+          component: UserCancelTicket
+        }
+      ]
     },
     {
       path: '/admin',
