@@ -6,6 +6,7 @@ var fs = require('fs')
 var path = require('path')
 
 let addShow = (req, res, next) => {
+    req.body.Ticketdetails = JSON.parse(req.body.Ticketdetails)
     var Show = new ShowModel(req.body)
     Show.ShowImage = null
     buffer = req.file.buffer

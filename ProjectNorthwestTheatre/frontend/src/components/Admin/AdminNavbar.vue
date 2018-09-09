@@ -90,19 +90,31 @@
                     <option>R</option>
                   </select>
                 </div>
+
+                <form @submit.prevent="addticketprice()" id="ticketform">
+                  <div class="form-group row">
+                    <label class="col-sm-4 form-label required">Ticket Type:</label>
+                    <input class="col-sm-6 form-control" type="text" placeholder="Ticket Type" id="TicketType" required>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-4 form-label required">Ticket Price:</label>
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">$</div>
+                      </div>
+                    <input class="col-sm-4 form-control" type="number" placeholder="Ticket Price" id="TicketPrice" min="1" required>
+                    <button class="btn col-sm-1.5 offset-sm-1" type="submit">Add</button>
+                  </div>
+                </form>
+
                 <div class="form-group row">
-                  <label class="col-sm-4 form-label required">Adult Ticket:</label>
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">$</div>
-                    </div>
-                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for Adult" id="adultprice" name="ShowPriceForAdult" min="1" required>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 form-label required">Children Ticket:</label>
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">$</div>
-                    </div>
-                  <input class="col-sm-6 form-control" type="number" placeholder="Ticket Cost for children" id="childrenprice" min="1" name="ShowPriceForChildren" required>
+                  <ol class="col-sm-8 offset-sm-2" name="ticketdetails" id="ticketdetails">
+                    <li v-for="ticket in ticketdetails" :key="ticket.TicketType" style="height: 50px;vertical-align: middle">
+                      {{ ticket.TicketType }} - $ {{ ticket.TicketPrice }}
+                        <button type="button" class="btn rounded-circle float-right mx-2" id="delete" @click="deleteticket(ticket.TicketType)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </li>
+                  </ol>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 form-label required">Upload Image:</label>
@@ -140,7 +152,10 @@ export default {
         isPublished: false
       },
       /* global moment  */
-      showtime: moment().format('HH:mm')
+      showtime: moment().format('HH:mm'),
+      ticketdetails: [
+
+      ]
     }
   },
   props: ['login'],
@@ -156,11 +171,26 @@ export default {
     },
     addshow () {
       var data = new FormData(document.querySelector('#addshow'))
-      /* global $ axios url */
+      data.append('Ticketdetails', JSON.stringify(this.ticketdetails))
+      /* 
+        ShowTitle: data.get('ShowTitle'),
+        ShowPlayWright: data.get('ShowPlayWright'),
+        ShowDescription: data.get('ShowDescription'),
+        ShowDate: data.get('ShowDate'),
+        ShowTime: data.get('ShowTime'),
+        NumberOfTickets: data.get('NumberOfTickets'),
+        ShowVenue: data.get('ShowVenue'),
+        ShowRating: data.get('ShowRating'),
+        ShowImage: data.get('ShowImage'),
+        isPublished: data.get('isPublished'),
+      */
+      /* global $ axios url _*/
       axios.create({
         baseURL: url,
         headers: { 'token': window.localStorage.getItem('AccessToken') }
-      }).post('/addshow', data)
+      }).post('/addshow',
+        data
+        )
         .then(res => {
           axios({
             method: 'get',
@@ -180,6 +210,37 @@ export default {
         })
         .catch(error => {
           console.log(error)
+        })
+    },
+    addticketprice () {
+      console.log(TicketType.value)
+        this.ticketdetails.push({
+          'TicketType': $('#TicketType').val(),
+          'TicketPrice': $('#TicketPrice').val()
+        })
+        document.getElementById('ticketform').reset()
+    },
+    deleteticket (TicketType) {
+      swal({
+        title: `Do you want to delete ${TicketType} ?`,
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: `Yes, delete!`
+      })
+      .then((result) => {
+          if (result.value) {
+            this.ticketdetails = _.without(this.ticketdetails, _.findWhere(this.ticketdetails, {
+                TicketType: TicketType
+              }))
+                swal(
+                  'Deleted!',
+                  `Ticket Type:  ${TicketType} has been deleted.`,
+                  'success'
+                )
+          }
         })
     }
   },
@@ -326,4 +387,13 @@ export default {
         content: '*';
         color: red;
     }
+#delete:hover {
+  color: #910000;
+  background-color: #DA7A7A
+}
+#delete {
+  color: #D14F4F;
+  background-color: none
+}
+
 </style>
