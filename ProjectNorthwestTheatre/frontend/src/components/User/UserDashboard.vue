@@ -30,13 +30,13 @@ export default {
   methods: {
     refreshData () {
       var _this = this
-       /* global axios moment _ */
+       /* global axios moment _  userurl */
         axios({
           method: 'get',
           headers: {
             token: window.localStorage.getItem('AccessToken')
           },
-          url: url + '/sectionlist'
+          url: userurl + '/sectionlist'
         })
           .then(function (response) {
             console.log(response.data)
@@ -50,10 +50,7 @@ export default {
           })
       axios({
         method: 'get',
-        headers: {
-          token: window.localStorage.getItem('AccessToken')
-        },
-        url: url + '/showlist'
+        url: userurl + '/showlist'
       })
         .then(function (response) {
           console.log(response.data)
