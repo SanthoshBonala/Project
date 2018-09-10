@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import url from './config/config'
+
 Vue.config.productionTip = false
 window.moment = require('moment')
 window.axios = require('axios')

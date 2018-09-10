@@ -9,6 +9,24 @@
       <AdminShow v-for="ele of showlist" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal()" >
       </AdminShow>
     </div>
+    <div class="modal" id="descriptionmodal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Playwright: {{ show.ShowPlayWright ? show.ShowPlayWright : '' }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>{{ show.ShowDescription ? show.ShowDescription : '' }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--Saivarun Illendula - Added Email Model to Dashboard-->
     <!-- The Modal -->
     <div class="modal fade" id="emailmodal" tabindex="-1" role="dialog" aria-labelledby="ReserveTickets" aria-hidden="true">
@@ -156,7 +174,8 @@ export default {
       check: false,
       isTheatreAppreciationStudent: '',
       sectionlist: [],
-      showlist: []
+      showlist: [],
+      show: ''
     }
   },
   components: {
@@ -168,6 +187,9 @@ export default {
     },
     showemailmodal () {
       $('#emailmodal').modal('show')
+    },
+    showdescriptionmodal () {
+      $('#descriptionmodal').modal('show')
     },
     refreshData () {
       var _this = this
@@ -220,6 +242,13 @@ export default {
       this.showlist = data
       console.log(data, this.showlist)
     }.bind(this))
+
+    this.$eventbus.$on('showdescription', function (showclicked) {
+    this.show = showclicked
+    console.log('show description', this.show)
+    this.showdescriptionmodal()
+    }.bind(this))
+
   },
   watch: {
     showlist: function () {
