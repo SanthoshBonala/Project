@@ -18,16 +18,6 @@
               <!-- image column end -->
               <!-- details of the show -->
               <div class="col-lg lead text-left font" style="border:1px  ">
-                <!-- Playwright -->
-                <span class="font-weight-bold">Playwright :
-                  <span class="font-weight-normal">{{ show.ShowPlayWright }}</span>
-                </span>
-                <br>
-                <!-- Description -->
-                <span class="font-weight-bold">Description :
-                  <span class="font-weight-normal">{{ show.ShowDescription }}</span>
-                </span>
-                <br>
                 <!-- Date -->
                 <span class="font-weight-bold">Date :
                   <span class="font-weight-normal">{{ ShowDate }}</span>
@@ -48,6 +38,13 @@
                   <span class="font-weight-normal">{{ show.ShowRating}}</span>
                 </span>
                 <br>
+                <!-- Description -->
+                <span>
+                  <button type="button" class="btn btn-light font-weight-bold" @click="emitshowdescription(show)">
+                    Description
+                  </button>
+                </span>
+                <br>
               </div>
               <!-- details of the show END -->
               <div class="col-lg lead" style="border:1px ">
@@ -59,15 +56,10 @@
                   <br>
 
                 </div>
-                <!-- Adult Ticket -->
-                <h1 class="mt-2 text-danger text-center lead">
-                    <span class="font-weight-bold display"> $ {{ show.ShowPriceForAdult }} </span>
-                    <span class="font-weight-normal">For Adult</span>
-                </h1>
-                <!-- Children Ticket -->
-                <h1 class="text-danger text-center lead">
-                    <span class="font-weight-bold display"> $ {{ show.ShowPriceForChildren }} </span>
-                    <span class="font-weight-normal">For Children</span>
+                  <!-- Adult Ticket -->
+                <h1 class="mt-2 text-danger text-center lead" v-for="ele in show.Ticketdetails" :key="ele.TicketType" >
+                    <span class="font-weight-bold display"> $ {{ ele.TicketPrice }} </span>
+                    <span class="font-weight-normal">For {{ ele.TicketType }}</span>
                 </h1>
               </div>
             </div>
@@ -95,6 +87,11 @@ export default {
     }
   },
   props: ['show'],
+  methods: {
+    emitshowdescription (showclicked) {
+      this.$eventbus.$emit('showdescription', showclicked)
+    }
+  },
   watch: {
     show: function (newVal, oldVal) {
       this.ShowDate = moment(newVal.ShowDate, 'YYYY-MM-DD').format('MMMM Do YYYY')

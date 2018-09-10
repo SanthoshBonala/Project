@@ -14,6 +14,7 @@ import SectionList from '../components/Admin/SectionList.vue'
 import UserCancelTicket from '../components/User/UserCancelTicket.vue'
 import UserShow from '../components/User/UserShow.vue'
 import User from '../components/User/User.vue'
+import CancelTicket from '../components/Admin/CancelTicket.vue'
 
 Vue.use(Router)
 
@@ -80,6 +81,13 @@ export default new Router({
           name: 'SectionList',
           beforeEnter: Guard.auth,
           component: SectionList
+        },
+        ,
+        {
+          path: 'cancelticket',
+          name: 'cancelticket',
+          beforeEnter: Guard.auth,
+          component: CancelTicket
         }
       ]
     },

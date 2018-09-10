@@ -14,26 +14,35 @@
         <div class="col-sm-2 collapse d-sm-flex position-fixed" id="sidebar">
             <div class="col-sm-10 bg-dark pt-2" v-if="login">
                 <ul class="nav flex-column flex-nowrap ">
-                   <li class="nav-item my-2">
-                        <button class="btn white_green btn-block" @click="addshowevent()">
-                          <span class="mr-2"><i class="fas fa-plus-circle"></i> </span>
-                          Add Show </button>
-                    </li>
-                    <li class="nav-item my-2">
-                        <router-link to="/admin/adminlist" class="btn white_green btn-block">
-                         <span class="mr-2"><i class="fas fa-list-ul"></i></span>Admin List</router-link>
-                    </li>
-                    <li class="nav-item my-2">
-                        <router-link to="/admin/addadmin" class="btn white_green  btn-block">
-                         <span class="mr-2"><i class="fas fa-user"></i></span>Add Admin</router-link>
-                    </li>
-                    <li class="nav-item my-2">
-                        <router-link to="/admin/sectionlist" class="btn white_green btn-block"> <span class="mr-2"><i class="fas fa-th-list"></i></span>View Section</router-link>
-                    </li>
-                    <li class="nav-item my-2">
-                        <router-link to="/admin/addsection" class="btn white_green btn-block">
-                        <span class="mr-2"><i class="fas fa-plus"></i></span>Add Section </router-link>
-                    </li>
+                  <li class="nav-item my-2">
+                      <router-link to="/admin/dashboard" class="btn white_green btn-block">
+                        <span class="mr-2"><i class="fas fa-home"></i></span>Home</router-link>
+                  </li>
+                  <li class="nav-item my-2">
+                      <button class="btn white_green btn-block" @click="addshowevent()">
+                        <span class="mr-2"><i class="fas fa-plus-circle"></i> </span>
+                        Add Show </button>
+                  </li>
+                  <li class="nav-item my-2">
+                      <router-link to="/admin/adminlist" class="btn white_green btn-block">
+                        <span class="mr-2"><i class="fas fa-list-ul"></i></span>Admin List</router-link>
+                  </li>
+                  <li class="nav-item my-2">
+                      <router-link to="/admin/addadmin" class="btn white_green  btn-block">
+                        <span class="mr-2"><i class="fas fa-user"></i></span>Add Admin</router-link>
+                  </li>
+                  <li class="nav-item my-2">
+                      <router-link to="/admin/sectionlist" class="btn white_green btn-block">
+                      <span class="mr-2"><i class="fas fa-th-list"></i></span>View Section</router-link>
+                  </li>
+                  <li class="nav-item my-2">
+                      <router-link to="/admin/addsection" class="btn white_green btn-block">
+                      <span class="mr-2"><i class="fas fa-plus"></i></span>Add Section</router-link>
+                  </li>
+                  <li class="nav-item my-2">
+                    <router-link to="/admin/cancelticket" class="btn white_green btn-block">
+                    <span class="mr-2"><i class="fas fa-ban"></i> CancelTicket</span></router-link>
+                </li>
                 </ul>
             </div>
         </div>
