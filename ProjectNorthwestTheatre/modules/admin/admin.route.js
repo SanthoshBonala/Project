@@ -32,6 +32,8 @@ router.post('/guard', adminAuthenticateController.guard)
 
 router.get('/image', ShowController.imagebyid)
 
+router.post('/ispublished', ShowController.isPublished)
+
 /* section CRUD operations */
 router.post('/addsection', SectionController.addSection)
 

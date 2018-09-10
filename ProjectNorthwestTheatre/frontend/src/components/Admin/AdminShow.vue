@@ -10,11 +10,11 @@
           <div class="d-inline-block component float-right">
             <span class="mx-5" >
               <div class="btn-group rounded" id="status" data-toggle="buttons">
-                <label class="btn btn-default btn-on" style="border:2px solid white" :class="{ active: show.isPublished }">
+                <label class="btn btn-default btn-on" style="border:2px solid white" :class="{ active: show.isPublished }" @click="showstatuschanged(true)">
                   <input class="d-none" type="radio" value="1">
                   <strong>Publish</strong>
                 </label>
-                <label class="btn btn-default btn-off" style="border:2px solid white" :class="{ active: !show.isPublished }">
+                <label class="btn btn-default btn-off" style="border:2px solid white" :class="{ active: !show.isPublished }" @click="showstatuschanged(false)">
                   <input class="d-none" type="radio" value="0" >
                   <strong>UnPublish</strong>
                 </label>
@@ -317,6 +317,22 @@ export default {
                 console.log(error)
               })
           }
+        })
+    },
+    showstatuschanged (isPublished) {
+        axios.create({
+        baseURL: url,
+        headers: { 'token': window.localStorage.getItem('AccessToken') }
+      })
+      .post('/ispublished',{ 
+        id: this.show._id,
+        isPublished: isPublished
+        })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(error => {
+          console.log(error)
         })
     }
   },

@@ -6,7 +6,7 @@
       </button>
     </div> -->
     <div class="row col-sm-12 ">
-      <UserShow v-for="ele of showlist" :key="ele._id"  :show="ele">
+      <UserShow v-for="ele of showlist" :key="ele._id"  :show="ele" v-if="ele.isPublished">
       </UserShow>
     </div>
     </div>

@@ -90,3 +90,12 @@ module.exports.UpdateShow = UpdateShow
 }
 
 module.exports.imagebyid = imagebyid
+
+var isPublished = (req,res) => {
+        ShowModel.findByIdAndUpdate(req.body.id, req.body, function (err, Show) {
+            if (err || !Show) return res.status(400).send('Show not found')
+            return res.send("Updated Successfully")
+        })
+}
+
+module.exports.isPublished = isPublished
