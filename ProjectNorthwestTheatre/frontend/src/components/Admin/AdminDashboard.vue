@@ -6,7 +6,16 @@
       </button>
     </div> -->
     <div class="row col-sm-12 ">
-      <AdminShow v-for="ele of showlist" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal()" >
+      <div class=" offset-sm-8 col-sm-4 ">
+            <div class="input-group mt-3 ">
+                <input class="form-control py-2 border-right-0 border" type="search" v-model="search"  placeholder="Search" id="example-search-input">
+                <span class="input-group-append">
+                    <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
+                </span>
+            </div>
+       
+    </div>
+      <AdminShow v-for="ele of updatedShowList" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal()" >
       </AdminShow>
     </div>
     <div class="modal" id="descriptionmodal" tabindex="-1" role="dialog">
@@ -183,7 +192,8 @@ export default {
       isTheatreAppreciationStudent: '',
       sectionlist: [],
       showlist: [],
-      show: ''
+      show: '',
+      search: ''
     }
   },
   components: {
@@ -261,6 +271,14 @@ export default {
   watch: {
     showlist: function () {
       console.log('changed')
+    }
+  },
+
+  computed: {
+    updatedShowList: function(){
+      return this.showlist.filter(show => {
+        return show.ShowTitle.toLowerCase().includes(this.search.toLowerCase())
+      })
     }
   }
 }

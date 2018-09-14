@@ -1,5 +1,4 @@
 <template>
-
  <div>
     <div class="modal" id="descriptionmodal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -112,7 +111,7 @@ export default {
   },
 
   computed: {
-    updatedshowlist:  function() {
+    updatedshowlist(){
       return this.showlist.filter(show => {
         return show.ShowTitle.toLowerCase().includes(this.search.toLowerCase())
       })
