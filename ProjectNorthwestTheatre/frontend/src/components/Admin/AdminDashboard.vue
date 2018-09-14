@@ -99,7 +99,15 @@
                         </div>
                         <div class="form-group row" :class="{'d-none': isTheatreAppreciationStudent !== 'true' }">
                           <label class="col-sm-4 form-label">Section Number:</label>
-                          <input class="col-sm-7 form-control" type="text" id="sectionnumber">
+                          <select id="inputState" class="form-control col-sm-7">
+                              <option selected v-for="ele of sectionlist" :key="ele"> 
+                                Prof Name: {{ele.ProfessorName}},
+                                Time: {{ ele.ClassTime12hrs }},
+                                Day: {{ ele.ClassDay }},
+                                Sem: {{ ele.Semester }} {{ ele.Year }}
+                                </option>
+                            </select>
+                          <!-- <input class="col-sm-7 form-control" type="text" id="sectionnumber">
                           <a tabindex="0"
                             id="pop"
                             class="btn col-sm-1"
@@ -110,7 +118,7 @@
                             data-placement="right"
                             title="Schedule For Current Semester">
                             <i class="fas fa-info-circle"></i>
-                        </a>
+                        </a> -->
                         </div>
                         <div class="form-group row" :class="{'d-none': isTheatreAppreciationStudent !== 'false' }">
                             <label class="col-sm-4 form-label">No. Of Tickets:</label>
@@ -126,7 +134,7 @@
         </div>
       </div>
     </div>
-    <table :class="{'d-none': check }">
+    <!-- <table :class="{'d-none': check }">
       <thead>
         <tr>
           <th >Semester</th>
@@ -159,7 +167,7 @@
             <td>Mark Richael</td>
           </tr>
       </tbody>
-    </table>
+    </table> -->
     </div>
 </template>
 
