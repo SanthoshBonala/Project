@@ -99,3 +99,17 @@ var isPublished = (req,res) => {
 }
 
 module.exports.isPublished = isPublished
+
+let GetduplicateShow = (req, res, next) => {
+            delete req.body._id
+        let duplicateshow = new ShowModel(req.body)
+        duplicateshow
+        .save()
+        .then( res => {
+            next()
+        })
+        .catch( err => {
+             return res.status(400).send('error while duplicating a show', err)
+        })              
+}
+module.exports.GetduplicateShow = GetduplicateShow

@@ -109,6 +109,10 @@
               @click="editevent()">
                 <strong><span class = "mr-2"><i class="far fa-edit"></i></span>Edit Show</strong>
               </button>
+               <button class="col-sm m-2 btn btn-outline-secondary" type="button"
+              @click="duplicateEvent(show)">
+                <strong><span class = "mr-2"><i class="far fa-edit"></i></span>Duplicate Show</strong>
+              </button>
             </div>
           <!-- end buttons inside card -->
           </div>
@@ -329,6 +333,51 @@ export default {
     },
     emitshowdescription (showclicked) {
       this.$eventbus.$emit('showdescription', showclicked)
+    },
+    duplicateEvent(show) {
+      console.log("duplicate show clicked");
+       swal({
+        title: 'Duplicate Show',
+        text: "Do you want to duplicate the show!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Sure!'
+      })
+      .then(res => {
+        console.log(res.value)
+        if(res.value){
+          axios.create(
+            {
+              baseURL : url,
+              headers : {'token': window.localStorage.getItem('AccessToken')}
+            }
+          ).post('/duplicateShow',show)
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(error)
+          })
+        }
+      })
+      // .then(result => {
+      //   console.log(result.value)
+      //   if(result.value) {
+      //     axios.create({
+      //       baseURL: url,
+      //       headers: { 'token': window.localStorage.getItem('AccessToken') }
+      //     })
+      //     .post('/duplicateShow', show)
+      //     .then( res => {
+      //       console.log(res)
+      //     })
+      //     .catch( error => {
+      //         console.log(error)
+      //     })
+      //   }
+      // })
     }
   },
   watch: {

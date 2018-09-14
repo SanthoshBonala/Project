@@ -34,6 +34,8 @@ router.get('/image', ShowController.imagebyid)
 
 router.post('/ispublished', ShowController.isPublished)
 
+router.post('/duplicateShow', ShowController.GetduplicateShow, ShowController.GetShowList)
+
 /* section CRUD operations */
 router.post('/addsection', SectionController.addSection)
 
@@ -42,5 +44,7 @@ router.post('/updatesection', SectionController.UpdateSection)
 router.get('/sectionlist', SectionController.GetSectionList)
 
 router.post('/deletesection', SectionController.deleteSection)
+
+
 
 module.exports = router

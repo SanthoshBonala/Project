@@ -31,6 +31,11 @@ export default new Router({
           component: UserDashboard
         },
         {
+          path: 'usershow',
+          name: 'UserShow',
+          component: UserShow
+        },
+        {
           path: 'reservation',
           name: 'UserReservation',
           component: UserReservation
@@ -82,7 +87,6 @@ export default new Router({
           beforeEnter: Guard.auth,
           component: SectionList
         },
-        ,
         {
           path: 'cancelticket',
           name: 'cancelticket',

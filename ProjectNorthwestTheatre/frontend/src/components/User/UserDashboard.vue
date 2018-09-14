@@ -1,4 +1,5 @@
 <template>
+
  <div>
     <div class="modal" id="descriptionmodal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -18,87 +19,108 @@
         </div>
       </div>
     </div>
-    <div class="row col-sm-12 ">
-      <UserShow v-for="ele of showlist" :key="ele._id"  :show="ele" v-if="ele.isPublished">
+     <div class="row col-sm-12 ">
+        
+        <div class=" offset-sm-8 col-sm-4 ">
+            <div class="input-group mt-3 ">
+                <input class="form-control py-2 border-right-0 border" type="search" v-model="search"  placeholder="Search" id="example-search-input">
+                <span class="input-group-append">
+                    <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
+                </span>
+            </div>
+       
+    </div>
+      <UserShow v-for="ele of updatedshowlist" :key="ele._id"  :show="ele" v-if="ele.isPublished">
       </UserShow>
     </div>
     </div>
 </template>
 
 <script>
-import UserShow from './UserShow.vue'
+import UserShow from "./UserShow.vue";
 /* Saivarun Illendula - Added API Calls */
 export default {
-  name: 'AdminDashboard',
-  data () {
+  name: "AdminDashboard",
+  data() {
     return {
       /* global $ axios url */
       sectionlist: [],
       showlist: [],
-      show: ''
-    }
+      show: "",
+      search: ''
+    };
   },
   components: {
     UserShow
   },
   methods: {
-     showdescriptionmodal () {
-      $('#descriptionmodal').modal('show')
+    showdescriptionmodal() {
+      $("#descriptionmodal").modal("show");
     },
-    refreshData () {
-      var _this = this
-       /* global axios moment _  userurl */
-        axios({
-          method: 'get',
-          headers: {
-            token: window.localStorage.getItem('AccessToken')
-          },
-          url: userurl + '/sectionlist'
-        })
-          .then(function (response) {
-            console.log(response.data)
-            _this.sectionlist = response.data
-            _.each(_this.sectionlist, function(section){
-              section.ClassTime12hrs = moment(section.ClassTime, 'HH:mm').format('hh:mm a')             
-            })
-          })
-          .catch(function (err) {
-            console.log('error while getting section list', err)
-          })
-      axios({
-        method: 'get',
-        url: userurl + '/showlist'
+    refreshData() {
+      var _this = this;
+      /* global axios moment _  userurl */
+     /*  axios({
+        method: "get",
+        headers: {
+          token: window.localStorage.getItem("AccessToken")
+        },
+        url: userurl + "/sectionlist"
       })
-        .then(function (response) {
-          console.log(response.data)
-          _this.showlist = response.data
+        .then(function(response) {
+          console.log(response.data);
+          _this.sectionlist = response.data;
+          _.each(_this.sectionlist, function(section) {
+            section.ClassTime12hrs = moment(section.ClassTime, "HH:mm").format(
+              "hh:mm a"
+            );
+          });
         })
-        .catch(function (err) {
-          console.log('error while getting show list', err)
+        .catch(function(err) {
+          console.log("error while getting section list", err);
+        }); */
+      axios({
+        method: "get",
+        url: userurl + "/showlist"
+      })
+        .then(function(response) {
+          console.log(response.data);
+          _this.showlist = response.data;
         })
-       
+        .catch(function(err) {
+          console.log("error while getting show list", err);
+        });
     }
   },
-  created () {
-    this.refreshData()
-    this.$eventbus.$on('refreshdata', function (data) {
-      this.showlist = data
-      console.log(data, this.showlist)
-    }.bind(this))
-    this.$eventbus.$on('showdescription', function (showclicked) {
-    this.show = showclicked
-    console.log('show description', this.show)
-    this.showdescriptionmodal()
-    }.bind(this))
+  created() {
+    this.refreshData();
+    this.$eventbus.$on(
+      "refreshdata",
+      function(data) {
+        this.showlist = data;
+        console.log(data, this.showlist);
+      }.bind(this)
+    );
+    this.$eventbus.$on(
+      "showdescription",
+      function(showclicked) {
+        this.show = showclicked;
+        console.log("show description", this.show);
+        this.showdescriptionmodal();
+      }.bind(this)
+    );
   },
-  watch: {
-    showlist: function () {
-      console.log('changed')
+
+  computed: {
+    updatedshowlist:  function() {
+      return this.showlist.filter(show => {
+        return show.ShowTitle.toLowerCase().includes(this.search.toLowerCase())
+      })
     }
   }
-}
+
+};
 </script>
 
 <style scoped>
-
 </style>
