@@ -34,6 +34,8 @@ router.get('/image', ShowController.imagebyid)
 
 router.post('/ispublished', ShowController.isPublished)
 
+router.post('/reserveTicket', ShowController.reserveTickets)
+
 /* section CRUD operations */
 router.post('/addsection', SectionController.addSection)
 
