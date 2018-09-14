@@ -15,6 +15,7 @@ import UserCancelTicket from '../components/User/UserCancelTicket.vue'
 import UserShow from '../components/User/UserShow.vue'
 import User from '../components/User/User.vue'
 import CancelTicket from '../components/Admin/CancelTicket.vue'
+import UserDirections from '../components/User/UserDirections.vue'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
           path: 'CancelTicket',
           name: 'UserCancelTicket',
           component: UserCancelTicket
+        },
+        {
+          path: 'directions',
+          name: 'UserDirections',
+          component: UserDirections
         }
       ]
     },

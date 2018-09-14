@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import url from './config/config'
+import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.config.productionTip = false
 window.moment = require('moment')
@@ -14,6 +15,11 @@ window.swal = require('sweetalert2')
 window._ = require('underscore')
 Vue.prototype.$eventbus = new Vue()
 
+Vue.use(VueGoogleMaps, {
+ load: {
+   key: 'AIzaSyCoZmlmWNMd1Ef1ig-WA8jJ9NRnSQ5AP6Y'
+ }
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
