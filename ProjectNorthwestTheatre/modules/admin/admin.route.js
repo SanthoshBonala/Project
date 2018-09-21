@@ -1,12 +1,13 @@
 /* Author: santhosh Bonala */
 
-var express = require('express')
-var router = express.Router()
-var multer = require('multer')
-var adminAuthenticateController = require('./controllers/authenticate.controller')
-var AdminController = require('./controllers/CRUDadmin.controller') 
-var ShowController = require('./controllers/show.controller')
-var SectionController = require('./controllers/section.controller')
+let express = require('express')
+let router = express.Router()
+let multer = require('multer')
+let adminAuthenticateController = require('./controllers/authenticate.controller')
+let AdminController = require('./controllers/CRUDadmin.controller') 
+let ShowController = require('./controllers/show.controller')
+let SectionController = require('./controllers/section.controller')
+let MailController = require('./controllers/mail.controller')
 
 /* Admin CRUD Operations */
 router.post('/authenticate', adminAuthenticateController.authenticate)
@@ -45,7 +46,13 @@ router.post('/updatesection', SectionController.UpdateSection)
 router.get('/sectionlist', SectionController.GetSectionList)
 
 router.post('/deletesection', SectionController.deleteSection)
+/*
+    Email API's
+ */
 
+router.post('/sendemail', MailController.SendMail)
+
+router.post('/sendRemainderEmail')
 
 
 module.exports = router
