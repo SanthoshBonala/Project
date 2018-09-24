@@ -53,11 +53,11 @@
             <form>
               <div class="form-group row">
                 <label class="col-sm-3 form-label">Subject:</label>
-                <input class="col-sm-8 form-control" type="text" placeholder="Subject">
+                <input class="col-sm-8 form-control" type="text" placeholder="Subject" :value="email.subject">
               </div>
               <div class="form-group row">
                 <label for="Email1msg" class="col-sm-3 form-label">Message:</label>
-                  <textarea class="form-control inputstl col-sm-8" placeholder="Type the mesaage here...." rows="10"></textarea>
+                  <textarea class="form-control inputstl col-sm-8" placeholder="Type the mesaage here...." rows="10" :value="email.body"></textarea>
               </div>
             </form>
           </div>
@@ -110,10 +110,10 @@
                           <label class="col-sm-4 form-label">Section Number:</label>
                           <select id="inputState" class="form-control col-sm-7">
                               <option selected v-for="ele of sectionlist" :key="ele"> 
-                                Prof Name: {{ele.ProfessorName}},
-                                Time: {{ ele.ClassTime12hrs }},
-                                Day: {{ ele.ClassDay }},
-                                Sem: {{ ele.Semester }} {{ ele.Year }}
+                                 {{ele.ProfessorName}}: 
+                                 {{ ele.ClassTime12hrs }} - 
+                                 {{ ele.ClassDay }}: 
+                                 {{ ele.Semester }} {{ ele.Year }}
                                 </option>
                             </select>
                           <!-- <input class="col-sm-7 form-control" type="text" id="sectionnumber">
@@ -193,7 +193,11 @@ export default {
       sectionlist: [],
       showlist: [],
       show: '',
-      search: ''
+      search: '',
+      email: {
+        subject: 'Attention!!',
+        body: 'Thank you for your interest in the show.\n The show has been delayed by two days due to bad weather conditions. \n Sorry for the inconvenience'
+      }
     }
   },
   components: {

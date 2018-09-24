@@ -11,10 +11,8 @@ const config = {
     production:{
         url: 'mongodb+srv://admin:admin@cluster0-tyjvv.mongodb.net/Production?retryWrites=true',
         tokensecret: 'NorthwestTheatre',
-        sessionsecret: 'NorthwestTheatre',
-        emailid: 'santhubonala@gmail.com',
-        password: 'Ss963.1996'
+        sessionsecret: 'NorthwestTheatre'
     }
 }
 
-module.exports = config[process.env.ENV]
+module.exports = config[process.env.ENV] || config.development

@@ -75,8 +75,12 @@
                 </textarea>
               </div>
               <div class="form-group row">
-                <label class="col-sm-4 form-label required">Show Date:</label>
-                <input class="col-sm-7 form-control" type="date" id="showdate" name="ShowDate" required>
+                <label class="col-sm-4 form-label">Show Date:</label>
+                    <input type="text" class="date form-control col-sm-7" name="ShowDate" id="datepicker-input" required>
+                        <span @click="showdatepicker()" id="date-icon" class="col-sm-1">
+                          <i class="fas fa-calendar-alt fa-2x" aria-hidden="true" ></i>
+                        </span>
+                <!-- <input class="col-sm-7 form-control" type="date" id="showdate" name="ShowDate" required> -->
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 form-label required">Show Time:</label>
@@ -169,6 +173,10 @@ export default {
   },
   props: ['login'],
   methods: {
+    showdatepicker () {
+      console.log('date picker clicked')
+      $('.date').datepicker('show')
+    },
     logout () {
       window.localStorage.clear()
       var _this = this
@@ -256,6 +264,10 @@ export default {
   mounted () {
     console.log('mounted admin navbar')
     console.log('element ', document.getElementById('rem_content'))
+    $('.date').datepicker({
+        multidate: true,
+        multidateSeparator: '; '
+    })
     function myFunction1 () {
       console.log('myfunction1 show content')
       $('#sidebar').toggle()
@@ -403,6 +415,17 @@ export default {
 #delete {
   color: #D14F4F;
   background-color: none
+}
+#date-icon{
+  position: absolute;
+  right: 35px;
+  padding: 2px;
+	display: flex;
+	align-items: center;
+}
+#datepicker-input {
+  padding-right: 40px;
+	outline: none;
 }
 
 </style>

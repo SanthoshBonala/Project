@@ -14,6 +14,9 @@ window.userurl = url.userurl
 window.swal = require('sweetalert2')
 window._ = require('underscore')
 Vue.prototype.$eventbus = new Vue()
+window.$ = require('jquery')
+require('bootstrap')
+require('bootstrap-datepicker')
 
 Vue.use(VueGoogleMaps, {
  load: {
