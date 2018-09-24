@@ -308,11 +308,11 @@ export default {
  
   height: 70px;
   background-color: rgba(182, 221, 208, 0.9);
-   background-image: linear-gradient(rgba(182, 221, 208, 0.4), #f6f4ef);
+   background-image: linear-gradient(#f6f4ef, #f6f4ef);
    /* background-image: linear-gradient(207deg, rgba(182, 221, 208, 0.6) , #f6f4ef); */
   width: 100%;
    /* border-bottom: 5px solid rgba(4, 224, 151, 0.521); */
-     border-bottom-left-radius: 50px ;
+     /* border-bottom-left-radius: 50px ; */
      box-shadow: 0px 10px 5px #f6f4ef;
 }
 
