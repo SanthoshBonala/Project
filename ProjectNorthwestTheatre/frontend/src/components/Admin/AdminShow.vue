@@ -347,21 +347,21 @@ export default {
       })
       .then(res => {
         console.log(res.value)
-        if(res.value){
-          axios.create(
-            {
-              baseURL : url,
-              headers : {'token': window.localStorage.getItem('AccessToken')}
-            }
-          ).post('/duplicateShow',show)
-          .then(res => {
-            console.log(res)
-          })
-          .catch(err => {
-            console.log(error)
-          })
-        }
-      })
+        if (res.value) {
+            axios.create(
+              {
+                baseURL: url,
+                headers: {'token': window.localStorage.getItem('AccessToken')}
+              }
+            ).post('/duplicateShow', show)
+              .then(res => {
+                console.log(res)
+              })
+              .catch(err => {
+                console.log(error)
+              })
+          }
+        })
       // .then(result => {
       //   console.log(result.value)
       //   if(result.value) {
