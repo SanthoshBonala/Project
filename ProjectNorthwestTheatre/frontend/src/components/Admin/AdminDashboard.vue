@@ -114,10 +114,11 @@
                         <div class="form-group row" :class="{'d-none': isTheatreAppreciationStudent !== 'true' }">
                           <label class="col-sm-4 form-label">Section Number:</label>
                           <select id="inputState" class="form-control col-sm-7">
-                              <option selected v-for="ele of sectionlist" :key="ele"> 
-                                 {{ele.ProfessorName}}: 
+                              <option selected value="default">--Select--</option>
+                              <option v-for="ele of sectionlist" :key="ele"> 
+                                 {{ ele.ProfessorName }}: 
                                  {{ ele.ClassTime12hrs }} - 
-                                 {{ ele.ClassDay }}: 
+                                 {{ ele.ClassDay }} -  
                                  {{ ele.Semester }} {{ ele.Year }}
                                 </option>
                             </select>
@@ -222,22 +223,22 @@ export default {
       var _this = this
        /* global axios moment _ */
         axios({
-          method: 'get',
-          headers: {
-            token: window.localStorage.getItem('AccessToken')
-          },
-          url: url + '/sectionlist'
+        method: 'get',
+        headers: {
+          token: window.localStorage.getItem('AccessToken')
+        },
+        url: url + '/sectionlist'
+      })
+        .then(function (response) {
+          console.log(response.data)
+          _this.sectionlist = response.data
+          _.each(_this.sectionlist, function (section) {
+            section.ClassTime12hrs = moment(section.ClassTime, 'HH:mm').format('hh:mm a')
+          })
         })
-          .then(function (response) {
-            console.log(response.data)
-            _this.sectionlist = response.data
-            _.each(_this.sectionlist, function(section){
-              section.ClassTime12hrs = moment(section.ClassTime, 'HH:mm').format('hh:mm a')             
-            })
-          })
-          .catch(function (err) {
-            console.log('error while getting section list', err)
-          })
+        .catch(function (err) {
+          console.log('error while getting section list', err)
+        })
       axios({
         method: 'get',
         headers: {
@@ -252,7 +253,6 @@ export default {
         .catch(function (err) {
           console.log('error while getting show list', err)
         })
-       
     }
   },
   mounted () {
@@ -260,8 +260,8 @@ export default {
     this.check = true
     console.log($('table')[0].outerHTML)
     $('#pop').popover({
-        content: $('table')[0].outerHTML
-      })
+      content: $('table')[0].outerHTML
+    })
   },
   created () {
     this.refreshData()
@@ -271,11 +271,10 @@ export default {
     }.bind(this))
 
     this.$eventbus.$on('showdescription', function (showclicked) {
-    this.show = showclicked
-    console.log('show description', this.show)
-    this.showdescriptionmodal()
+      this.show = showclicked
+      console.log('show description', this.show)
+      this.showdescriptionmodal()
     }.bind(this))
-
   },
   watch: {
     showlist: function () {
@@ -284,7 +283,7 @@ export default {
   },
 
   computed: {
-    updatedShowList: function(){
+    updatedShowList: function () {
       return this.showlist.filter(show => {
         return show.ShowTitle.toLowerCase().includes(this.search.toLowerCase())
       })
@@ -297,7 +296,6 @@ export default {
 .fixed{
     position: fixed;
     z-index: 100;
-    
 }
 
 .down{
@@ -305,7 +303,6 @@ export default {
 }
 
 .bg{
- 
   height: 70px;
   background-color: rgba(182, 221, 208, 0.9);
    background-image: linear-gradient(#f6f4ef, #f6f4ef);

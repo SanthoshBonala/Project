@@ -189,7 +189,7 @@ export default {
     addshow () {
       var data = new FormData(document.querySelector('#addshow'))
       data.append('Ticketdetails', JSON.stringify(this.ticketdetails))
-      /* 
+      /*
         ShowTitle: data.get('ShowTitle'),
         ShowPlayWright: data.get('ShowPlayWright'),
         ShowDescription: data.get('ShowDescription'),
@@ -201,13 +201,13 @@ export default {
         ShowImage: data.get('ShowImage'),
         isPublished: data.get('isPublished'),
       */
-      /* global $ axios url _*/
+      /* global $ axios url _ */
       axios.create({
         baseURL: url,
         headers: { 'token': window.localStorage.getItem('AccessToken') }
       }).post('/addshow',
         data
-        )
+      )
         .then(res => {
           axios({
             method: 'get',
@@ -231,11 +231,11 @@ export default {
     },
     addticketprice () {
       console.log(TicketType.value)
-        this.ticketdetails.push({
-          'TicketType': $('#TicketType').val(),
-          'TicketPrice': $('#TicketPrice').val()
-        })
-        document.getElementById('ticketform').reset()
+      this.ticketdetails.push({
+        'TicketType': $('#TicketType').val(),
+        'TicketPrice': $('#TicketPrice').val()
+      })
+      document.getElementById('ticketform').reset()
     },
     deleteticket (TicketType) {
       swal({
@@ -247,16 +247,16 @@ export default {
         cancelButtonColor: '#d33',
         confirmButtonText: `Yes, delete!`
       })
-      .then((result) => {
+        .then((result) => {
           if (result.value) {
             this.ticketdetails = _.without(this.ticketdetails, _.findWhere(this.ticketdetails, {
-                TicketType: TicketType
-              }))
-                swal(
-                  'Deleted!',
-                  `Ticket Type:  ${TicketType} has been deleted.`,
-                  'success'
-                )
+              TicketType: TicketType
+            }))
+            swal(
+              'Deleted!',
+              `Ticket Type:  ${TicketType} has been deleted.`,
+              'success'
+            )
           }
         })
     }
@@ -265,8 +265,8 @@ export default {
     console.log('mounted admin navbar')
     console.log('element ', document.getElementById('rem_content'))
     $('.date').datepicker({
-        multidate: true,
-        multidateSeparator: '; '
+      multidate: true,
+      multidateSeparator: '; '
     })
     function myFunction1 () {
       console.log('myfunction1 show content')
@@ -420,12 +420,12 @@ export default {
   position: absolute;
   right: 35px;
   padding: 2px;
-	display: flex;
-	align-items: center;
+display: flex;
+align-items: center;
 }
 #datepicker-input {
   padding-right: 40px;
-	outline: none;
+ outline: none;
 }
 
 </style>

@@ -5,7 +5,7 @@
   map-type-id="roadmap"
   style="width: 800px; height: 450px; margin-top: 20px;"
 >
-  <GmapMarker 
+  <GmapMarker
     :key="index"
     v-for="(m, index) in markers"
     :position="m.position"
@@ -17,14 +17,14 @@
 </template>
 <script>
 export default {
-  name: "googlemaps",
+  name: 'googlemaps',
   data () {
-      return {
-          markers: [
-            {
-                  position: { lat: 40.35024, lng: -94.88756419999999 }
-            }
-        ]
+    return {
+      markers: [
+        {
+          position: { lat: 40.35024, lng: -94.88756419999999 }
+        }
+      ]
     }
   }
 }
