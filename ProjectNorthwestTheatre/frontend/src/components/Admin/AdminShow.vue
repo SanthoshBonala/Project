@@ -235,19 +235,19 @@ export default {
     },
     editevent () {
       /* global $ */
-      console.log("editclicked",this.show._id)
-      $('#editshow'+ this.show._id).modal('show')
+      console.log('editclicked', this.show._id)
+      $('#editshow' + this.show._id).modal('show')
     },
     editshow () {
-      console.log("editclicked")
-      var formdata = new FormData(document.querySelector('#editshowform'+ this.show._id))
-      var _this = this
+      console.log('editclicked')
+      var formdata = new FormData(document.querySelector('#editshowform' + this.show._id))
+      // var _this = this
       axios.create({
         baseURL: url,
         headers: { 'token': window.localStorage.getItem('AccessToken') }
       }).post('/updateshow', formdata)
-        .then(function(res){
-          $('#editshow'+ this.show._id).modal('hide')
+        .then(function (res) {
+          $('#editshow' + this.show._id).modal('hide')
           swal(
             'Updated!',
             'Show has been successfully updated.',
@@ -316,13 +316,13 @@ export default {
         })
     },
     showstatuschanged (isPublished) {
-        axios.create({
+      axios.create({
         baseURL: url,
         headers: { 'token': window.localStorage.getItem('AccessToken') }
       })
-      .post('/ispublished',{ 
-        id: this.show._id,
-        isPublished: isPublished
+        .post('/ispublished', {
+          id: this.show._id,
+          isPublished: isPublished
         })
         .then(res => {
           console.log(res)
@@ -334,20 +334,20 @@ export default {
     emitshowdescription (showclicked) {
       this.$eventbus.$emit('showdescription', showclicked)
     },
-    duplicateEvent(show) {
-      console.log("duplicate show clicked");
-       swal({
+    duplicateEvent (show) {
+      console.log('duplicate show clicked')
+      swal({
         title: 'Duplicate Show',
-        text: "Do you want to duplicate the show!",
+        text: 'Do you want to duplicate the show!',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, Sure!'
       })
-      .then(res => {
-        console.log(res.value)
-        if (res.value) {
+        .then(res => {
+          console.log(res.value)
+          if (res.value) {
             axios.create(
               {
                 baseURL: url,
