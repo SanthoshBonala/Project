@@ -315,7 +315,7 @@ export default {
 <style scoped>
 .fixed{
     position: fixed;
-    z-index: 100;
+    z-index: 100; 
 }
 
 .down{
