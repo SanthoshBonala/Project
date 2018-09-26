@@ -23,7 +23,7 @@ let SendMail = function () {
                 // setup email data with unicode symbols
                 let mailOptions = {
                     from: '"Northwest Theatre" <s530859@nwmissouri.edu>', // sender address
-                    to: 's530464@nwmissouri.edu', // list of receivers
+                    to: 's530464@nwmissouri.edu, s530859@nwmissouri.edu, s530462@nwmissouri.edu, s530474@nwmissouri.edu', // list of receivers
                     subject: 'Ticket Details', // Subject line
                     html: data
                 }

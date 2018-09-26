@@ -231,7 +231,7 @@ export default {
       this.$emit('showmodal')
     },
     emailevent () {
-      this.$emit('showemailmodal')
+      this.$emit('showemailmodal', this.show)
     },
     editevent () {
       /* global $ */

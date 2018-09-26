@@ -18,7 +18,7 @@
 
     </div>
  
-         <AdminShow class="down" v-for="ele of updatedShowList" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal()" >
+         <AdminShow class="down" v-for="ele of updatedShowList" :key="ele._id"  :show="ele" @showmodal="showmodal()" @showemailmodal="showemailmodal" >
       </AdminShow>
  
      
@@ -46,30 +46,30 @@
     <div class="modal fade" id="emailmodal" tabindex="-1" role="dialog" aria-labelledby="ReserveTickets" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Email</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-          <!-- Modal body -->
-          <!-- Rahul Reddy Lankala - Added placeholders -->
-          <div class="modal-body">
-            <form>
-              <div class="form-group row">
-                <label class="col-sm-3 form-label">Subject:</label>
-                <input class="col-sm-8 form-control" type="text" placeholder="Subject" :value="email.subject">
-              </div>
-              <div class="form-group row">
-                <label for="Email1msg" class="col-sm-3 form-label">Message:</label>
-                  <textarea class="form-control inputstl col-sm-8" placeholder="Type the mesaage here...." rows="10" :value="email.body"></textarea>
-              </div>
-            </form>
-          </div>
-          <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
-      </div>
+            <!-- Modal body -->
+            <!-- Rahul Reddy Lankala - Added placeholders -->
+            <div class="modal-body">
+              <form>
+                <div class="form-group row">
+                  <label class="col-sm-3 form-label" >Subject:</label>
+                  <input class="col-sm-8 form-control" id="subject" type="text" placeholder="Subject" :value="email.subject">
+                </div>
+                <div class="form-group row">
+                  <label for="Email1msg" class="col-sm-3 form-label">Message:</label>
+                    <textarea class="form-control inputstl col-sm-8" id="body" placeholder="Type the mesaage here...." rows="10" :value="email.body"></textarea>
+                </div>
+              </form>
+            </div>
+                <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal" @click="saveEmailContent()">Save</button>              
+              <button type="button" class="btn btn-danger" data-dismiss="modal" @click="sendMail()">Save &amp; Email</button>
+            </div>
         </div>
       </div>
     </div>
@@ -115,7 +115,7 @@
                           <label class="col-sm-4 form-label">Section Number:</label>
                           <select id="inputState" class="form-control col-sm-7">
                               <option selected value="default">--Select--</option>
-                              <option v-for="ele of sectionlist" :key="ele"> 
+                              <option v-for="ele of sectionlist" :key="ele._id"> 
                                  {{ ele.ProfessorName }}: 
                                  {{ ele.ClassTime12hrs }} - 
                                  {{ ele.ClassDay }} -  
@@ -213,11 +213,31 @@ export default {
     showmodal () {
       $('#ReserveTickets').modal('show')
     },
-    showemailmodal () {
+    showemailmodal (v) {
+      this.show = v
       $('#emailmodal').modal('show')
     },
     showdescriptionmodal () {
       $('#descriptionmodal').modal('show')
+    },
+    saveEmailContent () {
+
+    },
+    sendMail () {
+      this.email.subject = $('#subject').val()
+      this.email.body = $('#body').val()
+      axios.post( url + '/sendemail',{
+          show: this.show,
+          message: this.message
+        }, {
+          headers: { token: window.localStorage.getItem('AccessToken') }
+        })
+        .then(res => {
+            console.log('mail sent ' + res)
+        })
+        .catch(err => {
+            console.log('error in sending Email' + err)
+        })
     },
     refreshData () {
       var _this = this
@@ -258,10 +278,10 @@ export default {
   mounted () {
     console.log('mounted')
     this.check = true
-    console.log($('table')[0].outerHTML)
-    $('#pop').popover({
-      content: $('table')[0].outerHTML
-    })
+    // console.log($('table')[0].outerHTML)
+    // $('#pop').popover({
+    //   content: $('table')[0].outerHTML
+    // })
   },
   created () {
     this.refreshData()
@@ -285,7 +305,7 @@ export default {
   computed: {
     updatedShowList: function () {
       return this.showlist.filter(show => {
-        return show.ShowTitle.toLowerCase().includes(this.search.toLowerCase())
+          return show.ShowTitle.toLowerCase().includes(this.search.toLowerCase())
       })
     }
   }

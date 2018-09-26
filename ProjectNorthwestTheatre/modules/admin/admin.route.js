@@ -36,6 +36,7 @@ router.get('/image', ShowController.imagebyid)
 router.post('/ispublished', ShowController.isPublished)
 
 router.post('/duplicateShow', ShowController.GetduplicateShow, ShowController.GetShowList)
+
 router.post('/reserveTicket', ShowController.reserveTickets)
 
 /* section CRUD operations */
