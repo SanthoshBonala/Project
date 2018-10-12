@@ -3,6 +3,9 @@ const config = require('../../../config/config')
 const fs = require('fs')
 const ejs = require('ejs')
 const path = require('path')
+const cronJob = require('cron').CronJob
+const show = require('../../../models/Show.model')
+const moment = require('moment')
 
 let SendMail = function (req,res,next) {
     let transporter = nodemailer.createTransport({
@@ -46,8 +49,25 @@ let SendMail = function (req,res,next) {
 
 module.exports.SendMail = SendMail
 
-// let sendresponse = (req,res) => {
-    
-// }
+let startjob = function() {
+    console.log('cron job started')
+    const job = new cronJob('* * * * * *', function(){
+        show.find({}, ['ShowDate'], function(err, showlist){
+            for(Show of showlist){
+                    let showarray = Show.ShowDate.split(',')
+                    for(date of showarray){
+                        console.log(moment().format('MM/DD/YYYY'))
+                        console.log(date)
+                       console.log( moment().diff(moment(date, 'MM/DD/YYYY'), 'days') )
+                        if(moment().diff(moment(date, 'MM/DD/YYYY'), 'days') === 0){
+                            SendMail(Show._id)
+                        }
+                    }
+                }
+        })
+    },() => {}, true)
 
-// module.exports.sendresponse = sendresponse
+    job.start()
+}
+
+module.exports.startjob = startjob
